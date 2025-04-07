@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom" 
-
+// 나중에 지울 화면
 function ExamplePage(){
     return(
         <>
