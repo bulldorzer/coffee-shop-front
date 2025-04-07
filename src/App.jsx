@@ -1,17 +1,13 @@
-import React from "react";
-import { useState } from 'react'
-import MainPage from './pages/MainPage'
+import { RouterProvider } from "react-router-dom";
+import root from "./router/root";
+// css 추후 추가 예정
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <>
-      
-      <MainPage />
-      
-    </>
+    <RouterProvider router={root}/>
   )
 }
 
