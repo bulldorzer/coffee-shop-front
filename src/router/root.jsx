@@ -9,7 +9,7 @@ const Main = lazy(() => import("../pages/MainPage.jsx"));
 // 예제파일
 const Exam = lazy(() => import("../pages/ExamplePage.jsx"));
 
-// 로그인관련 - 재민
+// 로그인관련 - 영일
 const Login = lazy(() => import("../pages/LoginPage.jsx"));
 const JoinAgree = lazy(() => import("../pages/JoinAgreePage.jsx"));
 const Join = lazy(() => import("../pages/JoinPage.jsx"));
@@ -23,6 +23,11 @@ const UseGuide = lazy(() => import("../pages/UseGuide.jsx"))
 const Order = lazy(()=> import("../pages/OrderPage.jsx"))
 // 메뉴바 고객센터링크 - 진우
 const InquiryForm = lazy(() => import("../pages/InquiryForm.jsx"))
+
+// 상품 목록 - 영일
+const ProductList = lazy(() => import("../pages/ProductListPage.jsx"))
+// 상품 상세 - 영일
+const ProductDetail = lazy(() => import("../pages/ProductDetailPage.jsx"))
 
 /**
  * 어떤 경로에 무슨 컴포넌트를 보여줄 것인지 표시
@@ -66,6 +71,14 @@ const root = createBrowserRouter([
     {
         path : "/cart",
         element : <Suspense fallback={Loading}><Cart/></Suspense>
+    },
+    {
+        path : "/productlist",
+        element : <Suspense fallback={Loading}><ProductList/></Suspense>
+    },
+    {
+        path : "/product/:id",
+        element : <Suspense fallback={Loading}><ProductDetail/></Suspense>
     }
     
 ])
