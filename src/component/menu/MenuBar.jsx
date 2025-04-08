@@ -29,7 +29,7 @@ const MenuBar = () =>{
                 <div className="menu-right">
                     <ul className="user-menu">
                         <li><Link to="/login">로그인</Link></li>
-                        <li><Link to="/signup">회원가입</Link></li>
+                        <li><Link to="/join/agree">회원가입</Link></li>
                         <li><Link to="/guide">이용안내</Link></li>
                     </ul>
                     <Link to="/cart">
