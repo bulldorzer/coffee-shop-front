@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Suspense, lazy } from "react"; // 컴포넌트 로딩 최적화
+import myPageRoutes from "./myPageRoutes.jsx"
 
 const Loading = <div>Loading...</div>
 
@@ -52,7 +53,8 @@ const root = createBrowserRouter([
     {
         path : "/guide",
         element : <Suspense fallback={Loading}><InquiryForm/></Suspense>
-    }
+    },
+    myPageRoutes
     
 ])
 
