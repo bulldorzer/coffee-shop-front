@@ -33,9 +33,12 @@ const MenuBar = () =>{
                         <li><Link to="/guide">이용안내</Link></li>
                     </ul>
                     <Link to="/cart">
-                        <img src="/icon/icon_search.png" alt="Cart" className="cart-icon" />
+                        <img src="/icon/icon_cart.png" alt="Cart" className="cart-icon" />
                     </Link>
-                    <input type="text" placeholder="검색어를 입력하세요" className="search-input" />
+                    <div>
+                        <input type="text" placeholder="검색어를 입력하세요" className="search-input" />
+                        <img src="/icon/icon_search.png" alt="Cart" className="cart-icon" />
+                    </div>
                 </div>
             </nav>
         </header>

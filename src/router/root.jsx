@@ -14,9 +14,13 @@ const Login = lazy(() => import("../pages/LoginPage.jsx"));
 const JoinAgree = lazy(() => import("../pages/JoinAgreePage.jsx"));
 const Join = lazy(() => import("../pages/JoinPage.jsx"));
 
+// 카트 - 진우
+const Cart = lazy(()=> import("../pages/CartPage.jsx"))
+
 // 푸터 이용안내 - 진우
 const UseGuide = lazy(() => import("../pages/UseGuide.jsx"))
-
+// 주문서 관련 - 진우
+const Order = lazy(()=> import("../pages/OrderPage.jsx"))
 // 메뉴바 고객센터링크 - 진우
 const InquiryForm = lazy(() => import("../pages/InquiryForm.jsx"))
 
@@ -54,7 +58,15 @@ const root = createBrowserRouter([
         path : "/guide",
         element : <Suspense fallback={Loading}><InquiryForm/></Suspense>
     },
-    myPageRoutes
+    myPageRoutes,
+    {
+        path : "/order",
+        element : <Suspense fallback={Loading}><Order/></Suspense>
+    },
+    {
+        path : "/cart",
+        element : <Suspense fallback={Loading}><Cart/></Suspense>
+    }
     
 ])
 
