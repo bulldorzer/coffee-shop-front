@@ -1,3 +1,4 @@
+import BasicLayout from "../layouts/BasicLayout";
 
 
 /**
@@ -7,8 +8,12 @@
  */
 const InquiryForm = () =>{
     return(
+        <BasicLayout>
+        
         <div className="inquiry-container">
+            {/* 공통 title로 빠질 예정 */}    
             <h2>이용 문의</h2>
+            <hr/>
 
             <div className="inquiry-section">
                 <h3>문의 조회</h3>
@@ -49,6 +54,7 @@ const InquiryForm = () =>{
                 </div>
             </div>
         </div>
+        </BasicLayout>
     )
 }
 export default InquiryForm;
