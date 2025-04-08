@@ -1,3 +1,5 @@
+import Footer from "../component/footer/Footer";
+import MenuBar from "../component/menu/MenuBar";
 
 
 /**
@@ -8,12 +10,12 @@
 const BasicLayout = ({children}) => {
     return(
         <>
-            <header>
-                <h1>Header</h1>
-            </header>
+            
+            <MenuBar></MenuBar>
             <div>
                 <main className="main">{children}</main>
             </div>
+            <Footer></Footer>
         </>
     )
 }
