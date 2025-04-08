@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Footer from "../component/footer/Footer";
 import MenuBar from "../component/menu/MenuBar";
 
@@ -15,6 +16,7 @@ const BasicLayout = ({children}) => {
             <MenuBar></MenuBar>
             <div>
                 <main className="main">{children}</main>
+                <Outlet />
             </div>
             <Footer></Footer>
         </>
