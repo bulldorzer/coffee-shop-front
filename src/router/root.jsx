@@ -8,7 +8,7 @@ const Exam = lazy(() => import("../pages/ExamplePage.jsx"));
 const Login = lazy(() => import("../pages/LoginPage.jsx"));
 const JoinAgree = lazy(() => import("../pages/JoinAgreePage.jsx"));
 const Join = lazy(() => import("../pages/JoinPage.jsx"));
-
+const UseGuide = lazy(()=>import("../pages/UseGuide.jsx"))
 
 /**
  * 어떤 경로에 무슨 컴포넌트를 보여줄 것인지 표시
@@ -35,6 +35,10 @@ const root = createBrowserRouter([
         path : "/join",
         element : <Suspense fallback={Loading}><Join/></Suspense>
 
+    },
+    {
+        path : "/useguide",
+        element : <Suspense fallback={Loading}><UseGuide/></Suspense>
     }
     
 ])
