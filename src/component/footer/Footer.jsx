@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
-
+/**
+ * 푸터 영역 메뉴 - 최진우
+ * @returns 
+ */
 const Footer = () =>{
     return(
         <footer className="footer">

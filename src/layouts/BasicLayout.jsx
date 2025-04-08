@@ -3,9 +3,10 @@ import MenuBar from "../component/menu/MenuBar";
 
 
 /**
- * 
+ * 최진우제작
  * @param {*} children 
- * @returns BasicLayout태그로 감싸면 해당 태그가 div 위치에 표시됨
+ * @returns 
+ * BasicLayout태그로 감싸면 자식 태그가 div 위치에 표시됨
  */
 const BasicLayout = ({children}) => {
     return(

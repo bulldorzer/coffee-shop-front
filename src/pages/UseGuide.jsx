@@ -1,6 +1,10 @@
 import BasicLayout from "../layouts/BasicLayout";
 
-
+/**
+ * 개발자 최진우
+ * 푸터 이용약관 클릭시 나타나는 화면
+ * @returns 
+ */
 const UseGuide = () =>{
     return(
         <>
