@@ -5,7 +5,7 @@ import root from "./router/root";
 
 function App() {
   
-
+  /* 라우터 위치 표시 */
   return (
     <RouterProvider router={root}/>
   )
