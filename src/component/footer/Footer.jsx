@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const Footer = () =>{
@@ -17,7 +18,12 @@ const Footer = () =>{
             </div>
 
             <div className="footer-bottom">
-                <p>회사소개 | 이용약관 | 개인정보 처리방침 | 고객센터</p>
+                <Link to={"/introduce"}>회사소개</Link> |
+                <Link to={"/useguide"}>이용약관</Link> |
+                <Link to={"/a"}>개인정보</Link> |
+                <Link to={"/b"}>처리방침</Link> |
+                <Link to={"/c"}>고객센터</Link> 
+                
             </div>
         </footer>
     )
