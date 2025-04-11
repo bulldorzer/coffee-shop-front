@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ReviewList from '../component/review/ReviewList';
-import ReviewForm from '../component/review/ReviewForm';
+import BasicLayout from '../layouts/BasicLayout';
 
 
 /**
@@ -39,7 +39,7 @@ export default function ProductDetailPage() {
   
 
   return (
-    <div>
+    <BasicLayout>
       {/* 왼쪽: 이미지 */}
       <div>
         <img src={product.image} alt={product.name}/>
@@ -129,6 +129,6 @@ export default function ProductDetailPage() {
       <div id='p2'>
         <ReviewList></ReviewList>
       </div>
-    </div>
+    </BasicLayout>
   );
 }

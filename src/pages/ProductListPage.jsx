@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BasicLayout from "../layouts/BasicLayout";
 
 /**
  * 상품 목록 페이지 - 나영일(ChatGPT)
@@ -62,7 +63,7 @@ export default function ProductListPage() {
   };
 
   return (
-    <div>
+    <BasicLayout>
       <h1>카테고리</h1>
       <div>
         {['딸기맛', '초코맛', '바닐라맛', '녹차맛'].map((cat) => (
@@ -101,6 +102,6 @@ export default function ProductListPage() {
         ))}
       </div>
 
-    </div>
+    </BasicLayout>
   );
 }
