@@ -5,7 +5,7 @@ import "../../css/review/reviewForm.css";
  * 상품후기 작성 - 진우
  * @returns 
  */
-const ReviewForm = () => {
+const ReviewForm = ({ onCancel }) => {
   const [rating, setRating] = useState(0);
 
   const handleRating = (value) => {
@@ -39,7 +39,7 @@ const ReviewForm = () => {
       <textarea className="review-textarea" rows="8" placeholder="후기를 작성해주세요" />
 
       <div className="button-row">
-        <button className="btn cancel">취소</button>
+        <button className="btn cancel" onClick={onCancel}>취소</button>
         <button className="btn submit">작성하기</button>
       </div>
     </div>

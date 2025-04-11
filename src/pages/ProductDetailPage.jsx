@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ReviewList from '../component/review/ReviewList';
 import ReviewForm from '../component/review/ReviewForm';
 
@@ -117,12 +117,18 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
+      <div >
+        <ul>
+          <li className='active'><a href="#p1">상세 정보</a></li>
+          <li><a href="#p2">상품 후기</a></li>
+          <li><a href="#p3">상품 문의</a></li>
+          <li><a href="#p4">배송반품교환안내</a></li>
+        </ul>
+      </div>
       {/* 사용자 후기 */}
-      <ReviewList></ReviewList>
-
-      {/** 상품후기 쓰기 */}
-      <ReviewForm></ReviewForm>
-
+      <div id='p2'>
+        <ReviewList></ReviewList>
+      </div>
     </div>
   );
 }

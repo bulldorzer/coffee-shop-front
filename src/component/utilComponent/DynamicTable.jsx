@@ -8,7 +8,13 @@ import '../../css/util/dynamicTable.css'; // 스타일 분리
  * columns는 {key=?, label=?} 객체값이 필요하며 배열로 구성할것(컬럼이 여러개일 때)
  * data는 정의한 columns key 값에 맞추어 정의할것 배열로 구성
  */
-const DynamicTable = ({ columns, data, itemsPerPage = 5 }) => {
+const DynamicTable = ({ 
+    columns, 
+    data, 
+    itemsPerPage = 5, 
+    showWriteButton = false, 
+    onWriteClick = () => {}, // 추가된 props
+  }) => {
   const [sortField, setSortField] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
   const [currentPage, setCurrentPage] = useState(1);
@@ -116,6 +122,12 @@ const DynamicTable = ({ columns, data, itemsPerPage = 5 }) => {
         >
           마지막
         </button>
+        {/* 작성하기 버튼 */}
+        {showWriteButton && (
+          <button className="write-button" onClick={onWriteClick}>
+            작성하기
+          </button>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DynamicTable from '../utilComponent/DynamicTable';
+import ReviewForm from './ReviewForm';
 
 const data = [
   { score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
@@ -114,16 +115,40 @@ const columns = [
   { key: 'postDate', label: '등록날짜' },
 ];
 
+
+
 /**
  * 상품후기 컴포넌트 - 진우
  * @returns 
  */
 const ReviewList = () =>{
+    const [showForm, setShowForm] = useState(false);
+    const handleWriteClick = () => {
+        setShowForm(true); // 작성 모드 ON
+    };
+
+    const handleCancel = () => {
+        setShowForm(false); // 작성 모드 OFF
+    };
     return(
         <>
             <div>
                 <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>상품후기</h2>
-                <DynamicTable columns={columns} data={data} itemsPerPage={6} />
+                <DynamicTable
+                    columns={columns}
+                    data={data}
+                    itemsPerPage={6}
+                    showWriteButton={!showForm}  // 작성폼이 열려있으면 버튼 숨김
+                    onWriteClick={handleWriteClick}
+                />
+                {console.log("showForm 상태:", showForm)}
+                {/* 후기 폼 */}
+                {showForm && (
+                    <>
+                        {console.log("ReviewForm 렌더링됨")}
+                        <ReviewForm onCancel={handleCancel} />
+                    </>
+                )}
             </div>
         </>
     )
