@@ -15,14 +15,14 @@ const JoinAgree = lazy(() => import("../pages/JoinAgreePage.jsx"));
 const Join = lazy(() => import("../pages/JoinPage.jsx"));
 
 // 카트 - 진우
-const Cart = lazy(()=> import("../pages/CartPage.jsx"))
+const CartPage = lazy(()=> import("../pages/CartPage.jsx"))
 
 // 푸터 이용안내 - 진우
-const UseGuide = lazy(() => import("../pages/UseGuide.jsx"))
+const UseGuidePage = lazy(() => import("../pages/UseGuidePage.jsx"))
 // 주문서 관련 - 진우
 const Order = lazy(()=> import("../pages/OrderPage.jsx"))
 // 메뉴바 고객센터링크 - 진우
-const InquiryForm = lazy(() => import("../pages/InquiryForm.jsx"))
+const InquiryFormPage = lazy(() => import("../pages/InquiryFormPage.jsx"))
 
 // 상품 목록 - 영일
 const ProductList = lazy(() => import("../pages/ProductListPage.jsx"))
@@ -57,11 +57,11 @@ const root = createBrowserRouter([
     },
     {
         path : "/useguide",
-        element : <Suspense fallback={Loading}><UseGuide/></Suspense>
+        element : <Suspense fallback={Loading}><UseGuidePage/></Suspense>
     },
     {
         path : "/guide",
-        element : <Suspense fallback={Loading}><InquiryForm/></Suspense>
+        element : <Suspense fallback={Loading}><InquiryFormPage/></Suspense>
     },
     myPageRoutes,
     {
@@ -70,7 +70,7 @@ const root = createBrowserRouter([
     },
     {
         path : "/cart",
-        element : <Suspense fallback={Loading}><Cart/></Suspense>
+        element : <Suspense fallback={Loading}><CartPage/></Suspense>
     },
     {
         path : "/productlist",

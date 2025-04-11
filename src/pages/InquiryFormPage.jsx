@@ -6,7 +6,7 @@ import BasicLayout from "../layouts/BasicLayout";
  * @returns 
  * 메뉴바 고객센터 클릭시 이동되는 페이지
  */
-const InquiryForm = () =>{
+const InquiryFormPage = () =>{
     return(
         <BasicLayout>
         
@@ -57,4 +57,4 @@ const InquiryForm = () =>{
         </BasicLayout>
     )
 }
-export default InquiryForm;
+export default InquiryFormPage;

@@ -1,7 +1,7 @@
 import React from "react";
 
 // myPage이용문의 - 이재민
-const MyPageSupport = () => {
+const MyPageSupportPage = () => {
   return (
     <div>
       <h3>이용문의</h3>
@@ -11,4 +11,4 @@ const MyPageSupport = () => {
   );
 };
 
-export default MyPageSupport;
+export default MyPageSupportPage;

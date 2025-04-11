@@ -1,7 +1,7 @@
 import React from "react";
 
 // myPage주문내역/배송조회 - 이재민
-const MyPageOrders = () => {
+const MyPageOrdersPage = () => {
   return (
     <div>
       <h3>주문목록/배송조회</h3>
@@ -11,4 +11,4 @@ const MyPageOrders = () => {
   );
 };
 
-export default MyPageOrders;
+export default MyPageOrdersPage;

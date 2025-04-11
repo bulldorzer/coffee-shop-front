@@ -5,7 +5,7 @@ import BasicLayout from "../layouts/BasicLayout";
  * 푸터 이용약관 클릭시 나타나는 화면
  * @returns 
  */
-const UseGuide = () =>{
+const UseGuidePage = () =>{
     return(
         <>
             <BasicLayout>
@@ -41,4 +41,4 @@ const UseGuide = () =>{
     )
 }
 
-export default UseGuide;
+export default UseGuidePage;

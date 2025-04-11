@@ -1,7 +1,7 @@
 import React from "react";
 
 // myPage관심상품 - 이재민
-const MyPageMemberSave = () => {
+const MyPageMemberSavePage = () => {
   return (
     <div>
       <h3>관심상품</h3>
@@ -11,4 +11,4 @@ const MyPageMemberSave = () => {
   );
 };
 
-export default MyPageMemberSave;
+export default MyPageMemberSavePage;

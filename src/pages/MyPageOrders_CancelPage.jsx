@@ -1,7 +1,7 @@
 import React from "react";
 
 // myPage취소/환불/교환내역 - 이재민
-const MyPageOrders_CANCEL = () => {
+const MyPageOrders_CancelPage = () => {
   return (
     <div>
       <h3>취소/환불/교환내역</h3>
@@ -11,4 +11,4 @@ const MyPageOrders_CANCEL = () => {
   );
 };
 
-export default MyPageOrders_CANCEL;
+export default MyPageOrders_CancelPage;

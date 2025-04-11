@@ -1,13 +1,13 @@
 import React, { lazy, Suspense } from "react";
 import MyPageLayout from "../layouts/MyPageLayout";
 import BasicLayout from "../layouts/BasicLayout";
-import MyPageOrders_CANCEL from "../pages/MyPageOrders_CANCEL";
-import MyPageOrders from "../pages/MyPageOrders";
-import MyPageMemberSave from "../pages/MyPageMemberSave";
-import MyPageRewards from "../pages/MyPageRewards";
-import MyPageProfile from "../pages/MyPageProfile";
-import MyPageProductQnA from "../pages/MyPageProductQnA";
-import MyPageSupport from "../pages/MyPageSupport";
+import MyPageOrders_CancelPage from "../pages/MyPageOrders_CancelPage";
+import MyPageOrdersPage from "../pages/MyPageOrdersPage";
+import MyPageMemberSavePage from "../pages/MyPageMemberSavePage";
+import MyPageRewardsPage from "../pages/MyPageRewardsPage";
+import MyPageProfilePage from "../pages/MyPageProfilePage";
+import MyPageProductQnAPage from "../pages/MyPageProductQnAPage";
+import MyPageSupportPage from "../pages/MyPageSupportPage";
 
 const loading = <div>Loading...</div>;
 
@@ -20,35 +20,35 @@ const myPageRoutes = {
         children: [
             {
               index: true, // /mypage 접근 시 기본
-              element: <Suspense fallback={loading}><MyPageOrders /></Suspense>,
+              element: <Suspense fallback={loading}><MyPageOrdersPage /></Suspense>,
             },
             {
               path: "orders", // /mypage/orders
-              element: <Suspense fallback={loading}><MyPageOrders /></Suspense>,
+              element: <Suspense fallback={loading}><MyPageOrdersPage /></Suspense>,
             },
             {
               path: "orders_cancel",
-              element: <Suspense fallback={loading}><MyPageOrders_CANCEL /></Suspense>,
+              element: <Suspense fallback={loading}><MyPageOrders_CancelPage /></Suspense>,
             },
             {
               path: "membersave",
-              element: <Suspense fallback={loading}><MyPageMemberSave /></Suspense>
+              element: <Suspense fallback={loading}><MyPageMemberSavePage /></Suspense>
             },
             {
               path: "rewards",
-              element: <Suspense fallback={loading}><MyPageRewards /></Suspense>
+              element: <Suspense fallback={loading}><MyPageRewardsPage /></Suspense>
             },
             {
               path: "profile",
-              element: <Suspense fallback={loading}><MyPageProfile /></Suspense>
+              element: <Suspense fallback={loading}><MyPageProfilePage /></Suspense>
             },
             {
               path: "productQnA",
-              element: <Suspense fallback={loading}><MyPageProductQnA /></Suspense>
+              element: <Suspense fallback={loading}><MyPageProductQnAPage /></Suspense>
             },
             {
               path: "support",
-              element: <Suspense fallback={loading}><MyPageSupport /></Suspense>
+              element: <Suspense fallback={loading}><MyPageSupportPage /></Suspense>
             }
         ]
     }
