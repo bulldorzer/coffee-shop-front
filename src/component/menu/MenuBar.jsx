@@ -20,7 +20,7 @@ const MenuBar = () =>{
                 <div className="menu-center">
                     <ul className="category-menu">
                         <li><Link to="/special">특가상품</Link></li>
-                        <li><Link to="/coffee">원두커피</Link></li>
+                        <li><Link to="/productList">원두커피</Link></li>
                         <li><Link to="/coldbrew">콜드브루</Link></li>
                         <li><Link to="/gift">선물세트</Link></li>
                     </ul>

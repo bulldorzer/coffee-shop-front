@@ -73,7 +73,7 @@ const root = createBrowserRouter([
         element : <Suspense fallback={Loading}><CartPage/></Suspense>
     },
     {
-        path : "/productlist",
+        path : "/productList",
         element : <Suspense fallback={Loading}><ProductList/></Suspense>
     },
     {
