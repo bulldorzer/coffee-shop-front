@@ -9,7 +9,6 @@ const MyPageLayout = () => {
       {/* 왼쪽 사이드 메뉴 */}
       <aside>
         <h2>마이 페이지</h2>
-        <hr/>
         <SidebarMenu />
       </aside>
 

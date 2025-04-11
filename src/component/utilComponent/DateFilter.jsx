@@ -1,46 +1,40 @@
 import { useState, useEffect } from "react";
-import dayjs from "dayjs";
+
 // 날짜 필터 - 이재민
 
-// 외부로 넘겨줄 값
-type Props = {
-  onSearch: (startDate: string, endDate: string) => void;
-  initialRange?: "today" | "1m" | "3m" | "1y";
-};
-
-const DateFilter = ({ onSearch, initialRange = "today" }: Props) => {
+const DateFilter = ({ onSearch, initialRange = "today" }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [selectedRange, setSelectedRange] = useState(initialRange);
   const [error, setError] = useState("");
 
-  // 날짜 범위 세팅 함수
-  const setRange = (range: string) => {
-    const end = dayjs();
-    let start = end;
-
+  // 날짜 범위 설정
+  const setRange = (range) => {
+    const end = new Date();
+    let start = new Date(); // ✅ let으로
+  
     switch (range) {
       case "1m":
-        start = end.subtract(1, "month");
+        start.setMonth(start.getMonth() - 1);
         break;
       case "3m":
-        start = end.subtract(3, "month");
+        start.setMonth(start.getMonth() - 3);
         break;
       case "1y":
-        start = end.subtract(1, "year");
+        start.setFullYear(start.getFullYear() - 1);
         break;
       default:
-        start = end;
+        break; // ✅ 불필요한 재할당 제거
     }
-
-    setStartDate(start.format("YYYY-MM-DD"));
-    setEndDate(end.format("YYYY-MM-DD"));
+  
+    setStartDate(formatDate(start));
+    setEndDate(formatDate(end));
     setSelectedRange(range);
   };
 
-  // 유효성 검사
+  // 날짜 유효성 검사
   const validateDates = () => {
-    if (dayjs(startDate).isAfter(dayjs(endDate))) {
+    if (new Date(startDate) > new Date(endDate)) {
       setError("시작일은 종료일보다 이전이어야 합니다.");
       return false;
     }
@@ -48,18 +42,29 @@ const DateFilter = ({ onSearch, initialRange = "today" }: Props) => {
     return true;
   };
 
-  // 날짜 변경 시 유효성 검사
+  // 날짜를 yyyy-mm-dd형식으로 초기화
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+
+
+  // 날짜 바뀔 때마다 유효성 검사
   useEffect(() => {
     if (startDate && endDate) {
       validateDates();
     }
   }, [startDate, endDate]);
 
-  // 초기 범위 설정
+  // 초기 날짜 설정
   useEffect(() => {
     setRange(initialRange);
   }, [initialRange]);
 
+  // 조회 버튼 클릭 시
   const handleSearch = () => {
     if (validateDates()) {
       onSearch(startDate, endDate);
@@ -67,8 +72,9 @@ const DateFilter = ({ onSearch, initialRange = "today" }: Props) => {
   };
 
   return (
-    <div className="flex flex-col gap-1 text-sm">
-      <div className="flex items-center gap-2">
+    <div>
+      <span>조회기간</span>
+      <div>
         {[
           { label: "오늘", value: "today" },
           { label: "1개월", value: "1m" },
@@ -78,9 +84,6 @@ const DateFilter = ({ onSearch, initialRange = "today" }: Props) => {
           <button
             key={btn.value}
             onClick={() => setRange(btn.value)}
-            className={`border px-3 py-1 rounded ${
-              selectedRange === btn.value ? "bg-gray-300 font-bold" : ""
-            }`}
           >
             {btn.label}
           </button>
@@ -91,9 +94,8 @@ const DateFilter = ({ onSearch, initialRange = "today" }: Props) => {
           value={startDate}
           onChange={(e) => {
             setStartDate(e.target.value);
-            setSelectedRange(""); // 커스텀 선택 감지
+            setSelectedRange("");
           }}
-          className="border px-2 py-1 rounded"
         />
         <span>-</span>
         <input
@@ -101,23 +103,16 @@ const DateFilter = ({ onSearch, initialRange = "today" }: Props) => {
           value={endDate}
           onChange={(e) => {
             setEndDate(e.target.value);
-            setSelectedRange(""); // 커스텀 선택 감지
+            setSelectedRange("");
           }}
-          className="border px-2 py-1 rounded"
         />
 
-        <button
-          onClick={handleSearch}
-          className={`border px-4 py-1 rounded ${
-            error ? "bg-gray-200 text-gray-400 cursor-not-allowed" : ""
-          }`}
-          disabled={!!error}
-        >
+        <button onClick={handleSearch} disabled={!!error}>
           조회
         </button>
       </div>
 
-      {error && <div className="text-red-500">{error}</div>}
+      {error && <div>{error}</div>}
     </div>
   );
 };
