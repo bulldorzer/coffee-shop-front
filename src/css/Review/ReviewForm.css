@@ -1,0 +1,65 @@
+.review-form-container {
+    width: 600px;
+    margin: 40px auto;
+    font-family: sans-serif;
+  }
+  
+  .form-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .title-divider {
+    height: 3px;
+    background-color: black;
+    margin: 8px 0 20px;
+    border: none;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    margin-right: 6px;
+  }
+  
+  .star {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc;
+  }
+  
+  .star.selected {
+    color: black;
+  }
+  
+  .review-textarea {
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    resize: none;
+    margin-bottom: 20px;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #eee;
+  }
