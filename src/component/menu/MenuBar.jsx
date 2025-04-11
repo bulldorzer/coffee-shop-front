@@ -30,7 +30,7 @@ const MenuBar = () =>{
                     <ul className="user-menu">
                         <li><Link to="/login">로그인</Link></li>
                         <li><Link to="/join/agree">회원가입</Link></li>
-                        <li><Link to="/guide">이용안내</Link></li>
+                        <li><Link to="/guide">이용문의</Link></li>
                     </ul>
                     <Link to="/cart">
                         <img src="/icon/icon_cart.png" alt="Cart" className="cart-icon" />
