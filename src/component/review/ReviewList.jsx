@@ -5,94 +5,7 @@ import ReviewForm from './ReviewForm';
 const data = [
   { score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
   { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },
-  { score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },
-  { score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },
-  { score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },
-  { score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },
-  { score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },,
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },,
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },,
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },,
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },,
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },,
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },,
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },,
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },{ score: 5, content: '아주 좋아요!', writer: '홍길동', postDate: '2024-04-01' },
-  { score: 4, content: '만족합니다', writer: '김철수', postDate: '2024-04-02' },
-  { score: 3, content: '보통이에요', writer: '이영희', postDate: '2024-04-03' },
+  
   // 더미 데이터 추가 가능
 ];
 
@@ -141,14 +54,8 @@ const ReviewList = () =>{
                     showWriteButton={!showForm}  // 작성폼이 열려있으면 버튼 숨김
                     onWriteClick={handleWriteClick}
                 />
-                {console.log("showForm 상태:", showForm)}
                 {/* 후기 폼 */}
-                {showForm && (
-                    <>
-                        {console.log("ReviewForm 렌더링됨")}
-                        <ReviewForm onCancel={handleCancel} />
-                    </>
-                )}
+                {showForm && <ReviewForm onCancel={handleCancel} /> }
             </div>
         </>
     )
