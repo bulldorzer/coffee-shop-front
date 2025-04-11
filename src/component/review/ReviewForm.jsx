@@ -1,0 +1,45 @@
+import React, { useState } from "react";
+import "../../css/Review/ReviewForm.css";
+
+const ReviewForm = () => {
+  const [rating, setRating] = useState(0);
+
+  const handleRating = (value) => {
+    setRating(value);
+  };
+
+  return (
+    <div className="review-form-container">
+      <h2 className="form-title">상품후기</h2>
+      <hr className="title-divider" />
+
+      <div className="form-row">
+        <div>
+          <label className="form-label">상품명 :</label>
+          <span> 상품 이름 표시 </span>
+        </div>
+        <div>
+          <label className="form-label">평점 :</label>
+          {[1, 2, 3, 4, 5].map((val) => (
+            <span
+              key={val}
+              className={`star ${val <= rating ? "selected" : ""}`}
+              onClick={() => handleRating(val)}
+            >
+              ★
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <textarea className="review-textarea" rows="8" placeholder="후기를 작성해주세요" />
+
+      <div className="button-row">
+        <button className="btn cancel">취소</button>
+        <button className="btn submit">작성하기</button>
+      </div>
+    </div>
+  );
+};
+
+export default ReviewForm;
