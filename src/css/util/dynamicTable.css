@@ -1,0 +1,52 @@
+.table-container {
+  width: 100%;
+  border: 1px solid black;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.dynamic-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dynamic-table th,
+.dynamic-table td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+.dynamic-table th {
+  background-color: #f3f3f3;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dynamic-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  border: 1px solid black;
+  background: white;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  font-weight: bold;
+  background-color: #ddd;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ReviewList from '../component/review/ReviewList';
 import ReviewForm from '../component/review/ReviewForm';
+
 
 /**
  * 상품 상세 페이지 - 나영일(ChatGPT)
@@ -116,45 +118,7 @@ export default function ProductDetailPage() {
       </div>
 
       {/* 사용자 후기 */}
-      <div className="review-container">
-        <div className="tab-menu">
-          <div className="tab">상세정보</div>
-          <div className="tab active">상품후기</div>
-          <div className="tab">상품 문의</div>
-          <div className="tab">배송반품교환안내</div>
-        </div>
-
-        <h2 className="section-title">상품후기</h2>
-
-        <table className="review-table" border={1}>
-          <thead>
-            <tr>
-              <th>별점 ▲<br/>(클릭시 오름차순)</th>
-              <th>내용</th>
-              <th>이름</th>
-              <th>날짜 ▲</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...Array(5)].map((_, idx) => (
-              <tr key={idx}>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div className="pagination">
-          [처음] &lt; 이전 1 2 3 4 5 이후 &gt; [마지막]
-        </div>
-
-        <div className="write-btn-box">
-          <button className="write-button">상품후기 쓰기</button>
-        </div>
-      </div>
+      <ReviewList></ReviewList>
 
       {/** 상품후기 쓰기 */}
       <ReviewForm></ReviewForm>

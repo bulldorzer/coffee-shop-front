@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import "../../css/Review/ReviewForm.css";
+import "../../css/review/reviewForm.css";
 
+/**
+ * 상품후기 작성 - 진우
+ * @returns 
+ */
 const ReviewForm = () => {
   const [rating, setRating] = useState(0);
 
