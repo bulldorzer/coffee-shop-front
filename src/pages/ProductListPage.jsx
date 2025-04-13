@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BasicLayout from "../layouts/BasicLayout";
+import axios from "axios";
 
 /**
  * 상품 목록 페이지 - 나영일(ChatGPT)
@@ -19,15 +20,39 @@ export default function ProductListPage() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [categories, setCategories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
   const navigate = useNavigate();
 
+  // 서버에서 상품(product = coffeeBean) 가져오기
   useEffect(() => {
-    setProducts(dummyProducts);
-    setFilteredProducts(dummyProducts);
-    setSortedProducts(dummyProducts);
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get("/api/coffeeBeans");
+        const productList = res.data;
+
+        console.log("상품(원두) 응답:", productList);  // 응답 구조 확인
+
+        setProducts(productList);
+        setFilteredProducts(productList);
+        setSortedProducts(productList);
+      } catch (error) {
+        console.error("상품 목록 불러오기 실패:", error);
+      }
+    };
+  
+    fetchProducts();
+  }, []);
+
+  // 서버에서 카테고리 가져오기
+  useEffect(() => {
+    axios.get("/api/categories")
+    .then(res => {
+      console.log("카테고리 응답:", res.data);  // 응답 구조 확인
+      setCategories(res.data);
+      })
+      .catch(err => console.error("카테고리 가져오기 실패:", err));
   }, []);
 
   // 상품 정렬
@@ -50,7 +75,7 @@ export default function ProductListPage() {
     setCurrentPage(1);
   };
 
-  const indexOfLast = currentPage * itemsPerPage;
+  const indexOfLast = currentPage * itemsPerPage; 
   const indexOfFirst = indexOfLast - itemsPerPage;
   const currentProducts = sortedProducts.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
@@ -66,7 +91,7 @@ export default function ProductListPage() {
     <BasicLayout>
       <h1>카테고리</h1>
       <div>
-        {['딸기맛', '초코맛', '바닐라맛', '녹차맛'].map((cat) => (
+        {categories.map(cat => (
           <button key={cat} onClick={() => filterByCategory(cat)}>
             {cat}
           </button>
