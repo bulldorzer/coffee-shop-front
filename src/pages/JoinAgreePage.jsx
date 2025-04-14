@@ -1,36 +1,35 @@
-import { Link } from "react-router-dom" 
 import BasicLayout from "../layouts/BasicLayout";
-
-/**
- * 회원가입 화면 1 : 약관 동의 화면 - 나영일
- * @returns 
- */
+import JoinStepHeader from "../component/login/join/JoinStepHeader";
+import AgreementCheckbox from "../component/login/join/AgreementCheckBox";
+import { Link } from "react-router-dom";
+import "../css/login/JoinAgreePage.css"; // ✅ 스타일 추가
 
 const JoinAgreePage = () => {
-
     return (
         <BasicLayout>
-            <div>
-                <div>
-                    <h1>회원가입</h1>
-                    <span>01 약관동의 &gt;</span>   {/* &gt; = '>' 기호 표시 */}
-                    <span>02 정보입력</span>
-                    <hr/>
+            <JoinStepHeader step={1} />
+            <div className="join-agree-container">
+                <h2>약관 동의</h2>
+                <hr />
+                <div className="agreement-section">
+                    <AgreementCheckbox label="모든 약관을 확인하고 전체 동의합니다." />
                 </div>
-                <div>
-                    <h2>약관 동의</h2>
-                    <hr/>
-                    <input type="checkbox"/><label>모든 약관을 확인하고 전체 동의합니다.</label><br/>     {/* 나중에 수정 : 체크 시 아래 항목 모두 체크 */} 
-                    <input type="checkbox"/><label>(필수) 이용 약관</label><br/>
-                    <textarea>이용 약관</textarea><br/>
-                    <input type="checkbox"/><label>(필수) 개인정보 수집 및 이용</label><br/>
-                    <textarea>개인정보 수집 및 이용</textarea><br/>
-                    <Link to="/join">다음단계</Link>                                                    {/* 나중에 수정 : 필수 항목 모두 체크해야 이동 가능 */}
+                <div className="agreement-section">
+                    <AgreementCheckbox label="이용 약관" required />
+                    <textarea className="agreement-textarea" readOnly>
+                        이용 약관
+                    </textarea>
                 </div>
+                <div className="agreement-section">
+                    <AgreementCheckbox label="개인정보 수집 및 이용" required />
+                    <textarea className="agreement-textarea" readOnly>
+                        개인정보 수집 및 이용
+                    </textarea>
+                </div>
+                <Link to="/join" className="next-button">다음단계</Link>
             </div>
         </BasicLayout>
     );
-
-}
+};
 
 export default JoinAgreePage;
