@@ -1,7 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/login/LoginComponent.css";
+
+
+/**
+ * 로그인 컴포넌트 - 나영일 (토큰 주석 나중에 제거)
+ * @returns 
+ */
 
 const LoginComponent = () => {
     const [email, setEmail] = useState("");
@@ -10,14 +16,28 @@ const LoginComponent = () => {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const savedEmail = localStorage.getItem("savedEmail");
+        if (savedEmail) {
+            setEmail(savedEmail);
+        }
+    }, []);
+
     const handleLogin = async () => {
         try {
-            const response = await axios.post("/api/member/login", { email, pw });
+            const response = await axios.post("http://localhost:8081/api/members/login", { email, pw });
 
-            // const { accessToken } = response.data;
+            const { accessToken } = response.data;
 
             // // JWT 토큰 저장 (예: localStorage)
-            // localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("accessToken", accessToken);
+
+            // '아이디 저장' 체크되었을 때만 저장
+            if (document.getElementById("saveId").checked) {
+                localStorage.setItem("savedEmail", email);
+            } else {
+                localStorage.removeItem("savedEmail");
+            }
 
             // 에러 해제
             setError(false);
@@ -28,6 +48,11 @@ const LoginComponent = () => {
             console.error("로그인 실패", err);
             setError(true);
         }
+    };
+
+    const handleKeyPress = (e) => {
+        // 엔터 키로 로그인 가능
+        if (e.key === "Enter") handleLogin();
     };
 
     return (
@@ -47,6 +72,7 @@ const LoginComponent = () => {
                     className="login-input"
                     value={pw}
                     onChange={(e) => setPw(e.target.value)}
+                    onKeyPress={handleKeyPress}
                 />
             </div>
 
