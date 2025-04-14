@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import DynamicTable from '../utilComponent/DynamicTable';
 import { getAllReviews, getReviewsByCoffeeBean } from '../../api/review/reviewApi';
+import DynamicTable from '../utilComponent/DynamicTable';
 import ReviewForm from './ReviewForm';
 
 /**
- * 
+ * 별이 5개면 별 5개 표시
  * @param {*} score 별점수 1~5
- * @returns 별이 5개면 별 5개 표시
+ * @returns 
  */
 const renderStars = (score) => {
     const full = '★'.repeat(score);
@@ -18,7 +18,7 @@ const renderStars = (score) => {
 const columns = [
   { key: 'score', label: '별점', render: renderStars },
   { key: 'content', label: '내용' },
-  { key: 'writer', label: '이름' },
+  { key: 'writer', label: '작성자' },
   { key: 'postDate', label: '등록날짜' },
 ];
 
@@ -37,6 +37,7 @@ const ReviewList = ({coffeeBeanId}) =>{
             console.log("받은 coffeeBeanId:", coffeeBeanId);
             const data = await getReviewsByCoffeeBean(coffeeBeanId); // 서버에서 데이터 받아오기
             setReviewData(data.content);
+            
           } catch (err) {
             console.error("리뷰 목록 불러오기 실패:", err);
           }
@@ -64,7 +65,7 @@ const ReviewList = ({coffeeBeanId}) =>{
                     onWriteClick={handleWriteClick}
                 />
                 {/* 후기 폼 memberId={1} coffeeBeanId={1}로 고정했지만 나중에 수정해야함 - 진우 */}
-                {showForm && <ReviewForm onCancel={handleCancel} memberId={1} coffeeBeanId={1} /> }
+                {showForm && <ReviewForm onCancel={handleCancel} memberId={1} coffeeBeanId={1} writer={"로그인아이디"} /> }
             </div>
         </>
     )

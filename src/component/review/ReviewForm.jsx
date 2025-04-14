@@ -6,23 +6,25 @@ import { postAdd } from "../../api/review/reviewApi";
  * 상품후기 작성 - 진우
  * @returns 
  */
-const ReviewForm = ({ onCancel, memberId, coffeeBeanId }) => {
+const ReviewForm = ({ onCancel, memberId, coffeeBeanId,writer }) => {
   const [rating, setRating] = useState(0);
   const [title, setTitle] = useState("");
-  const [writer, setWriter] = useState("");
+  const [writerState, setWriterState] = useState(writer);
   const [content,setContent] = useState("");
 
-  
+  // console.log("writerState ",writerState);
 
   const handleSubmit = async () =>{
     try {
       const  reviewData ={
           score: rating,
           title,
-          writer,
+          writer:writerState,
           content,
-        };
-        await postAdd(memberId,coffeeBeanId,reviewData)
+      };
+
+      // console.log("reviewData ",reviewData);
+      await postAdd(memberId,coffeeBeanId,reviewData)
       alert("리뷰가 성공적으로 등록되었습니다!");
       if (onCancel) onCancel(); // 작성후 폼닫기
 
