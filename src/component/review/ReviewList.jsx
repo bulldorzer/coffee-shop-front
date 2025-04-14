@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DynamicTable from '../utilComponent/DynamicTable';
-import { getAllReviews } from '../../api/review/reviewApi';
+import { getAllReviews, getReviewsByCoffeeBean } from '../../api/review/reviewApi';
 import ReviewForm from './ReviewForm';
 
 /**
@@ -27,14 +27,15 @@ const columns = [
  * 상품후기 컴포넌트 - 진우
  * @returns 
  */
-const ReviewList = () =>{
+const ReviewList = ({coffeeBeanId}) =>{
     const [showForm, setShowForm] = useState(false);
     const [reviewData, setReviewData] = useState([]);
 
     useEffect(() => {
         const fetchReviews = async () => {
           try {
-            const data = await getAllReviews(); // 서버에서 데이터 받아오기
+            console.log("받은 coffeeBeanId:", coffeeBeanId);
+            const data = await getReviewsByCoffeeBean(coffeeBeanId); // 서버에서 데이터 받아오기
             setReviewData(data.content);
           } catch (err) {
             console.error("리뷰 목록 불러오기 실패:", err);
@@ -42,7 +43,7 @@ const ReviewList = () =>{
         };
     
         fetchReviews();
-      }, []);
+      }, [coffeeBeanId]);
 
     const handleWriteClick = () => {
         setShowForm(true); // 작성 모드 ON

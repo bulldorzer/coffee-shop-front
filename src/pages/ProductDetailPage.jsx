@@ -127,7 +127,7 @@ export default function ProductDetailPage() {
       </div>
       {/* 사용자 후기 */}
       <div id='p2'>
-        <ReviewList></ReviewList>
+        <ReviewList coffeeBeanId={id}></ReviewList>
       </div>
     </BasicLayout>
   );
