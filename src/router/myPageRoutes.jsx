@@ -9,6 +9,7 @@ import MyPageProfilePage from "../pages/MyPageProfilePage";
 import MyPageProductQnAPage from "../pages/MyPageProductQnAPage";
 import MyPageSupportPage from "../pages/MyPageSupportPage";
 import MyPageDeleteAccountPage from "../pages/MyPageDeleteAccountPage";
+import MyPageReviewPage from "../pages/MyPageReviewPage";
 
 const loading = <div>Loading...</div>;
 
@@ -54,6 +55,10 @@ const myPageRoutes = {
             {
               path: "deleteaccount",
               element: <Suspense fallback={loading}><MyPageDeleteAccountPage /></Suspense>
+            },
+            {
+              path: "review",
+              element: <Suspense fallback={loading}><MyPageReviewPage /></Suspense>
             }
         ]
     }
