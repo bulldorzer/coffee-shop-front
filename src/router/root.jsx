@@ -5,7 +5,7 @@ import myPageRoutes from "./myPageRoutes.jsx"
 const Loading = <div>Loading...</div>
 
 // 메인화면
-const Main = lazy(() => import("../pages/MainPage.jsx"));
+const Main = lazy(() => import("../pages/main/MainPage.jsx"));
 // 예제파일
 const Exam = lazy(() => import("../pages/ExamplePage.jsx"));
 
@@ -15,12 +15,12 @@ const JoinAgree = lazy(() => import("../pages/JoinAgreePage.jsx"));
 const Join = lazy(() => import("../pages/JoinPage.jsx"));
 
 // 카트 - 진우
-const CartPage = lazy(()=> import("../pages/CartPage.jsx"))
+const CartPage = lazy(()=> import("../pages/cart/CartPage.jsx"))
 
 // 푸터 이용안내 - 진우
 const UseGuidePage = lazy(() => import("../pages/UseGuidePage.jsx"))
 // 주문서 관련 - 진우
-const Order = lazy(()=> import("../pages/OrderPage.jsx"))
+const Order = lazy(()=> import("../pages/order/OrderPage.jsx"))
 // 메뉴바 고객센터링크 - 진우
 const InquiryFormPage = lazy(() => import("../pages/InquiryFormPage.jsx"))
 

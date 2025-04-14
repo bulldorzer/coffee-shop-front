@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom" 
 import { useState } from "react";
-import BasicLayout from "../layouts/BasicLayout";
+import BasicLayout from "../../layouts/BasicLayout";
 
 // 메인 페이지 - 이재민
 // 아이템 -> 클릭시 아이템 상세 페이지로 이동 추후 변경
