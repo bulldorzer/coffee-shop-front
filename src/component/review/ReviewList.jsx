@@ -54,8 +54,8 @@ const ReviewList = () =>{
                     showWriteButton={!showForm}  // 작성폼이 열려있으면 버튼 숨김
                     onWriteClick={handleWriteClick}
                 />
-                {/* 후기 폼 */}
-                {showForm && <ReviewForm onCancel={handleCancel} /> }
+                {/* 후기 폼 memberId={1} coffeeBeanId={1}로 고정했지만 나중에 수정해야함 - 진우 */}
+                {showForm && <ReviewForm onCancel={handleCancel} memberId={1} coffeeBeanId={1} /> }
             </div>
         </>
     )

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "../../css/review/reviewForm.css";
 import { postAdd } from "../../api/review/reviewApi";
 
@@ -13,6 +12,8 @@ const ReviewForm = ({ onCancel, memberId, coffeeBeanId }) => {
   const [writer, setWriter] = useState("");
   const [content,setContent] = useState("");
 
+  
+
   const handleSubmit = async () =>{
     try {
       const  reviewData ={
@@ -21,7 +22,6 @@ const ReviewForm = ({ onCancel, memberId, coffeeBeanId }) => {
           writer,
           content,
         };
-      
         await postAdd(memberId,coffeeBeanId,reviewData)
       alert("리뷰가 성공적으로 등록되었습니다!");
       if (onCancel) onCancel(); // 작성후 폼닫기
