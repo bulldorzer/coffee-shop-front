@@ -1,0 +1,108 @@
+.join-form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: "Noto Sans KR", sans-serif;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  span {
+    font-size: 0.9rem;
+    color: #444;
+  }
+  
+  hr {
+    margin: 1rem 0 2rem;
+    border: none;
+    border-top: 1px solid #ccc;
+  }
+  
+  .labeled-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  
+  .labeled-input label::after {
+    content: "*";
+    color: red;
+    margin-left: 0.3rem;
+    display: inline-block;
+  }
+  
+  .labeled-input input,
+  .labeled-input select {
+    padding: 0.6rem;
+    border: 1px solid #000;
+    margin-top: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .email-input-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .email-input-wrapper input {
+    flex: 1;
+  }
+  
+  .email-input-wrapper span {
+    margin: 0 0.2rem;
+  }
+  
+  .email-input-wrapper select {
+    flex: 1;
+  }
+  
+  .address-input-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .address-input-wrapper input {
+    flex: 2;
+  }
+  
+  .address-input-wrapper button {
+    flex: 1;
+    padding: 0.6rem;
+    border: 1px solid #000;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .checkbox-group {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .checkbox-group input {
+    margin-right: 0.5rem;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .button-group a {
+    border: 1px solid #000;
+    padding: 0.6rem 1.5rem;
+    text-decoration: none;
+    color: #000;
+    transition: background-color 0.2s;
+  }
+  
+  .button-group a:hover {
+    background-color: #f0f0f0;
+  }
