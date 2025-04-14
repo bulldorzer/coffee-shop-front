@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getReviewsByMember } from '../../api/reviewApi';
+import { getReviewsByMember } from '../../api/review/reviewApi';
 import DynamicTable from '../utilComponent/DynamicTable';
 import ReviewForm from './ReviewForm';
 
@@ -22,14 +22,14 @@ const columns = [
   { key: 'postDate', label: '등록날짜' },
 ];
 
-export default function MyReviewList({ memberId }) {
+export default function MyReviewList({ memberId}) {
   const [showForm, setShowForm] = useState(false);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     const fetchMyReviews = async () => {
       try {
-        console.log("받은 coffeeBeanId:", coffeeBeanId);
+        console.log("받은 coffeeBeanId:", memberId);
         const data = await getReviewsByMember(memberId);
         setReviews(data.content);  // CustomPage 구조일 경우
       } catch (error) {
@@ -53,13 +53,13 @@ const handleCancel = () => {
         <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>내가 작성한 리뷰</h2>
         <DynamicTable
             columns={columns}
-            data={reviewData}
+            data={reviews}
             itemsPerPage={6}
             showWriteButton={!showForm}  // 작성폼이 열려있으면 버튼 숨김
             onWriteClick={handleWriteClick}
         />
         {/* 후기 폼 memberId={1} coffeeBeanId={1}로 고정했지만 나중에 수정해야함 - 진우 */}
-        {showForm && <ReviewForm onCancel={handleCancel} memberId={1} coffeeBeanId={1} /> }
+        {showForm && <ReviewForm onCancel={handleCancel} memberId={1} coffeeBeanId={null} /> }
     </div>
   );
 }
