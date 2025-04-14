@@ -1,0 +1,74 @@
+.login-wrapper {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 40px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.login-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.login-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.login-input {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+
+.login-error {
+    color: red;
+    font-size: 12px;
+    margin: 5px 0 15px;
+}
+
+.login-check {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: black;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.kakao-button {
+    width: 100%;
+    padding: 12px;
+    background-color: yellow;
+    border: 1px solid black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.login-links {
+    font-size: 14px;
+}
+
+.login-links button,
+.login-links a {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #333;
+    margin: 0 5px;
+}
