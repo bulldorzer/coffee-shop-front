@@ -25,6 +25,7 @@ const menu = [
     items: [
       { label: "- 나의 상품문의", path: "/mypage/productQnA" },
       { label: "- 이용 문의", path: "/mypage/support" },
+      { label: "- 나의 리뷰", path: "/mypage/review" }
     ],
   },
 ];
