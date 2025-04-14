@@ -1,12 +1,17 @@
 import React from "react";
+import MemberSaveComponent from "../component/myPage/MemberSaveComponent";
+
 
 // myPage관심상품 - 이재민
-const MyPageMemberSavePage = () => {
+const MyPageMemberSavePage = () => {  
+  
+
   return (
     <div>
       <h3>관심상품</h3>
-      <hr/>
-      <p>관심상품 목록</p>
+      <span>관심 상품 목록</span>
+      <MemberSaveComponent />
+      
     </div>
   );
 };
