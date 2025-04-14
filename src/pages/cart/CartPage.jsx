@@ -1,5 +1,5 @@
 import React from "react";
-import BasicLayout from "../layouts/BasicLayout";
+import BasicLayout from "../../layouts/BasicLayout";
 
 /**
  * 카트 페이지 - 진우
