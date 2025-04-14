@@ -8,14 +8,6 @@ import axios from "axios";
  * 
  */
 
-const dummyProducts = Array.from({ length: 50 }).map((_, i) => ({       // 나중에 수정 : 상품(CoffeeBean) 정보 백엔드에서 받아올 것
-  id: i + 1,
-  name: `상품 ${i + 1}`,
-  price: Math.floor(Math.random() * 10000) + 1000,
-  category: ["딸기맛", "초코맛", "바닐라맛", "녹차맛"][i % 4],             // 나중에 수정 : 카테고리(Category) 정보 백엔드에서 받아와서 사용할 것
-  image: "https://via.placeholder.com/150?text=제품사진",
-}));
-
 export default function ProductListPage() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
