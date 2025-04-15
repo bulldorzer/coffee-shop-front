@@ -1,8 +1,8 @@
 <<<<<<< HEAD:src/pages/MyPageOrdersPage.jsx
 import React, { useEffect, useState } from "react";
-import DateFilter from "../component/utilComponent/DateFilter";
-import OrdersComponent from "../component/myPage/OrdersComponent";
-import { useMember } from "../component/myPage/MemberContextComponent"
+import DateFilter from "../../component/utilComponent/DateFilter";
+import OrdersComponent from "../../component/myPage/OrdersComponent";
+import { useMember } from "../../component/myPage/MemberContextComponent"
 import axios from "axios";
 =======
 import React from "react";

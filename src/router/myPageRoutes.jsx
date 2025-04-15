@@ -1,15 +1,15 @@
 import React, { lazy, Suspense } from "react";
 import MyPageLayout from "../layouts/MyPageLayout";
 import BasicLayout from "../layouts/BasicLayout";
-import MyPageOrders_CancelPage from "../pages/MyPageOrders_CancelPage";
-import MyPageOrdersPage from "../pages/MyPageOrdersPage";
-import MyPageMemberSavePage from "../pages/MyPageMemberSavePage";
-import MyPageRewardsPage from "../pages/MyPageRewardsPage";
-import MyPageProfilePage from "../pages/MyPageProfilePage";
-import MyPageProductQnAPage from "../pages/MyPageProductQnAPage";
-import MyPageSupportPage from "../pages/MyPageSupportPage";
-import MyPageDeleteAccountPage from "../pages/MyPageDeleteAccountPage";
-import MyPageReviewPage from "../pages/MyPageReviewPage";
+import MyPageOrders_CancelPage from "../pages/myPage/MyPageOrders_CancelPage";
+import MyPageOrdersPage from "../pages/myPage/MyPageOrdersPage";
+import MyPageMemberSavePage from "../pages/myPage/MyPageMemberSavePage";
+import MyPageRewardsPage from "../pages/myPage/MyPageRewardsPage";
+import MyPageProfilePage from "../pages/myPage/MyPageProfilePage";
+import MyPageProductQnAPage from "../pages/myPage/MyPageProductQnAPage";
+import MyPageSupportPage from "../pages/myPage/MyPageSupportPage";
+import MyPageDeleteAccountPage from "../pages/myPage/MyPageDeleteAccountPage";
+import MyPageReviewPage from "../pages/myPage/MyPageReviewPage";
 
 const loading = <div>Loading...</div>;
 
