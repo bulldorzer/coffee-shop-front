@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 /**
  * 메뉴바 - 최진우
@@ -6,6 +7,21 @@ import { Link } from "react-router-dom";
  * @returns 
  */
 const MenuBar = () =>{
+
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("accessToken");
+        setIsLoggedIn(!!token); // 토큰 있으면 true
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem("accessToken");
+        setIsLoggedIn(false);
+        navigate("/"); // 홈으로 이동
+      };
+
     return(
         <header>
             <nav>
@@ -28,8 +44,18 @@ const MenuBar = () =>{
                 {/* 오른쪽: 로그인/회원가입/이용안내 + 장바구니 + 검색창 */}
                 <div className="menu-right">
                     <ul className="user-menu">
-                        <li><Link to="/login">로그인</Link></li>
-                        <li><Link to="/join/agree">회원가입</Link></li>
+                    {isLoggedIn ? (
+                        <>
+                            <li><Link to="/mypage">마이페이지</Link></li>
+                            <li><Link to="/" onClick={handleLogout}>로그아웃</Link></li>
+                        </>
+                    ) : (
+                        <>
+                            <li><Link to="/login">로그인</Link></li>
+                            <li><Link to="/join/agree">회원가입</Link></li>
+                        </>
+                    )}
+                        
                         <li><Link to="/guide">이용문의</Link></li>
                     </ul>
                     <Link to="/cart">
