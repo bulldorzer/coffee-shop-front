@@ -1,6 +1,6 @@
 import React from "react";
-import DateFilter from "../component/utilComponent/DateFilter";
-import Orders_CancelComponent from "../component/myPage/Orders_CancelComponent";
+import DateFilter from "../../component/utilComponent/DateFilter";
+import Orders_CancelComponent from "../../component/myPage/Orders_CancelComponent";
 
 // myPage취소/환불/교환내역 - 이재민
 

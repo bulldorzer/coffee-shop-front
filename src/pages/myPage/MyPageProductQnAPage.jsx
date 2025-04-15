@@ -1,5 +1,5 @@
 import React from "react";
-import ProductQnAComponent from "../component/myPage/ProductQnAComponent";
+import ProductQnAComponent from "../../component/myPage/ProductQnAComponent";
 
 // myPage상품문의 - 이재민
 const MyPageProductQnAPage = () => {
