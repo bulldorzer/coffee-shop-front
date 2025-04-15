@@ -13,29 +13,38 @@ export default function ProductListPage() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const [currentPage, setCurrentPage] = useState(1);  // 현재 페이지
+  const [totalPages, setTotalPages] = useState(0);    // 총 페이지수
+  const [totalItems, setTotalItems] = useState(0);    // 총 상품 수
+  const itemsPerPage = 10;                            // 페이지당 상품 수
   const navigate = useNavigate();
 
   // 서버에서 상품(product = coffeeBean) 가져오기
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:8081/api/coffeeBeans/list");
-        const productList = res.data;
+        const res = await axios.get("http://localhost:8081/api/coffeeBeans/list", {
+          params : {
+            page : currentPage - 1,
+            size : itemsPerPage
+          }
+        });
+        const { content, totalPages, totalElements } = res.data;
 
-        console.log("상품(원두) 응답:", productList);  // 응답 구조 확인
+        console.log("상품(원두) 응답:", res.data);  // 응답 구조 확인
 
-        setProducts(productList);
-        setFilteredProducts(productList);
-        setSortedProducts(productList);
+        setProducts(content);
+        setFilteredProducts(content);
+        setSortedProducts(content);
+        setTotalPages(totalPages);
+        setTotalItems(totalElements);
       } catch (error) {
         console.error("상품 목록 불러오기 실패:", error);
       }
     };
   
     fetchProducts();
-  }, []);
+  }, [currentPage]);
 
   // 서버에서 카테고리 가져오기
   useEffect(() => {
@@ -67,10 +76,7 @@ export default function ProductListPage() {
     setCurrentPage(1);
   };
 
-  const indexOfLast = currentPage * itemsPerPage; 
-  const indexOfFirst = indexOfLast - itemsPerPage;
-  const currentProducts = sortedProducts.slice(indexOfFirst, indexOfLast);
-  const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
+  const currentProducts = sortedProducts;
 
   const goToPage = (page) => setCurrentPage(page);
 
@@ -93,7 +99,7 @@ export default function ProductListPage() {
         </button>
       </div>
 
-      <p>총 상품 {sortedProducts.length}개</p>
+      <p>총 상품 {totalItems}개</p>
 
       <div>
         <button onClick={() => sortProducts("recommend")}>추천순</button>
@@ -113,7 +119,7 @@ export default function ProductListPage() {
 
       <div>
         {Array.from({ length: totalPages }).map((_, i) => (
-          <button key={i + 1} onClick={() => goToPage(i + 1)}>
+          <button key={i + 1} onClick={() => setCurrentPage(i + 1)}>
             {i + 1}
           </button>
         ))}
