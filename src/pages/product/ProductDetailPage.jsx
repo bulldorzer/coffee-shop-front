@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ReviewList from '../component/review/ReviewList';
-import BasicLayout from '../layouts/BasicLayout';
+import ReviewList from '../../component/review/ReviewList';
+import BasicLayout from '../../layouts/BasicLayout';
 
 
 /**

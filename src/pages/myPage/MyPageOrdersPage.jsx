@@ -1,6 +1,6 @@
 import React from "react";
-import DateFilter from "../component/utilComponent/DateFilter";
-import OrdersComponent from "../component/myPage/OrdersComponent";
+import DateFilter from "../../component/utilComponent/DateFilter";
+import OrdersComponent from "../../component/myPage/OrdersComponent";
 // myPage주문내역/배송조회 - 이재민
 
 

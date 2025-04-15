@@ -15,7 +15,7 @@ const LoginComponent = () => {
     const [error, setError] = useState(false);
 
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         const savedEmail = localStorage.getItem("savedEmail");
         if (savedEmail) {

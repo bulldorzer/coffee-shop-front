@@ -1,5 +1,5 @@
 import React from "react";
-import MemberSaveComponent from "../component/myPage/MemberSaveComponent";
+import MemberSaveComponent from "../../component/myPage/MemberSaveComponent";
 
 
 // myPage관심상품 - 이재민

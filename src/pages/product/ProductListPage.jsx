@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import BasicLayout from "../layouts/BasicLayout";
+import BasicLayout from "../../layouts/BasicLayout";
 import axios from "axios";
 
 /**
@@ -21,7 +21,7 @@ export default function ProductListPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("/api/coffeeBeans");
+        const res = await axios.get("http://localhost:8081/api/coffeeBeans/list");
         const productList = res.data;
 
         console.log("상품(원두) 응답:", productList);  // 응답 구조 확인
@@ -39,7 +39,7 @@ export default function ProductListPage() {
 
   // 서버에서 카테고리 가져오기
   useEffect(() => {
-    axios.get("/api/categories")
+    axios.get("http://localhost:8081/api/categories/parents/1")
     .then(res => {
       console.log("카테고리 응답:", res.data);  // 응답 구조 확인
       setCategories(res.data);
@@ -84,8 +84,8 @@ export default function ProductListPage() {
       <h1>카테고리</h1>
       <div>
         {categories.map(cat => (
-          <button key={cat} onClick={() => filterByCategory(cat)}>
-            {cat}
+          <button key={cat.id} onClick={() => filterByCategory(cat)}>
+            {cat.name}
           </button>
         ))}
         <button onClick={() => filterByCategory(null)}>

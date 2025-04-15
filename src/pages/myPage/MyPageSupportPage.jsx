@@ -1,5 +1,5 @@
 import React from "react";
-import SupportComponent from "../component/myPage/SupportComponent";
+import SupportComponent from "../../component/myPage/SupportComponent";
 
 // myPage이용문의 - 이재민
 const MyPageSupportPage = () => {
