@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import DeleteAccountComponent from "../component/myPage/DeleteAccountComponent";
+import DeleteAccountComponent from "../../component/myPage/DeleteAccountComponent";
 
 const MyPageDeleteAccountPage = () => {
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import ProfileComponent from "../component/myPage/ProfileComponent";
+import ProfileComponent from "../../component/myPage/ProfileComponent";
 
 // myPage회원정보 변경 페이지 - 이재민
 const MyPageProfilePage = () => {
