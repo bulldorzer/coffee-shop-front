@@ -3,6 +3,9 @@ import {useMember} from "../myPage/MemberContextComponent"
 // 마이페이지 혜택관리 - 이재민
 const RewardsComponent = () => {
     const member = useMember();
+    if (!member) {
+        return <div>회원 정보를 불러오는 중입니다...</div>;
+      }
     return (
      <div>
         <section>

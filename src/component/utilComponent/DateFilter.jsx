@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 // 날짜 필터 - 이재민
-
 const DateFilter = ({ onSearch, initialRange = "today" }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -11,8 +10,8 @@ const DateFilter = ({ onSearch, initialRange = "today" }) => {
   // 날짜 범위 설정
   const setRange = (range) => {
     const end = new Date();
-    let start = new Date(); // ✅ let으로
-  
+    let start = new Date();
+
     switch (range) {
       case "1m":
         start.setMonth(start.getMonth() - 1);
@@ -24,9 +23,9 @@ const DateFilter = ({ onSearch, initialRange = "today" }) => {
         start.setFullYear(start.getFullYear() - 1);
         break;
       default:
-        break; // ✅ 불필요한 재할당 제거
+        break;
     }
-  
+
     setStartDate(formatDate(start));
     setEndDate(formatDate(end));
     setSelectedRange(range);
@@ -50,16 +49,12 @@ const DateFilter = ({ onSearch, initialRange = "today" }) => {
     return `${year}-${month}-${day}`;
   };
 
-
-
-  // 날짜 바뀔 때마다 유효성 검사
   useEffect(() => {
     if (startDate && endDate) {
       validateDates();
     }
   }, [startDate, endDate]);
 
-  // 초기 날짜 설정
   useEffect(() => {
     setRange(initialRange);
   }, [initialRange]);
@@ -81,10 +76,7 @@ const DateFilter = ({ onSearch, initialRange = "today" }) => {
           { label: "3개월", value: "3m" },
           { label: "1년", value: "1y" },
         ].map((btn) => (
-          <button
-            key={btn.value}
-            onClick={() => setRange(btn.value)}
-          >
+          <button key={btn.value} onClick={() => setRange(btn.value)}>
             {btn.label}
           </button>
         ))}

@@ -9,27 +9,15 @@ export const MemberProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const testMember = {
-      memberId: 1,
-      email: "test1@example.com",
-      name: "John Doe",
-      pw: "password123",
-      phone: "123-456-7890",
-      point: 100,
-      city: "Seoul",
-      street: "Gangnam Street",
-      zipcode: "12345",
-      social: false,
-      memberShip: "SILVER",
-      roleNames: ["USER"]
-    };
+    const token = localStorage.getItem("token");
+    const memberId = localStorage.getItem("memberId");
 
-    setMember(testMember);   
-    setLoading(false);       
+    if (!token || !memberId) {
+      setLoading(false);
+      return;
+    }
 
-    
-    /*
-    axios.get("/api/members/me", {
+    axios.get(`http://localhost:8081/api/members/${memberId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`, // JWT 토큰
       },
@@ -43,7 +31,6 @@ export const MemberProvider = ({ children }) => {
     .finally(() => {
       setLoading(false);  // 로딩 완료
     });
-    */
   }, []);
 
   return (
