@@ -1,4 +1,5 @@
-import BasicLayout from "../layouts/BasicLayout";
+import BasicLayout from "../../layouts/BasicLayout";
+
 
 /**
  * 개발자 최진우

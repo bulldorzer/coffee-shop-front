@@ -18,7 +18,7 @@ const Join = lazy(() => import("../pages/JoinPage.jsx"));
 const CartPage = lazy(()=> import("../pages/cart/CartPage.jsx"))
 
 // 푸터 이용안내 - 진우
-const UseGuidePage = lazy(() => import("../pages/UseGuidePage.jsx"))
+const UseGuidePage = lazy(() => import("../pages/useGuide/UseGuidePage.jsx"))
 // 주문서 관련 - 진우
 const Order = lazy(()=> import("../pages/order/OrderPage.jsx"))
 // 메뉴바 고객센터링크 - 진우
