@@ -3,20 +3,19 @@ import DateFilter from "../../component/utilComponent/DateFilter";
 import OrdersComponent from "../../component/myPage/OrdersComponent";
 import { useMember } from "../../component/myPage/MemberContextComponent"
 import axios from "axios";
-
 // myPage주문내역/배송조회 - 이재민
 
 
 const MyPageOrdersPage = () => {
   const member = useMember();
-  const [order, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
  
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`http://localhost:8081/api/orders/list/${member.memberId}`);
-        console.log(response.data);
+        const response = await axios.get(`http://localhost:8081/api/orders/details/${member?.memberId}`);
+        // console.log(response.data);
         setOrders(response.data);
         setFilteredOrders(response.data);
       } catch (error) {
@@ -31,8 +30,10 @@ const MyPageOrdersPage = () => {
 
   const handleDateSearch = (startDate, endDate) => {
     const filtered = orders.filter((order) => {
-      const orderDate = new Date(order.order_date);
-      return orderDate >= new Date(startDate) && orderDate <= new Date(endDate);
+      const orderDate = new Date(order.orderDate);
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      return orderDate >= start && orderDate <= end;
     });
     setFilteredOrders(filtered);
   }
