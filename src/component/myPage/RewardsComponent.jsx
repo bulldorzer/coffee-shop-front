@@ -1,12 +1,12 @@
-
+import {useMember} from "../myPage/MemberContextComponent"
 
 // 마이페이지 혜택관리 - 이재민
 const RewardsComponent = () => {
-
+    const member = useMember();
     return (
      <div>
         <section>
-            <p>회원등급</p>
+            <p>현재 회원등급: {member.memberShip}</p>
             <div>
                 <p>
                     Bronze<br/>
@@ -24,7 +24,7 @@ const RewardsComponent = () => {
             </div>
         </section>
         <section>
-            <p>마일리지</p>
+            <p>잔여 마일리지: {member.point}원</p>
             <div>
                 <p>
                     마일리지 제도<br/>
