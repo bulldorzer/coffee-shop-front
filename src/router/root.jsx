@@ -10,9 +10,9 @@ const Main = lazy(() => import("../pages/main/MainPage.jsx"));
 const Exam = lazy(() => import("../pages/ExamplePage.jsx"));
 
 // 로그인관련 - 영일
-const Login = lazy(() => import("../pages/LoginPage.jsx"));
-const JoinAgree = lazy(() => import("../pages/JoinAgreePage.jsx"));
-const Join = lazy(() => import("../pages/JoinPage.jsx"));
+const Login = lazy(() => import("../pages/login/LoginPage.jsx"));
+const JoinAgree = lazy(() => import("../pages/join/JoinAgreePage.jsx"));
+const Join = lazy(() => import("../pages/join/JoinPage.jsx"));
 
 // 카트 - 진우
 const CartPage = lazy(()=> import("../pages/cart/CartPage.jsx"))
@@ -22,12 +22,12 @@ const UseGuidePage = lazy(() => import("../pages/useGuide/UseGuidePage.jsx"))
 // 주문서 관련 - 진우
 const Order = lazy(()=> import("../pages/order/OrderPage.jsx"))
 // 메뉴바 고객센터링크 - 진우
-const InquiryFormPage = lazy(() => import("../pages/InquiryFormPage.jsx"))
+const InquiryFormPage = lazy(() => import("../pages/inquiry/InquiryFormPage.jsx"))
 
 // 상품 목록 - 영일
-const ProductList = lazy(() => import("../pages/ProductListPage.jsx"))
+const ProductList = lazy(() => import("../pages/product/ProductListPage.jsx"))
 // 상품 상세 - 영일
-const ProductDetail = lazy(() => import("../pages/ProductDetailPage.jsx"))
+const ProductDetail = lazy(() => import("../pages/product/ProductDetailPage.jsx"))
 
 /**
  * 어떤 경로에 무슨 컴포넌트를 보여줄 것인지 표시
