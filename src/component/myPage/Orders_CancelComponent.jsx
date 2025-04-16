@@ -13,6 +13,19 @@ const Orders_CancelComponent = ({ orders }) => {
   // CANCEL 상태인 주문만 필터링
   const cancelOrders = orders.filter(order => order.status === "CANCEL");
 
+  const groupByOrderId = () => {
+    const grouped = {};
+    cancelOrders.forEach((order) => {
+      if (!grouped[order.orderId]) {
+        grouped[order.orderId] = [];
+      }
+      grouped[order.orderId].push(order);
+    });
+    return Object.values(grouped);
+  };
+
+  const groupedOrders = groupByOrderId();
+
   return (
     <>
       <ul>
@@ -23,18 +36,27 @@ const Orders_CancelComponent = ({ orders }) => {
           <span>주문상태</span>
         </li>
 
-        {cancelOrders.length > 0 ? (
-          cancelOrders.map((order, index) => (
-            <li key={index}>
-              <span>{order.orderDate}</span>
-              <span>{order.coffeeName}</span>
-              <span>{order.totalPrice.toLocaleString()}원</span>
-              <span>{statusMap[order.status]}</span>
-            </li>
-          ))
-        ) : (
-          <li>취소된 주문 내역이 없습니다.</li>
-        )}
+        {groupedOrders.length > 0 ? (
+            groupedOrders.map((group, index) => {
+              const firstItem = group[0];
+              const extraCount = group.length - 1;
+              const totalPrice = group.reduce((sum, item) => sum + item.totalPrice, 0);
+  
+              return (
+                <li key={index}>
+                  <span>{firstItem.orderDate}</span>
+                  <span>
+                    {firstItem.coffeeName}
+                    {extraCount > 0 ? ` 외 ${extraCount}건` : ""}
+                  </span>
+                  <span>{totalPrice.toLocaleString()}원</span>
+                  <span>{statusMap[firstItem.status]}</span> 
+                </li>
+              );
+            })
+          ) : (
+            <li>주문 취소 내역이 없습니다.</li>
+          )}
       </ul>
     </>
   );
