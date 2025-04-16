@@ -2,24 +2,20 @@ import { useState } from "react";
 import ReviewForm from "../review/ReviewForm";
 
 const OrdersComponent = ({ orders, memberId }) => {
-  // 리뷰 작성창 보여주기 - 진우
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [openOrderId, setOpenOrderId] = useState(null);
 
   const statusMap = {
     PENDING: "주문대기",
     ORDER: "주문접수",
-    CANCEL: "주문취소", // 나중에 취소내역에서 보여줄 예정
+    CANCEL: "주문취소",
     COMP: "배송중",
     COMPLETE: "배송완료"
   };
-  
-  // console.log("memberId ",memberId);
 
-  // CANCEL 상태를 제외한 주문만 필터링
   const filteredOrders = orders.filter(order => order.status !== "CANCEL");
 
-  // 주문을 orderId 기준으로 그룹화
   const groupByOrderId = () => {
     const grouped = {};
     filteredOrders.forEach((order) => {
@@ -32,10 +28,13 @@ const OrdersComponent = ({ orders, memberId }) => {
   };
 
   const groupedOrders = groupByOrderId();
-  
 
-  const handleWriteReview = (order) => {
-    setSelectedOrder(order);
+  const toggleOrderDetails = (orderId) => {
+    setOpenOrderId(prev => (prev === orderId ? null : orderId));
+  };
+
+  const handleWriteReview = (orderItem) => {
+    setSelectedOrder(orderItem);
     setShowReviewForm(true);
   };
 
@@ -43,7 +42,7 @@ const OrdersComponent = ({ orders, memberId }) => {
     setShowReviewForm(false);
     setSelectedOrder(null);
   };
-  
+
   return (
     <>
       <ul>
@@ -52,6 +51,7 @@ const OrdersComponent = ({ orders, memberId }) => {
           <span>상품명</span>
           <span>총금액</span>
           <span>주문상태</span>
+          <span></span>
         </li>
 
         {groupedOrders.length > 0 ? (
@@ -63,18 +63,35 @@ const OrdersComponent = ({ orders, memberId }) => {
             return (
               <li key={index}>
                 <span>{firstItem.orderDate}</span>
-                <span>
+                <span
+                  style={{ cursor: "pointer", color: "#2a7ae2", textDecoration: "underline" }}
+                  onClick={() => toggleOrderDetails(firstItem.orderId)}
+                >
                   {firstItem.coffeeName}
                   {extraCount > 0 ? ` 외 ${extraCount}건` : ""}
                 </span>
                 <span>{totalPrice.toLocaleString()}원</span>
                 <span>{statusMap[firstItem.status]}</span>
-                {/* 배송완료 상태일 때만 리뷰작성 버튼 보여주기 - 진우 */}
-                <span>
-                {firstItem.status === "COMPLETE" && (
-                  <button onClick={() => handleWriteReview(firstItem)}>리뷰작성</button>
+                <span></span>
+
+                {/* 상세 상품 목록 */}
+                {openOrderId === firstItem.orderId && (
+                  <ul style={{ marginTop: "10px", paddingLeft: "20px", fontSize: "14px", color: "#444" }}>
+                    {group.map((item, idx) => (
+                      <li key={idx} style={{ marginBottom: "5px" }}>
+                        - {item.coffeeName} / 수량: {item.qty}개 / 금액: {item.totalPrice.toLocaleString()}원
+                        {item.status === "COMPLETE" && (
+                          <button
+                            style={{ marginLeft: "10px" }}
+                            onClick={() => handleWriteReview(item)}
+                          >
+                            리뷰작성
+                          </button>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
                 )}
-                </span> 
               </li>
             );
           })
@@ -82,7 +99,8 @@ const OrdersComponent = ({ orders, memberId }) => {
           <li>주문 내역이 없습니다.</li>
         )}
       </ul>
-      {/* 리스트 바깥에서 팝업 렌더링 - 진우 */}
+
+      {/* 리뷰 작성 폼 */}
       {showReviewForm && selectedOrder && (
         <ReviewForm
           onCancel={closeReviewForm}
@@ -94,5 +112,5 @@ const OrdersComponent = ({ orders, memberId }) => {
     </>
   );
 };
-  
+
 export default OrdersComponent;
