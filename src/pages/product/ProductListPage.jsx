@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
 import axios from "axios";
+import ProductList from "../../component/product/ProductList";
+import "../../css/product/ProductListPage.css";
 
 /**
  * 상품 목록 페이지 - 나영일(ChatGPT)
@@ -16,7 +18,7 @@ export default function ProductListPage() {
   const [currentPage, setCurrentPage] = useState(1);  // 현재 페이지
   const [totalPages, setTotalPages] = useState(0);    // 총 페이지수
   const [totalItems, setTotalItems] = useState(0);    // 총 상품 수
-  const itemsPerPage = 10;                            // 페이지당 상품 수
+  const itemsPerPage = 20;                            // 페이지당 상품 수
   const navigate = useNavigate();
 
   // 서버에서 상품(product = coffeeBean) 가져오기
@@ -78,53 +80,45 @@ export default function ProductListPage() {
 
   const currentProducts = sortedProducts;
 
-  const goToPage = (page) => setCurrentPage(page);
-
   // 클릭시 상세 정보 페이지로 이동
   const handleClickProduct = (id) => {
     navigate(`/product/${id}`);
   };
 
+
   return (
     <BasicLayout>
-      <h1>카테고리</h1>
-      <div>
-        {categories.map(cat => (
-          <button key={cat.id} onClick={() => filterByCategory(cat)}>
-            {cat.name}
+      <div className="product-list-container">
+        <h1>카테고리</h1>
+        <div className="category-buttons">
+          {categories.map(cat => (
+            <button key={cat.id} onClick={() => filterByCategory(cat)}>
+              {cat.name}
+            </button>
+          ))}
+          <button onClick={() => filterByCategory(null)}>
+            전체보기
           </button>
-        ))}
-        <button onClick={() => filterByCategory(null)}>
-          전체보기
-        </button>
+        </div>
+
+        <p>총 상품 {totalItems}개</p>
+
+        <div className="sort-buttons">
+          <button onClick={() => sortProducts("recommend")}>추천순</button>
+          <button onClick={() => sortProducts("high")}>높은가격순</button>
+          <button onClick={() => sortProducts("low")}>낮은가격순</button>
+        </div>
+
+        <ProductList products={products}/>
+
+        <div className="pagination">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button key={i + 1} onClick={() => setCurrentPage(i + 1)}>
+              {i + 1}
+            </button>
+          ))}
+        </div>
       </div>
-
-      <p>총 상품 {totalItems}개</p>
-
-      <div>
-        <button onClick={() => sortProducts("recommend")}>추천순</button>
-        <button onClick={() => sortProducts("high")}>높은가격순</button>
-        <button onClick={() => sortProducts("low")}>낮은가격순</button>
-      </div>
-
-      <div>
-        {currentProducts.map((product) => (
-          <div key={product.id} onClick={() => handleClickProduct(product.id)}>
-            <img src={product.image} alt={product.name}/>
-            <div>{product.name}</div>
-            <div>{product.price.toLocaleString()}원</div>
-          </div>
-        ))}
-      </div>  
-
-      <div>
-        {Array.from({ length: totalPages }).map((_, i) => (
-          <button key={i + 1} onClick={() => setCurrentPage(i + 1)}>
-            {i + 1}
-          </button>
-        ))}
-      </div>
-
     </BasicLayout>
   );
 }

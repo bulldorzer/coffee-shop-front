@@ -2,7 +2,7 @@ import BasicLayout from "../../layouts/BasicLayout";
 import JoinStepHeader from "../../component/login/join/JoinStepHeader";
 import AgreementCheckbox from "../../component/login/join/AgreementCheckBox";
 import { Link } from "react-router-dom";
-import "../css/login/JoinAgreePage.css"; // ✅ 스타일 추가
+import "../../css/login/JoinAgreePage.css"; // ✅ 스타일 추가
 
 const JoinAgreePage = () => {
     return (
