@@ -12,7 +12,7 @@ const ReviewForm = ({ onCancel, memberId, coffeeBeanId,writer }) => {
   const [writerState, setWriterState] = useState(writer);
   const [content,setContent] = useState("");
 
-  // console.log("writerState ",writerState);
+  console.log("memberId ",memberId, "coffeeBeanId ",coffeeBeanId, "writer ",writer);
 
   const handleSubmit = async () =>{
     try {

@@ -2,18 +2,19 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 // MemberContext를 생성해서 회원 정보를 관리
+// MemberDTO정보를 가져옴
 const MemberContext = createContext(null);
 
 export const MemberProvider = ({ children }) => {
-  console.log("MemberProvider 렌더링됨");
+  // console.log("MemberProvider 렌더링됨");
   const [member, setMember] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("useEffect 실행");
+    // console.log("useEffect 실행");
     const token = localStorage.getItem("accessToken");  // accessToken로 수정
 
-    console.log("token:", token);
+    // console.log("token:", token);
 
     if (!token) {
       setLoading(false);
@@ -28,7 +29,7 @@ export const MemberProvider = ({ children }) => {
 
       // 이메일을 추출 (email 또는 sub로 가져옴)
       const email = decodedPayload.email || decodedPayload.sub;
-      console.log("추출된 이메일:", email);
+      // console.log("추출된 이메일:", email);
       return email;
     };
 

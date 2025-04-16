@@ -10,12 +10,14 @@ const MyPageOrdersPage = () => {
   const member = useMember();
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
+  console.log("memberId: ",member?.memberId);
+  console.log("coffeeBeanId: ",orders);
  
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(`http://localhost:8081/api/orders/details/${member?.memberId}`);
-        // console.log(response.data);
+        console.log(response.data);
         setOrders(response.data);
         setFilteredOrders(response.data);
       } catch (error) {
@@ -45,7 +47,7 @@ const MyPageOrdersPage = () => {
       </div>
       <div>
         <span>주문목록/배송조회 내역</span>
-        <OrdersComponent orders={filteredOrders}/>
+        <OrdersComponent orders={filteredOrders} memberId={member.memberId}/>
       </div>
     </div>
   );

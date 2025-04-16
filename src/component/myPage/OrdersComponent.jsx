@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReviewForm from "../review/ReviewForm";
 
-const OrdersComponent = ({ orders }) => {
+const OrdersComponent = ({ orders, memberId }) => {
   // 리뷰 작성창 보여주기 - 진우
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -13,6 +13,8 @@ const OrdersComponent = ({ orders }) => {
     COMP: "배송중",
     COMPLETE: "배송완료"
   };
+  
+  // console.log("memberId ",memberId);
 
   // CANCEL 상태를 제외한 주문만 필터링
   const filteredOrders = orders.filter(order => order.status !== "CANCEL");
@@ -84,7 +86,7 @@ const OrdersComponent = ({ orders }) => {
       {showReviewForm && selectedOrder && (
         <ReviewForm
           onCancel={closeReviewForm}
-          memberId={selectedOrder.memberId}
+          memberId={memberId}
           coffeeBeanId={selectedOrder.coffeeBeanId}
           writer={selectedOrder.writer}
         />
@@ -94,4 +96,3 @@ const OrdersComponent = ({ orders }) => {
 };
   
 export default OrdersComponent;
-  
