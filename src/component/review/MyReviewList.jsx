@@ -49,7 +49,8 @@ export default function MyReviewList({ memberId}) {
 //     setShowForm(false); // 수정 모드 OFF
 // };
 
-const member = useMember();
+// 멤버 DTO 정보 불러오기
+// const member = useMember();
 
   return (
     <div>
