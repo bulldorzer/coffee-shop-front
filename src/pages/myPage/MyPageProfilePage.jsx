@@ -12,9 +12,7 @@ const MyPageProfilePage = () => {
       <div>
         <span>정보 변경</span>
         <span>* 표시는 반드시 입력하셔야 하는 항목입니다.</span>
-        <div>
-          <ProfileComponent />
-        </div>
+        <ProfileComponent />
       </div>
     </div>
   );
