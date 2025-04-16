@@ -34,7 +34,7 @@ const ReviewList = ({coffeeBeanId}) =>{
     useEffect(() => {
         const fetchReviews = async () => {
           try {
-            console.log("받은 coffeeBeanId:", coffeeBeanId);
+            // console.log("받은 coffeeBeanId:", coffeeBeanId);
             const data = await getReviewsByCoffeeBean(coffeeBeanId); // 서버에서 데이터 받아오기
             setReviewData(data.content);
             
@@ -46,26 +46,26 @@ const ReviewList = ({coffeeBeanId}) =>{
         fetchReviews();
       }, [coffeeBeanId]);
 
-    const handleWriteClick = () => {
-        setShowForm(true); // 작성 모드 ON
-    };
+    // const handleWriteClick = () => {
+    //     setShowForm(true); // 작성 모드 ON
+    // };
 
-    const handleCancel = () => {
-        setShowForm(false); // 작성 모드 OFF
-    };
+    // const handleCancel = () => {
+    //     setShowForm(false); // 작성 모드 OFF
+    // };
     return(
         <>
             <div>
                 <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>상품후기</h2>
                 <DynamicTable
-                    columns={columns}
-                    data={reviewData}
-                    itemsPerPage={6}
-                    showWriteButton={!showForm}  // 작성폼이 열려있으면 버튼 숨김
-                    onWriteClick={handleWriteClick}
+                  columns={columns}
+                  data={reviewData}
+                  itemsPerPage={6}
+                  // showWriteButton={!showForm}  // 작성폼이 열려있으면 버튼 숨김
+                  // onWriteClick={handleWriteClick}
                 />
                 {/* 후기 폼 memberId={1} coffeeBeanId={1}로 고정했지만 나중에 수정해야함 - 진우 */}
-                {showForm && <ReviewForm onCancel={handleCancel} memberId={1} coffeeBeanId={1} writer={"로그인아이디"} /> }
+                {/* {showForm && <ReviewForm onCancel={handleCancel} memberId={1} coffeeBeanId={1} writer={"로그인아이디"} /> } */}
             </div>
         </>
     )

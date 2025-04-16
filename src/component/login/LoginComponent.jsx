@@ -26,7 +26,7 @@ const LoginComponent = () => {
     const handleLogin = async () => {
         try {
             const response = await axios.post("http://localhost:8081/api/members/login", { email, pw });
-
+            console.log("서버 응답:", response);  
             const { accessToken } = response.data;
 
             // // JWT 토큰 저장 (예: localStorage)

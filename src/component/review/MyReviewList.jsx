@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getReviewsByMember } from '../../api/review/reviewApi';
 import DynamicTable from '../utilComponent/DynamicTable';
 import ReviewForm from './ReviewForm';
+import { useMember } from '../myPage/MemberContextComponent';
 
 /**
  * 별이 5개면 별 5개 표시
@@ -29,7 +30,7 @@ export default function MyReviewList({ memberId}) {
   useEffect(() => {
     const fetchMyReviews = async () => {
       try {
-        console.log("받은 coffeeBeanId:", memberId);
+        console.log("받은 memberId:", memberId);
         const data = await getReviewsByMember(memberId);
         setReviews(data.content);  // CustomPage 구조일 경우
       } catch (error) {
@@ -40,13 +41,15 @@ export default function MyReviewList({ memberId}) {
     fetchMyReviews();
   }, [memberId]);
 
-  const handleWriteClick = () => {
-    setShowForm(true); // 수정 모드 ON
-};
+// const handleWriteClick = () => {
+//   setShowForm(true); // 수정 모드 ON
+// };
 
-const handleCancel = () => {
-    setShowForm(false); // 수정 모드 OFF
-};
+// const handleCancel = () => {
+//     setShowForm(false); // 수정 모드 OFF
+// };
+
+const member = useMember();
 
   return (
     <div>
@@ -55,11 +58,11 @@ const handleCancel = () => {
             columns={columns}
             data={reviews}
             itemsPerPage={6}
-            showWriteButton={!showForm}  // 작성폼이 열려있으면 버튼 숨김
-            onWriteClick={handleWriteClick}
+            // showWriteButton={!showForm}  // 작성폼이 열려있으면 버튼 숨김
+            // onWriteClick={handleWriteClick}
         />
         {/* 후기 폼 memberId={1} coffeeBeanId={1}로 고정했지만 나중에 수정해야함 - 진우 */}
-        {showForm && <ReviewForm onCancel={handleCancel} memberId={1} coffeeBeanId={null} /> }
+        {/* {showForm && <ReviewForm onCancel={handleCancel} memberId={member.memberId} coffeeBeanId={null} /> } */}
     </div>
   );
 }

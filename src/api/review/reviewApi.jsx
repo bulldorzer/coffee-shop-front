@@ -48,7 +48,7 @@ export const getAllReviews = async (page = 0, size = 999) =>{
  */
 export const getReviewsByCoffeeBean = async (coffeeBeanId, page = 0, size = 999) => {
   try {
-    console.log("요청 URL:", `${prefix}/list/product/${coffeeBeanId}?page=${page}&size=${size}`);
+    // console.log("요청 URL:", `${prefix}/list/product/${coffeeBeanId}?page=${page}&size=${size}`);
     const response = await axios.get(`${prefix}/list/product/${coffeeBeanId}?page=${page}&size=${size}`);
     return response.data;
   } catch (error) {
