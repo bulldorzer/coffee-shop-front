@@ -77,6 +77,18 @@ const root = createBrowserRouter([
         element : <Suspense fallback={Loading}><ProductList/></Suspense>
     },
     {
+        path : "/special",
+        element : <Suspense fallback={Loading}><ProductList/></Suspense>
+    },
+    {
+        path : "/coldbrew",
+        element : <Suspense fallback={Loading}><ProductList/></Suspense>
+    },
+    {
+        path : "/gift",
+        element : <Suspense fallback={Loading}><ProductList/></Suspense>
+    },
+    {
         path : "/product/:id",
         element : <Suspense fallback={Loading}><ProductDetail/></Suspense>
     }
