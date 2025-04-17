@@ -14,6 +14,8 @@ const Login = lazy(() => import("../pages/login/LoginPage.jsx"));
 const JoinAgree = lazy(() => import("../pages/join/JoinAgreePage.jsx"));
 const Join = lazy(() => import("../pages/join/JoinPage.jsx"));
 
+const SelectJoin = lazy(() => import("../pages/join/SelectJoinPage.jsx"));
+
 // 카트 - 진우
 const CartPage = lazy(()=> import("../pages/cart/CartPage.jsx"))
 
@@ -91,6 +93,10 @@ const root = createBrowserRouter([
     {
         path : "/product/:id",
         element : <Suspense fallback={Loading}><ProductDetail/></Suspense>
+    },
+    {
+        path : "/selectjoin",
+        element : <Suspense fallback={Loading}><SelectJoin/></Suspense>
     }
     
 ])

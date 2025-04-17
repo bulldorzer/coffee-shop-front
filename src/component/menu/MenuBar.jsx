@@ -52,7 +52,7 @@ const MenuBar = () =>{
                     ) : (
                         <>
                             <li><Link to="/login">로그인</Link></li>
-                            <li><Link to="/join/agree">회원가입</Link></li>
+                            <li><Link to="/selectjoin">회원가입</Link></li>
                         </>
                     )}
                         
