@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useMember } from "../../component/myPage/MemberContextComponent";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import deleteMemberSave from "../../api/myPage/deleteMemberSave"
 
@@ -83,9 +84,11 @@ const MemberSaveComponent = () => {
                   checked={selectedItems.includes(item.coffeeBeanId)}
                   onChange={() => handleCheckboxChange(item.coffeeBeanId)}
                 />
-                <img src={item.imageFile} alt={item.name} width="100" />
-                <div>{item.name}</div>
-                <div>{item.price.toLocaleString()}원</div>
+                <Link to={`/product/${item.coffeeBeanId}`}>
+                  <img src={item.imageFile} alt={item.name} width="100" />
+                  <div>{item.name}</div>
+                  <div>{item.price.toLocaleString()}원</div>
+                </Link>
               </li>
             ))}
           </ul>
@@ -93,7 +96,6 @@ const MemberSaveComponent = () => {
       </div>
       <div>
         <button onClick={handleDelete}>선택 상품 삭제</button>
-        <button>선택 상품 장바구니 추가</button>
       </div>
     </div>
   );
