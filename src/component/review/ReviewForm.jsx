@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "../../css/review/reviewForm.css";
 import { postAdd } from "../../api/review/reviewApi";
+import "../../css/review/reviewForm.css";
 
 /**
  * 상품후기 작성 - 진우
  * @returns 
  */
-const ReviewForm = ({ onCancel, memberId, coffeeBeanId, writer }) => {
+const ReviewForm = ({ onCancel, onSubmitComplete, memberId, coffeeBeanId, writer }) => {
   const [rating, setRating] = useState(0);
   const [title, setTitle] = useState("");
   const [writerState, setWriterState] = useState(writer);
@@ -26,6 +26,7 @@ const ReviewForm = ({ onCancel, memberId, coffeeBeanId, writer }) => {
       // console.log("reviewData ",reviewData);
       await postAdd(memberId,coffeeBeanId,reviewData)
       alert("리뷰가 성공적으로 등록되었습니다!");
+      if (onSubmitComplete) onSubmitComplete(); // ✅ 리뷰 제출 후 콜백 실행
       if (onCancel) onCancel(); // 작성후 폼닫기
 
     } catch (error) {

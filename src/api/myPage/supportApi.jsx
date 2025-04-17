@@ -1,0 +1,42 @@
+import axios from "axios";
+import { API_SERVER_PORT } from "../utilApi";
+
+
+
+
+const prefix = `${API_SERVER_PORT}/api/cfaq`;
+
+/**
+ * 멤버의 이용문의 조회 API - 진우
+ * @param {*} memberId 
+ * @param {*} page 
+ * @param {*} size 
+ * @returns 
+ */
+export const getCfaqsByMember = async (memberId, page=0, size=10) => {
+    try {
+        const response = await axios.get(`${prefix}/list/member/${memberId}?page=${page}&size=${size}`);
+        return response.data
+    } catch (error) {
+        console.error("내 이용문의 불러오기 실패:", error);
+        throw error;
+    }
+}
+
+/**
+ * 이용문의 작성 API - 진우
+ * @param {*} memberId 
+ * @param {*} cfaqData 
+ * @returns 
+ */
+export const postAdd = async (memberId, cfaqData) => {
+    try {
+        const response = await axios.post(`${prefix}/${memberId}`,
+            cfaqData
+        );
+        return response.data;
+    } catch (error) {
+        console.error("이용문의 작성 실패:", error);
+    throw error;
+    }
+}

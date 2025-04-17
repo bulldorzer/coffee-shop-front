@@ -14,6 +14,30 @@ const OrdersComponent = ({ orders, memberId, name }) => {
     COMPLETE: "배송완료"
   };
 
+  const fetchOrders = async () => {
+    try {
+      const res = await getOrdersByMember(memberId); // ✅ API 호출 예시
+      setOrders(res);
+    } catch (e) {
+      console.error("주문 내역 새로고침 실패", e);
+    }
+  };
+
+  const handleWriteReview = (orderItem) => {
+    setSelectedOrder(orderItem);
+    setShowReviewForm(true);
+  };
+
+  const closeReviewForm = () => {
+    setShowReviewForm(false);
+    setSelectedOrder(null);
+  };
+
+  const handleReviewSubmitComplete = async () => {
+    closeReviewForm();
+    await fetchOrders(); // ✅ 리뷰 작성 후 주문내역 새로고침
+  };
+
   const filteredOrders = orders.filter(order => order.status !== "CANCEL");
 
   const groupByOrderId = () => {
@@ -33,15 +57,7 @@ const OrdersComponent = ({ orders, memberId, name }) => {
     setOpenOrderId(prev => (prev === orderId ? null : orderId));
   };
 
-  const handleWriteReview = (orderItem) => {
-    setSelectedOrder(orderItem);
-    setShowReviewForm(true);
-  };
-
-  const closeReviewForm = () => {
-    setShowReviewForm(false);
-    setSelectedOrder(null);
-  };
+  
 
   return (
     <>
@@ -104,6 +120,7 @@ const OrdersComponent = ({ orders, memberId, name }) => {
       {showReviewForm && selectedOrder && (
         <ReviewForm
           onCancel={closeReviewForm}
+          onSubmitComplete={handleReviewSubmitComplete} // ✅ 콜백 넘기기
           memberId={memberId}
           coffeeBeanId={selectedOrder.coffeeBeanId}
           writer={name}
