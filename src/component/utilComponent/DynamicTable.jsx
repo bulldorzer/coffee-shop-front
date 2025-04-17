@@ -14,6 +14,7 @@ const DynamicTable = ({
     itemsPerPage = 5, 
     showWriteButton = false, 
     onWriteClick = () => {}, // 추가된 props
+    emptyMessage = '데이터가 없습니다.' // 기본값 설정
   }) => {
   const [sortField, setSortField] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
@@ -67,68 +68,79 @@ const DynamicTable = ({
           </tr>
         </thead>
         <tbody>
-          {pagedData.map((row, i) => (
+        {pagedData.length === 0 ? (
+          <tr>
+            <td colSpan={columns.length} style={{ textAlign: 'center', padding: '20px', color: '#888' }}>
+              {emptyMessage} {/* ✅ 여기를 동적으로 */}
+            </td>
+          </tr>
+        ) : (
+          pagedData.map((row, i) => (
             <tr key={i}>
               {columns.map((col) => (
                 <td key={col.key}>
                   {col.render ? col.render(row[col.key], row) : row[col.key]}
-              </td>
+                </td>
               ))}
             </tr>
-          ))}
+          ))
+        )}
         </tbody>
       </table>
 
       {/* 페이징 */}
-      <div className="pagination">
-        <button onClick={() => setCurrentPage(1)} disabled={currentPage === 1}>
-          처음
-        </button>
-        <button
-          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          이전
-        </button>
-        {startPage > 1 && (
-          <button onClick={() => setCurrentPage(startPage - 1)}>◀</button>
-        )}
-
-        {Array.from({ length: endPage - startPage + 1 }, (_, i) => {
-          const page = startPage + i;
-          return (
-            <button
-              key={page}
-              onClick={() => setCurrentPage(page)}
-              className={currentPage === page ? 'active' : ''}
-            >
-              {page}
-            </button>
-          );
-        })}
-
-        {endPage < totalPages && (
-          <button onClick={() => setCurrentPage(endPage + 1)}>▶</button>
-        )}
-        <button
-          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-          disabled={currentPage === totalPages}
-        >
-          다음
-        </button>
-        <button
-          onClick={() => setCurrentPage(totalPages)}
-          disabled={currentPage === totalPages}
-        >
-          마지막
-        </button>
-        {/* 작성하기 버튼 */}
-        {showWriteButton && (
-          <button className="write-button" onClick={onWriteClick}>
-            작성하기
+      {pagedData.length > 0 && (
+        <div className="pagination">
+          <button onClick={() => setCurrentPage(1)} disabled={currentPage === 1}>
+            처음
           </button>
-        )}
-      </div>
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            이전
+          </button>
+          {startPage > 1 && (
+            <button onClick={() => setCurrentPage(startPage - 1)}>◀</button>
+          )}
+
+          {Array.from({ length: endPage - startPage + 1 }, (_, i) => {
+            const page = startPage + i;
+            return (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={currentPage === page ? 'active' : ''}
+              >
+                {page}
+              </button>
+            );
+          })}
+
+          {endPage < totalPages && (
+            <button onClick={() => setCurrentPage(endPage + 1)}>▶</button>
+          )}
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+          >
+            다음
+          </button>
+          <button
+            onClick={() => setCurrentPage(totalPages)}
+            disabled={currentPage === totalPages}
+          >
+            마지막
+          </button>
+
+          {/* 작성하기 버튼 */}
+          {showWriteButton && (
+            <button className="write-button" onClick={onWriteClick}>
+              작성하기
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

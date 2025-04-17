@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAllReviews, getReviewsByCoffeeBean } from '../../api/review/reviewApi';
+import { getReviewsByCoffeeBean } from '../../api/review/reviewApi';
 import DynamicTable from '../utilComponent/DynamicTable';
 import ReviewForm from './ReviewForm';
 
@@ -28,7 +28,7 @@ const columns = [
  * @returns 
  */
 const ReviewList = ({coffeeBeanId}) =>{
-    const [showForm, setShowForm] = useState(false);
+    // const [showForm, setShowForm] = useState(false);
     const [reviewData, setReviewData] = useState([]);
 
     useEffect(() => {
@@ -61,6 +61,7 @@ const ReviewList = ({coffeeBeanId}) =>{
                   columns={columns}
                   data={reviewData}
                   itemsPerPage={6}
+                  emptyMessage="리뷰가 없습니다."
                   // showWriteButton={!showForm}  // 작성폼이 열려있으면 버튼 숨김
                   // onWriteClick={handleWriteClick}
                 />
