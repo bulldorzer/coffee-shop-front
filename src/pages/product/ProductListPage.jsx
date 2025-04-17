@@ -11,14 +11,14 @@ import "../../css/product/ProductListPage.css";
  */
 
 export default function ProductListPage() {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [sortedProducts, setSortedProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);  // 현재 페이지
-  const [totalPages, setTotalPages] = useState(0);    // 총 페이지수
-  const [totalItems, setTotalItems] = useState(0);    // 총 상품 수
-  const itemsPerPage = 20;                            // 페이지당 상품 수
+  const [products, setProducts] = useState([]);                   // 상품 목록
+  const [filteredProducts, setFilteredProducts] = useState([]);   // 카테고리로 필터링된 상품 목록
+  const [sortedProducts, setSortedProducts] = useState([]);       // 정렬된 상품 목록
+  const [categories, setCategories] = useState([]);     // 카테고리
+  const [currentPage, setCurrentPage] = useState(1);    // 현재 페이지
+  const [totalPages, setTotalPages] = useState(0);      // 총 페이지수
+  const [totalItems, setTotalItems] = useState(0);      // 총 상품 수
+  const itemsPerPage = 20;                              // 페이지당 상품 수
   const navigate = useNavigate();
 
   // 서버에서 상품(product = coffeeBean) 가져오기
@@ -50,7 +50,7 @@ export default function ProductListPage() {
 
   // 서버에서 카테고리 가져오기
   useEffect(() => {
-    axios.get("http://localhost:8081/api/categories/parents/1")
+    axios.get("http://localhost:8081/api/categories/parents")
     .then(res => {
       console.log("카테고리 응답:", res.data);  // 응답 구조 확인
       setCategories(res.data);
@@ -64,21 +64,17 @@ export default function ProductListPage() {
     if (type === "high") sorted.sort((a, b) => b.price - a.price);
     else if (type === "low") sorted.sort((a, b) => a.price - b.price);
     else if (type === "recommend") sorted.sort(() => Math.random() - 0.5);      // 나중에 수정 : '추천순' 정렬 방식 설정
-
     setSortedProducts(sorted);
     setCurrentPage(1);
   };
 
   // 카테고리로 상품 필터링
   const filterByCategory = (category) => {
-    setSelectedCategory(category);
     const filtered = category ? products.filter(p => p.category === category) : products;
     setFilteredProducts(filtered);
     setSortedProducts(filtered);
     setCurrentPage(1);
   };
-
-  const currentProducts = sortedProducts;
 
   // 클릭시 상세 정보 페이지로 이동
   const handleClickProduct = (id) => {
@@ -109,7 +105,7 @@ export default function ProductListPage() {
           <button onClick={() => sortProducts("low")}>낮은가격순</button>
         </div>
 
-        <ProductList products={products}/>
+        <ProductList products={sortedProducts}/>
 
         <div className="pagination">
           {Array.from({ length: totalPages }).map((_, i) => (
