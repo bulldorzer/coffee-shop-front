@@ -70,17 +70,13 @@ export default function ProductListPage() {
 
   // 카테고리로 상품 필터링
   const filterByCategory = (category) => {
-    const filtered = category ? products.filter(p => p.category === category) : products;
+    // p.categoryIds : 배열 -> .includes(category.id) : 상품의 카테고리 배열에 category.id가 포함되는지
+    const filtered = category ? products.filter(p => p.categoryIds?.includes(category.id)) : products;
     setFilteredProducts(filtered);
     setSortedProducts(filtered);
+    setTotalItems(filtered.length);
     setCurrentPage(1);
   };
-
-  // 클릭시 상세 정보 페이지로 이동
-  const handleClickProduct = (id) => {
-    navigate(`/product/${id}`);
-  };
-
 
   return (
     <BasicLayout>
