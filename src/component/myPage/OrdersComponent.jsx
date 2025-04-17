@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReviewForm from "../review/ReviewForm";
 
-const OrdersComponent = ({ orders, memberId }) => {
+const OrdersComponent = ({ orders, memberId, name }) => {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [openOrderId, setOpenOrderId] = useState(null);
@@ -106,7 +106,7 @@ const OrdersComponent = ({ orders, memberId }) => {
           onCancel={closeReviewForm}
           memberId={memberId}
           coffeeBeanId={selectedOrder.coffeeBeanId}
-          writer={selectedOrder.writer}
+          writer={name}
         />
       )}
     </>

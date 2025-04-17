@@ -11,6 +11,7 @@ const MyPageOrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   console.log("memberId: ",member?.memberId);
+  console.log("memberName: ",member?.name);
   console.log("coffeeBeanId: ",orders);
  
   useEffect(() => {
@@ -47,7 +48,7 @@ const MyPageOrdersPage = () => {
       </div>
       <div>
         <span>주문목록/배송조회 내역</span>
-        <OrdersComponent orders={filteredOrders} memberId={member.memberId}/>
+        <OrdersComponent orders={filteredOrders} memberId={member.memberId} name={member.name}/>
       </div>
     </div>
   );
