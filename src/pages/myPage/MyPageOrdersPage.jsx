@@ -10,15 +10,15 @@ const MyPageOrdersPage = () => {
   const member = useMember();
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
-  console.log("memberId: ",member?.memberId);
-  console.log("memberName: ",member?.name);
-  console.log("coffeeBeanId: ",orders);
+  // console.log("memberId: ",member?.memberId);
+  // console.log("memberName: ",member?.name);
+  // console.log("coffeeBeanId: ",orders);
  
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(`http://localhost:8081/api/orders/details/${member?.memberId}`);
-        console.log(response.data);
+        // console.log(response.data);
         setOrders(response.data);
         setFilteredOrders(response.data);
       } catch (error) {
