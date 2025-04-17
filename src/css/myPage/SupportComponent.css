@@ -1,0 +1,23 @@
+/* SupportComponent.css */
+
+.container {
+    padding: 20px;
+}
+
+.support-title-container {
+    display: flex;
+    align-items: flex-end; /* 세로축 아래 정렬 */
+    gap: 10px; /* 제목과 설명 사이 간격 */
+}
+
+.support-title {
+font-size: 2rem;
+font-weight: bold;
+margin: 0;
+}
+
+.support-description {
+font-size: 0.9rem;
+color: gray;
+margin: 0;
+}

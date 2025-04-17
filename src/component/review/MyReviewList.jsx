@@ -23,14 +23,14 @@ const columns = [
   { key: 'postDate', label: '등록날짜' },
 ];
 
-export default function MyReviewList({ memberId}) {
+export default function MyReviewList({ memberId }) {
   const [showForm, setShowForm] = useState(false);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     const fetchMyReviews = async () => {
       try {
-        console.log("받은 memberId:", memberId);
+        // console.log("받은 memberId:", memberId);
         const data = await getReviewsByMember(memberId);
         setReviews(data.content);  // CustomPage 구조일 경우
       } catch (error) {
