@@ -18,7 +18,7 @@ const MyPageOrdersPage = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(`http://localhost:8081/api/orders/details/${member?.memberId}`);
-        // console.log(response.data);
+        console.log(response.data);
         setOrders(response.data);
         setFilteredOrders(response.data);
       } catch (error) {

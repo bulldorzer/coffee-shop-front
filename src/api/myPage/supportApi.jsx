@@ -6,6 +6,16 @@ import { API_SERVER_PORT } from "../utilApi";
 
 const prefix = `${API_SERVER_PORT}/api/cfaq`;
 
+export const getCfaqsAll = async () =>{
+    try {
+        const response = await axios.get(`${prefix}/list`);
+        return response.data
+    } catch (error) {
+        console.error("이용문의 전체목록 불러오기 실패:", error);
+        throw error;
+    }
+}
+
 /**
  * 멤버의 이용문의 조회 API - 진우
  * @param {*} memberId 
