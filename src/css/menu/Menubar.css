@@ -1,34 +1,47 @@
-header{
-    width: 100%;          /* ← 화면 전체 너비로 확장 */
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* ← 좌우 정렬 */
-    padding: 10px;
+/* 전체 헤더 영역 */
+header {
+    width: 100%;
     border-bottom: 1px solid #333;
-    box-sizing: border-box;  /* ← padding 포함해서 너비 계산 */
-    flex-wrap: wrap; /* ← 필요시 줄바꿈 */
-}
-
-
-.nav-container {
+    box-sizing: border-box;
+  }
+  
+  /* 내부 컨테이너: flex로 정렬 */
+  .nav-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0;
-    position: relative;
-}
-
-.nav-left .logo {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  /* 로고 */
+  .nav-left {
+    display: flex;
+    align-items: center;
+  }
+  .nav-left .logo {
     height: 40px;
-    margin-right: 200px;
-}
-
-.nav-center {
-    flex-grow: 1;
+    /* 여백 필요하면 margin-right 주기 */
+    margin-right: 40px;
+  }
+  
+  /* 가운데 메뉴 */
+  .nav-center {
+    flex: 1; /* 남은 공간 채우기 */
     display: flex;
     justify-content: center;
-    margin: 0 100px;      /* 양쪽 여백 */
-}
+  }
+  
+  /* 오른쪽 유저+검색 */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
 
 .main-menu,
 .user-menu,
@@ -50,12 +63,7 @@ header{
     margin: 0;
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    margin-left: 100px;   /* 오른쪽 끝으로 밀어내고 왼쪽에 여백 */
-    gap: 20px;           /* 내부 요소 간 여백 */
-}
+
 
 .user-menu {
     display: flex;
