@@ -45,8 +45,8 @@ export default function ProductDetailPage() {
 
       <div className="tab-menu">
         <ul>
-          <li className='active'><a href="#p1">상세 정보</a></li>
-          <li><a href="#p2">상품 후기</a></li>
+          <li ><a href="#p1">상세 정보</a></li>
+          <li className='active'><a href="#p2">상품 후기</a></li>
           <li><a href="#p3">상품 문의</a></li>
           <li><a href="#p4">배송반품교환안내</a></li>
         </ul>

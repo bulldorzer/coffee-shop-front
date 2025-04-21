@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getReviewsByCoffeeBean } from '../../api/review/reviewApi';
 import DynamicTable from '../utilComponent/DynamicTable';
-import ReviewForm from './ReviewForm';
+import "../../css/review/ReviewList.css"
 
 /**
  * 별이 5개면 별 5개 표시
@@ -55,8 +55,8 @@ const ReviewList = ({coffeeBeanId}) =>{
     // };
     return(
         <>
-            <div>
-                <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>상품후기</h2>
+            <div className='review-list-coontainer'>
+                <h2>상품후기</h2>
                 <DynamicTable
                   columns={columns}
                   data={reviewData}

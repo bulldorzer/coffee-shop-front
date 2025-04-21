@@ -47,9 +47,8 @@ const SupportComponent = ({ memberId, name }) => {
 
     return(
         <>
-            <div class="container">
+            <div class="support-container">
                 <div className="support-title-container">
-                    <h1 className="support-title">이용 문의</h1>
                     <p className="support-description">홈페이지 이용 중 문제나 문의사항을 남겨주세요.</p>
                 </div>
                 <DynamicTable

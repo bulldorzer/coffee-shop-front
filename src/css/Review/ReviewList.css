@@ -1,0 +1,5 @@
+.review-list-coontainer {
+    max-width: 1200px;
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 40px 20px;
+  }
