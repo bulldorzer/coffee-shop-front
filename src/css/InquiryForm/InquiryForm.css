@@ -1,0 +1,7 @@
+/* 페이지 제목 (ex. 주문목록, 취소내역) */
+.page-title {
+    padding-bottom: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 2px solid;
+  }

@@ -1,5 +1,6 @@
-import InquiryFormComponent from "../../css/InquiryForm/InquiryFormComponent";
+import InquiryFormComponent from "../../component/InquiryForm/InquiryFormComponent";
 import BasicLayout from "../../layouts/BasicLayout";
+import "../../css/InquiryForm/InquiryForm.css"
 
 
 /**
@@ -13,7 +14,7 @@ const InquiryFormPage = () =>{
         
         <div className="inquiry-container">
             {/* 공통 title로 빠질 예정 */}    
-            <h2>이용 문의</h2>
+            <h2 className="page-title">이용 문의</h2>
             <hr/>
 
             <div className="inquiry-section">

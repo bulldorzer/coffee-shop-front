@@ -5,7 +5,7 @@ import ProductQnAComponent from "../../component/myPage/ProductQnAComponent";
 const MyPageProductQnAPage = () => {
   return (
     <div>
-      <h3>상품문의</h3>
+      <h3 className="page-title">상품문의</h3>
       <span>상품문의 내역</span>
       <ProductQnAComponent />
     </div>

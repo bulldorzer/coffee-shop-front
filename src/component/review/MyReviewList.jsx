@@ -18,6 +18,7 @@ const renderStars = (score) => {
 {/* 필드 정의 */}
 const columns = [
   { key: 'score', label: '별점', render: renderStars },
+  { key: 'productName', label: '상품' },
   { key: 'content', label: '내용' },
   { key: 'writer', label: '이름' },
   { key: 'postDate', label: '등록날짜' },
@@ -30,9 +31,10 @@ export default function MyReviewList({ memberId }) {
   useEffect(() => {
     const fetchMyReviews = async () => {
       try {
-        // console.log("받은 memberId:", memberId);
         const data = await getReviewsByMember(memberId);
         setReviews(data.content);  // CustomPage 구조일 경우
+        console.log("받은 data.content: ", data.content);
+
       } catch (error) {
         console.error("내 리뷰 로딩 실패", error);
       }
@@ -54,7 +56,7 @@ export default function MyReviewList({ memberId }) {
 
   return (
     <div>
-        <h2 style={{ fontSize: '24px', marginBottom: '10px' }}>내가 작성한 리뷰</h2>
+        <h2 className='page-title'>내가 작성한 리뷰</h2>
         <DynamicTable
             columns={columns}
             data={reviews}
