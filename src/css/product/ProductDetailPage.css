@@ -1,0 +1,111 @@
+.product-detail-container {
+    max-width: 1200px;
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 40px 20px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: center;
+    border-top: 1px solid #ccc;
+  }
+  
+  .product-image-section {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .product-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border: 1px solid #ddd;
+  }
+  
+  .thumbnail-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .thumbnail-list > div {
+    width: 60px;
+    height: 60px;
+    background: #eee;
+    text-align: center;
+    line-height: 60px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+  }
+  
+  .product-info-section {
+    flex: 1;
+    padding-top: 10px;
+  }
+  
+  .product-info-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .product-details p {
+    margin: 6px 0;
+  }
+  
+  .select-group {
+    margin-top: 10px;
+  }
+  
+  .quantity-input {
+    margin-top: 10px;
+  }
+  
+  .total-price {
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  .button-group {
+    margin-top: 20px;
+  }
+  
+  .button-group button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .pay-button-group {
+    margin-top: 10px;
+  }
+  
+  .pay-button-group button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .tab-menu {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    border-top: 1px solid #ccc;
+  }
+  
+  .tab-menu ul {
+    display: flex;
+    padding: 0;
+    list-style: none;
+    margin-top: 20px;
+  }
+  
+  .tab-menu li {
+    margin-right: 30px;
+  }
+  
+  .tab-menu li.active a {
+    font-weight: bold;
+  }
