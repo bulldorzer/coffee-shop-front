@@ -1,27 +1,46 @@
 header{
-    padding: 0;
+    width: 100%;          /* ← 화면 전체 너비로 확장 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* ← 좌우 정렬 */
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    box-sizing: border-box;  /* ← padding 포함해서 너비 계산 */
+    flex-wrap: wrap; /* ← 필요시 줄바꿈 */
 }
+
+
 .nav-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0;
     position: relative;
-  }
-  
-  .nav-left .logo {
+}
+
+.nav-left .logo {
     height: 40px;
     margin-right: 200px;
-  }
-  
-  .nav-center {
+}
+
+.nav-center {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     margin: 0 100px;      /* 양쪽 여백 */
-  }
-  
-  .main-menu {
+}
+
+.main-menu,
+.user-menu,
+.search-cart {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 16px; /* 원하는 간격으로 조정 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+.main-menu {
     display: flex;
     gap: 32px;
     list-style: none;
@@ -29,37 +48,37 @@ header{
     font-weight: bold;
     padding: 0;
     margin: 0;
-  }
-  
-  .nav-right {
+}
+
+.nav-right {
     display: flex;
     align-items: center;
-    margin-left: 280px;   /* 오른쪽 끝으로 밀어내고 왼쪽에 여백 */
+    margin-left: 100px;   /* 오른쪽 끝으로 밀어내고 왼쪽에 여백 */
     gap: 20px;           /* 내부 요소 간 여백 */
-  }
-  
-  .user-menu {
+}
+
+.user-menu {
     display: flex;
     gap: 16px;
     list-style: none;
     font-size: 14px;
     margin-left: auto;
     padding: 0;
-  }
-  
-  .search-cart {
+}
+
+.search-cart {
     display: flex;
     align-items: center;
     gap: 10px;
-  }
-  
-  .search-input {
+}
+
+.search-input {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  .icon-btn {
+}
+
+.icon-btn {
     width: 24px;
     cursor: pointer;
-  }
+}

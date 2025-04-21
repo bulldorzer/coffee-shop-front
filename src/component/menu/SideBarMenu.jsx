@@ -8,7 +8,7 @@ const menu = [
     items: [
       { label: "- 주문목록/배송조회", path: "/mypage/orders" },
       { label: "- 취소/환불/교환내역", path: "/mypage/orders_cancel" },
-      { label: "- 장바구니", path: "/cart" },
+      { label: "- 장바구니", path: "/mypage/cart" },
       { label: "- 관심상품", path: "/mypage/membersave" },
     ],
   },
