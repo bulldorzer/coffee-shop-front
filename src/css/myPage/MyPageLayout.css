@@ -1,0 +1,31 @@
+/* myPageLayout 기본*/
+.mypage-layout { 
+  display: flex;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 250px;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+  
+/* 컨텐츠 영역 */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* 제목(마이페이지) */
+.title {
+  padding: 20px 20px;
+  border-bottom: 2px solid;
+}
+
+/* 페이지 제목 (ex. 주문목록, 취소내역) */
+.page-title {
+  padding-bottom: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 2px solid;
+}

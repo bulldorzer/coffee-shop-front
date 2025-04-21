@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReviewForm from "../review/ReviewForm";
+import "../../css/myPage/Orders.css";
 
 const OrdersComponent = ({ orders, memberId, name }) => {
   const [showReviewForm, setShowReviewForm] = useState(false);
@@ -16,7 +17,7 @@ const OrdersComponent = ({ orders, memberId, name }) => {
 
   const fetchOrders = async () => {
     try {
-      const res = await getOrdersByMember(memberId); // ✅ API 호출 예시
+      const res = await getOrdersByMember(memberId);
       setOrders(res);
     } catch (e) {
       console.error("주문 내역 새로고침 실패", e);
@@ -35,7 +36,7 @@ const OrdersComponent = ({ orders, memberId, name }) => {
 
   const handleReviewSubmitComplete = async () => {
     closeReviewForm();
-    await fetchOrders(); // ✅ 리뷰 작성 후 주문내역 새로고침
+    await fetchOrders();
   };
 
   const filteredOrders = orders.filter(order => order.status !== "CANCEL");
@@ -57,12 +58,10 @@ const OrdersComponent = ({ orders, memberId, name }) => {
     setOpenOrderId(prev => (prev === orderId ? null : orderId));
   };
 
-  
-
   return (
     <>
-      <ul>
-        <li>
+      <ul className="orders-list">
+        <li className="orders-header">
           <span>주문날짜</span>
           <span>상품명</span>
           <span>총금액</span>
@@ -77,10 +76,10 @@ const OrdersComponent = ({ orders, memberId, name }) => {
             const totalPrice = group.reduce((sum, item) => sum + item.totalPrice, 0);
 
             return (
-              <li key={index}>
+              <li key={index} className="order-item">
                 <span>{firstItem.orderDate}</span>
                 <span
-                  style={{ cursor: "pointer", color: "#2a7ae2", textDecoration: "underline" }}
+                  className="order-name"
                   onClick={() => toggleOrderDetails(firstItem.orderId)}
                 >
                   {firstItem.coffeeName}
@@ -90,15 +89,14 @@ const OrdersComponent = ({ orders, memberId, name }) => {
                 <span>{statusMap[firstItem.status]}</span>
                 <span></span>
 
-                {/* 상세 상품 목록 */}
                 {openOrderId === firstItem.orderId && (
-                  <ul style={{ marginTop: "10px", paddingLeft: "20px", fontSize: "14px", color: "#444" }}>
+                  <ul className="order-details">
                     {group.map((item, idx) => (
-                      <li key={idx} style={{ marginBottom: "5px" }}>
+                      <li key={idx} className="order-detail-item">
                         - {item.coffeeName} / 수량: {item.qty}개 / 금액: {item.totalPrice.toLocaleString()}원
                         {item.status === "COMPLETE" && (
                           <button
-                            style={{ marginLeft: "10px" }}
+                            className="review-btn"
                             onClick={() => handleWriteReview(item)}
                           >
                             리뷰작성
@@ -112,15 +110,14 @@ const OrdersComponent = ({ orders, memberId, name }) => {
             );
           })
         ) : (
-          <li>주문 내역이 없습니다.</li>
+          <li className="empty-orders">주문 내역이 없습니다.</li>
         )}
       </ul>
 
-      {/* 리뷰 작성 폼 */}
       {showReviewForm && selectedOrder && (
         <ReviewForm
           onCancel={closeReviewForm}
-          onSubmitComplete={handleReviewSubmitComplete} // ✅ 콜백 넘기기
+          onSubmitComplete={handleReviewSubmitComplete}
           memberId={memberId}
           coffeeBeanId={selectedOrder.coffeeBeanId}
           writer={name}

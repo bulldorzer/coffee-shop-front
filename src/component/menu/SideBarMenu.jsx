@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import "../../css/menu/SideBarMenu.css"
 
 // 마이페이지 사이드메뉴 - 이재민
 const menu = [
@@ -42,7 +43,7 @@ function SidebarMenu() {
             {section.items.map((item, idx) => {
               const isActive = location.pathname === item.path;
               return (
-                <li key={idx}>
+                <li key={idx} className={isActive ? "active" : ""}>
                   <Link to={item.path}>
                     {item.label}
                   </Link>

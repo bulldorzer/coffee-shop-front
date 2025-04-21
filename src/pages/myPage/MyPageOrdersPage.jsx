@@ -3,6 +3,7 @@ import DateFilter from "../../component/utilComponent/DateFilter";
 import OrdersComponent from "../../component/myPage/OrdersComponent";
 import { useMember } from "../../component/myPage/MemberContextComponent"
 import axios from "axios";
+import "../../css/myPage/Orders.css"
 // myPage주문내역/배송조회 - 이재민
 
 
@@ -41,13 +42,13 @@ const MyPageOrdersPage = () => {
     setFilteredOrders(filtered);
   }
   return (
-    <div>
-      <h3>주문목록/배송조회</h3>
+    <div className="orderPage">
+      <h3 className="page-title">주문목록/배송조회</h3>
       <div>
         <DateFilter onSearch={handleDateSearch}/>
       </div>
       <div>
-        <span>주문목록/배송조회 내역</span>
+        <span className="page-subtitle">주문목록/배송조회 내역</span>
         <OrdersComponent orders={filteredOrders} memberId={member.memberId} name={member.name}/>
       </div>
     </div>
