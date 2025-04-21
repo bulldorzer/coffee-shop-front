@@ -12,7 +12,7 @@ const OrdersComponent = ({ orders, memberId, name }) => {
     ORDER: "주문접수",
     CANCEL: "주문취소",
     COMP: "배송중",
-    COMPLETE: "배송완료"
+    COMPLETE: "배송완료",
   };
 
   const fetchOrders = async () => {
@@ -39,7 +39,7 @@ const OrdersComponent = ({ orders, memberId, name }) => {
     await fetchOrders();
   };
 
-  const filteredOrders = orders.filter(order => order.status !== "CANCEL");
+  const filteredOrders = orders.filter((order) => order.status !== "CANCEL");
 
   const groupByOrderId = () => {
     const grouped = {};
@@ -55,7 +55,7 @@ const OrdersComponent = ({ orders, memberId, name }) => {
   const groupedOrders = groupByOrderId();
 
   const toggleOrderDetails = (orderId) => {
-    setOpenOrderId(prev => (prev === orderId ? null : orderId));
+    setOpenOrderId((prev) => (prev === orderId ? null : orderId));
   };
 
   return (
@@ -66,7 +66,6 @@ const OrdersComponent = ({ orders, memberId, name }) => {
           <span>상품명</span>
           <span>총금액</span>
           <span>주문상태</span>
-          <span></span>
         </li>
 
         {groupedOrders.length > 0 ? (
@@ -76,18 +75,19 @@ const OrdersComponent = ({ orders, memberId, name }) => {
             const totalPrice = group.reduce((sum, item) => sum + item.totalPrice, 0);
 
             return (
-              <li key={index} className="order-item">
-                <span>{firstItem.orderDate}</span>
-                <span
-                  className="order-name"
-                  onClick={() => toggleOrderDetails(firstItem.orderId)}
-                >
-                  {firstItem.coffeeName}
-                  {extraCount > 0 ? ` 외 ${extraCount}건` : ""}
-                </span>
-                <span>{totalPrice.toLocaleString()}원</span>
-                <span>{statusMap[firstItem.status]}</span>
-                <span></span>
+              <div>
+                <li key={index} className="order-item">
+                  <span>{firstItem.orderDate}</span>
+                  <span
+                    className="order-name"
+                    onClick={() => toggleOrderDetails(firstItem.orderId)}
+                  >
+                    {firstItem.coffeeName}
+                    {extraCount > 0 ? ` 외 ${extraCount}건` : ""}
+                  </span>
+                  <span>{totalPrice.toLocaleString()}원</span>
+                  <span>{statusMap[firstItem.status]}</span>
+                </li>
 
                 {openOrderId === firstItem.orderId && (
                   <ul className="order-details">
@@ -106,7 +106,7 @@ const OrdersComponent = ({ orders, memberId, name }) => {
                     ))}
                   </ul>
                 )}
-              </li>
+              </div>
             );
           })
         ) : (
