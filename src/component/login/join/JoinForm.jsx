@@ -28,6 +28,11 @@ const JoinForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault(); // 페이지 새로고침 방지
 
+        if (password.length < 8) {
+            alert("비밀번호는 8자 이상이어야 합니다.");
+            return;
+        }
+
         if (password !== confirmPassword) {
             alert("비밀번호가 일치하지 않습니다.");
             return;
@@ -93,7 +98,7 @@ const JoinForm = () => {
                 </div>
 
                 <div className="labeled-input">
-                    <label>* 비밀번호</label>
+                    <label>* 비밀번호 (비밀번호는 8자 이상이어야 합니다.) </label>
                     <input
                         type="password"
                         value={password}
@@ -143,7 +148,7 @@ const JoinForm = () => {
                             onChange={(e) => setStreet(e.target.value)}
                             required
                         />
-                        <button>우편번호 검색</button>
+                        <button type="button">우편번호 검색</button>
                     </div>
                 </div>
                 <div className="labeled-input">
