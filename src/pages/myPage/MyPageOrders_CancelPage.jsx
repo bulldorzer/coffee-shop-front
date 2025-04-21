@@ -3,6 +3,7 @@ import Orders_CancelComponent from "../../component/myPage/Orders_CancelComponen
 import DateFilter from "../../component/utilComponent/DateFilter"; // DateFilter 임포트
 import { useMember } from "../../component/myPage/MemberContextComponent";
 import axios from "axios";
+import "../../css/myPage/Orders_Cancel.css"
 
 const MyPageOrders_CancelPage = () => {
   const member = useMember();
@@ -38,11 +39,11 @@ const MyPageOrders_CancelPage = () => {
   const canceledOrders = filteredOrders.filter(order => order.status === "CANCEL");
 
   return (
-    <div>
-      <h3>취소/환불/교환</h3>
+    <div className="ordercancel">
+      <h3 className="page-title">취소/환불/교환</h3>
       <DateFilter onSearch={handleDateSearch} />
       <div>
-        <span>취소/환불/교환 내역</span>
+        <span className="page-subtitle">취소/환불/교환 내역</span>
         <Orders_CancelComponent orders={canceledOrders} />
       </div>
     </div>

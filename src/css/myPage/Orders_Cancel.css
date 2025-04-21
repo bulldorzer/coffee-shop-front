@@ -4,7 +4,7 @@
 }
 
 /* 전체 리스트 컨테이너 */
-.orders-list {
+.orderscancel-list {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -12,39 +12,39 @@
 }
 
 /* 리스트 항목 기본 스타일 */
-.orders-list li {
+.orderscancel-list li {
     display: flex;
     align-items: center;
     padding: 10px 0;
 }
 
 /* 리스트 헤더 스타일 */
-.orders-header {
+.orderscancel-header {
     font-weight: bold;
     border-bottom: 2px solid #000;
     border-top: 2px solid #000;
 }
 
 /* 헤더 안 텍스트 크기 */
-.orders-header span {
+.orderscancel-header span {
     font-size: 17px;   
 }
 
 /* 각 항목 칸 너비 및 정렬 */
-.orders-list li span {
+.orderscancel-list li span {
     flex: 1;
     text-align: center;
 }
 
 /* 상품명 클릭 가능 스타일 */
-.order-name {
+.orderscancel-name {
     cursor: pointer;
     color: #2a7ae2;
     text-decoration: underline;
 }
 
 /* 주문 항목 (각 row) 스타일 */
-.order-item {
+.orderscancel-item {
     display: flex;
     justify-content: space-between;
     padding: 12px 0;
@@ -52,7 +52,7 @@
 }
 
 /* 주문 상세 리스트 */
-.order-details {
+.orderscancel-details {
     margin: 8px 0 16px 16px;
     padding-left: 12px;
     font-size: 14px;
@@ -61,20 +61,13 @@
 }
 
 /* 주문 상세 항목 */
-.order-detail-item {
+.orderscancel-detail-item {
     margin-bottom: 5px;
 }
 
-/* 리뷰 작성 버튼 */
-.review-btn {
-    margin-left: 10px;
-    padding: 2px 8px;
-    font-size: 13px;
-    cursor: pointer;
-}
 
 /* 주문 내역 없음 메시지 */
-.orders-list .empty-orders {
+.orderscancel-list .empty-orders {
     display: block;
     width: 100%;
     padding: 40px 0;
