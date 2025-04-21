@@ -133,13 +133,16 @@ const DynamicTable = ({
             마지막
           </button>
 
-          {/* 작성하기 버튼 */}
-          {showWriteButton && (
+          
+        </div>
+      )}
+      {/* 작성하기 버튼 */}
+      {showWriteButton && (
+            <div className="write-button-wrapper" style={{ marginTop: '10px', textAlign: 'right' }}>
             <button className="write-button" onClick={onWriteClick}>
               작성하기
             </button>
-          )}
-        </div>
+          </div>
       )}
     </div>
   );

@@ -2,7 +2,7 @@
 body{font-size: 100%;}
 li{list-style: none;}
 a{text-decoration: none;color: #333;}
-header{display: flex;align-items: center;padding: 10px 40px;border-bottom: 1px solid #333;}
+header{display: flex;align-items: center;padding: 10px 10px;border-bottom: 1px solid #333;}
 header h1{margin-right: 30px;}
 header nav{margin-right: auto}
 header nav ul{display: flex;gap:0 8px;}

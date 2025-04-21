@@ -1,0 +1,65 @@
+header{
+    padding: 0;
+}
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    position: relative;
+  }
+  
+  .nav-left .logo {
+    height: 40px;
+    margin-right: 200px;
+  }
+  
+  .nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0 100px;      /* 양쪽 여백 */
+  }
+  
+  .main-menu {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: 280px;   /* 오른쪽 끝으로 밀어내고 왼쪽에 여백 */
+    gap: 20px;           /* 내부 요소 간 여백 */
+  }
+  
+  .user-menu {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    font-size: 14px;
+    margin-left: auto;
+    padding: 0;
+  }
+  
+  .search-cart {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .search-input {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .icon-btn {
+    width: 24px;
+    cursor: pointer;
+  }

@@ -50,16 +50,18 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
-.write-button {
-  padding: 6px 12px;
-  background-color: #000;
-  color: black;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
+.write-button-wrapper {
+  margin-top: 16px;
+  text-align: right;
 }
-
-.write-button:hover {
+.write-button {
+  padding: 8px 16px;
   background-color: #333;
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.write-button:hover {
+  background-color: #555;
 }
