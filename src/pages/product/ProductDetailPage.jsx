@@ -5,6 +5,7 @@ import BasicLayout from '../../layouts/BasicLayout';
 import ProductImageComponent from '../../component/product/ProductImageComponent';
 import ProductDetailComponent from '../../component/product/ProductDetailComponent';
 import "../../css/product/ProductDetailPage.css";
+import ProductInquiryComponent from '../../component/ProductInquiry/ProductInquiryComponent';
 
 /**
  * 상품 상세 페이지 - 나영일(ChatGPT)
@@ -42,6 +43,15 @@ export default function ProductDetailPage() {
         {/* 오른쪽: 상세정보 */}
         <ProductDetailComponent product={product}/>
       </div>
+      <div className="tab-menu">
+        <ul>
+          <li className='active'><a href="#p1">상세 정보</a></li>
+          <li ><a href="#p2">상품 후기</a></li>
+          <li><a href="#p3">상품 문의</a></li>
+          <li><a href="#p4">배송반품교환안내</a></li>
+        </ul>
+      </div>
+      <div id='p1'>상세 정보</div>
 
       <div className="tab-menu">
         <ul>
@@ -56,6 +66,27 @@ export default function ProductDetailPage() {
       <div id='p2'>
         <ReviewList coffeeBeanId={id}></ReviewList>
       </div>
+
+      <div className="tab-menu">
+        <ul>
+          <li ><a href="#p1">상세 정보</a></li>
+          <li><a href="#p2">상품 후기</a></li>
+          <li className='active'><a href="#p3">상품 문의</a></li>
+          <li><a href="#p4">배송반품교환안내</a></li>
+        </ul>
+      </div>
+      <div id='p3'><ProductInquiryComponent coffeeBeanId={id}></ProductInquiryComponent></div>
+
+      <div className="tab-menu">
+        <ul>
+          <li ><a href="#p1">상세 정보</a></li>
+          <li><a href="#p2">상품 후기</a></li>
+          <li><a href="#p3">상품 문의</a></li>
+          <li className='active'><a href="#p4">배송반품교환안내</a></li>
+        </ul>
+      </div>
+
+      <div id='p4'>배송반품교환안내</div>
     </BasicLayout>
   );
 }

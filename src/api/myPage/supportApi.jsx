@@ -6,6 +6,11 @@ import { API_SERVER_PORT } from "../utilApi";
 
 const prefix = `${API_SERVER_PORT}/api/cfaq`;
 
+/**
+ * 
+ * @returns 이용문의 전체목록 조회 API - 진우
+ * @description 전체 이용문의 목록을 조회하는 API입니다.
+ */
 export const getCfaqsAll = async () =>{
     try {
         const response = await axios.get(`${prefix}/list`);

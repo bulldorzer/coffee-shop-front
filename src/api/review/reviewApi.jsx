@@ -52,7 +52,7 @@ export const getReviewsByCoffeeBean = async (coffeeBeanId, page = 0, size = 999)
     const response = await axios.get(`${prefix}/list/product/${coffeeBeanId}?page=${page}&size=${size}`);
     return response.data;
   } catch (error) {
-    console.error("리뷰 목록 불러오기실패:", error);
+    console.error("해당 상품의 리뷰 목록 불러오기실패:", error);
     throw error;
   } 
 };
