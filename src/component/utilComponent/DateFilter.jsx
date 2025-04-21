@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../../css/util/DateFilter.css"
 
 // 날짜 필터 - 이재민
 const DateFilter = ({ onSearch, initialRange = "today" }) => {
@@ -67,9 +68,9 @@ const DateFilter = ({ onSearch, initialRange = "today" }) => {
   };
 
   return (
-    <div>
+    <div className="date-filter-container">
       <span>조회기간</span>
-      <div>
+      <div className="date-filter-buttons">
         {[
           { label: "오늘", value: "today" },
           { label: "1개월", value: "1m" },
@@ -80,7 +81,9 @@ const DateFilter = ({ onSearch, initialRange = "today" }) => {
             {btn.label}
           </button>
         ))}
+      </div>
 
+      <div className="date-filter-inputs">
         <input
           type="date"
           value={startDate}
@@ -89,7 +92,7 @@ const DateFilter = ({ onSearch, initialRange = "today" }) => {
             setSelectedRange("");
           }}
         />
-        <span>-</span>
+        <span className="hyphen">-</span>
         <input
           type="date"
           value={endDate}
@@ -99,12 +102,12 @@ const DateFilter = ({ onSearch, initialRange = "today" }) => {
           }}
         />
 
-        <button onClick={handleSearch} disabled={!!error}>
+        <button className="check" onClick={handleSearch} disabled={!!error}>
           조회
         </button>
       </div>
 
-      {error && <div>{error}</div>}
+      {error && <div className="error">{error}</div>}
     </div>
   );
 };

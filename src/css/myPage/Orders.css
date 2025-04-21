@@ -1,0 +1,74 @@
+.page-subtitle {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* 전체 리스트 컨테이너 */
+.orders-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  
+  /* 리스트 항목 */
+  .orders-list li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #ccc;
+  }
+  
+  /* 헤더 스타일 */
+  .orders-header {
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+  }
+  
+  .orders-header span {
+    font-size: 17px;
+  }
+  
+  /* 각 항목 칸 크기 조정 */
+  .orders-list li span {
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* 상품명 클릭 스타일 */
+  .order-name {
+    cursor: pointer;
+    color: #2a7ae2;
+    text-decoration: underline;
+  }
+  
+  /* 상세 주문 항목 */
+  .order-details {
+    width: 100%;
+    padding-left: 20px;
+    font-size: 14px;
+    color: #444;
+    margin-top: 8px;
+  }
+  
+  .order-detail-item {
+    margin-bottom: 5px;
+  }
+  
+  /* 리뷰 작성 버튼 */
+  .review-btn {
+    margin-left: 10px;
+    padding: 2px 8px;
+    font-size: 13px;
+    background-color: #f0f0f0;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* 주문 내역 없음 메시지 */
+  .empty-orders {
+    padding: 20px;
+    text-align: center;
+    color: #888;
+  }
