@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
 import axios from "axios";
-import ProductList from "../../component/product/ProductList";
+import ProductListComponent from "../../component/product/ProductListComponent";
 import "../../css/product/ProductListPage.css";
 
 /**
@@ -101,7 +101,7 @@ export default function ProductListPage() {
           <button onClick={() => sortProducts("low")}>낮은가격순</button>
         </div>
 
-        <ProductList products={sortedProducts}/>
+        <ProductListComponent products={sortedProducts}/>
 
         <div className="pagination">
           {Array.from({ length: totalPages }).map((_, i) => (

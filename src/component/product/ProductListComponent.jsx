@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/product/ProductListPage.css";
 
-export default function ProductList({ products }) {
+export default function ProductListComponent({ products }) {
   const navigate = useNavigate();
 
   const handleClickProduct = (id) => {
