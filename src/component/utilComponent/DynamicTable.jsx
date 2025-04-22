@@ -13,7 +13,9 @@ const DynamicTable = ({
     itemsPerPage = 5, 
     showWriteButton = false, 
     onWriteClick = () => {}, // 추가된 props
-    emptyMessage = '데이터가 없습니다.' // 기본값 설정
+    emptyMessage = '데이터가 없습니다.', // 기본값 설정
+    showFooter = false, // ✅ footer 표시 여부
+    footerContent = null // ✅ footer에 표시할 내용 (JSX or 함수)
   }) => {
   const [sortField, setSortField] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
@@ -85,6 +87,11 @@ const DynamicTable = ({
           ))
         )}
         </tbody>
+        <tfoot>
+          {showFooter && (
+            typeof footerContent === 'function' ? footerContent() : footerContent
+          )}
+      </tfoot>
       </table>
 
       {/* 페이징 */}
