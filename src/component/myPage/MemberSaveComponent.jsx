@@ -122,7 +122,7 @@ const MemberSaveComponent = () => {
             </ul>
           )}
         </div>
-        <div className="delete-btn">
+        <div className="delete-item-btn">
           <button onClick={handleDelete}>선택 상품 삭제</button>
         </div>
       </ul>
