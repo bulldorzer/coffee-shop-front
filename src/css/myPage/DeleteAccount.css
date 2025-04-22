@@ -1,71 +1,93 @@
 /* 공통 제목 스타일 */
 .page-subtitle {
-    font-weight: bold;
-    font-size: 18px;
-  }
+  font-weight: bold;
+  font-size: 18px;
+}
 
-  .delete-account-box {
-    max-width: 600px;
-    margin-top: 16px;
-    padding: 30px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
-  }
-  
-  .delete-info {
-    font-size: 15px;
-    line-height: 1.7;
-    color: #555;
-    margin-bottom: 20px;
-  }
-  
-  .delete-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .delete-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-  }
-  
-  .delete-btn {
-    padding: 12px 20px;
-    background-color: #e53935;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .delete-btn:hover {
-    background-color: #c62828;
-  }
+/* 페이지 전체 레이아웃 */
+.deleteAccountPage {
+  max-width: 800px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 
-  .update-profile {
-    padding: 8px 16px;
-    font-size: 14px;
-    background-color: #2a7ae2;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .update-profile:hover {
-    background-color: #1d5fba;
-  }
-  
+/* 제목 + 버튼 정렬 */
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+/* 프로필 수정 버튼 */
+.update-profile {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #2a7ae2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.update-profile:hover {
+  background-color: #1d5fba;
+}
+
+/* 탈퇴 안내 박스 */
+.delete-account-box {
+  max-width: 800px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  margin-top: 16px;
+}
+
+/* 안내 문구 */
+.delete-info {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* 라벨 */
+.delete-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 비밀번호 입력창 */
+.delete-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* 탈퇴 버튼 */
+.delete-btn {
+  padding: 12px 20px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c62828;
+}

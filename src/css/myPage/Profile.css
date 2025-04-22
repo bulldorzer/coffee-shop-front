@@ -8,6 +8,7 @@
   .profilePage {
     max-width: 800px;
     padding: 0 20px;
+    box-sizing: border-box;
   }
   
   /* 상단 제목 + 탈퇴 버튼 정렬 */
