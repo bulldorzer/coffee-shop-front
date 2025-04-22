@@ -1,8 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
 import { useMember } from "../myPage/MemberContextComponent";
+import axios from "axios";
+import "../../css/myPage/DeleteAccount.css"; // 새 CSS
 
-// 회원 탈퇴 - 이재민
 const DeleteAccountComponent = () => {
   const [password, setPassword] = useState("");
   const member = useMember();
@@ -27,7 +27,6 @@ const DeleteAccountComponent = () => {
         return;
       }
 
-      // 탈퇴 요청
       await axios.delete(`http://localhost:8081/api/members/${member.memberId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -44,25 +43,26 @@ const DeleteAccountComponent = () => {
   };
 
   return (
-    <div>
-      <p>
-        콩볶는사람들 원두커피쇼핑몰 홀릭커피 탈퇴안내<br />
-        <br />
-        쇼핑몰 이용에 불편하셨던 점이나 불만사항을 알려주시면 적극 반영하겠습니다.<br />
-        <br />
+    <div className="delete-account-box">
+      <p className="delete-info">
+        콩볶는사람들 원두커피쇼핑몰 홀릭커피 탈퇴안내<br /><br />
+        쇼핑몰 이용에 불편하셨던 점이나 불만사항을 알려주시면 적극 반영하겠습니다.<br /><br />
         아울러 회원 탈퇴 시 아래 사항을 숙지하시기 바랍니다.<br />
         1. 회원 탈퇴 시 고객님의 정보는 전자상거래 소비자 보호법에 따라 일정 기간 보관됩니다.<br />
         2. 탈퇴 시 보유하셨던 마일리지는 모두 삭제됩니다.
       </p>
+
       <hr />
-      <label>* 비밀번호 확인</label>
+
+      <label className="delete-label">* 비밀번호 확인</label>
       <input
+        className="delete-input"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <br />
-      <button onClick={handleDelete} style={{ color: "red" }}>
+
+      <button className="delete-btn" onClick={handleDelete}>
         회원 탈퇴
       </button>
     </div>
