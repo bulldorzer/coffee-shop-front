@@ -11,6 +11,11 @@ const columns = [
     { key: 'postDate', label: '등록날짜' },
   ];
   
+  /**
+   * 나의 상품문의 컴포넌트 - 진우
+   * @param {number} memberId - 멤버 아이디
+   * @returns 
+   */
   export default function ProductQnAComponent({ memberId }) {
     const [showForm, setShowForm] = useState(false);
     const [pfaq, setPfaqs] = useState([]);
@@ -20,10 +25,10 @@ const columns = [
         try {
           const data = await getpfaqsByMember(memberId);
           setPfaqs(data.content);  // CustomPage 구조일 경우
-          console.log("받은 data.content: ", data.content);
+          // console.log("받은 data.content: ", data.content);
   
         } catch (error) {
-          console.error("내 리뷰 로딩 실패", error);
+          // console.error("내 리뷰 로딩 실패", error);
         }
       };
   

@@ -39,7 +39,7 @@ const ReviewList = ({coffeeBeanId}) =>{
             setReviewData(data.content);
             
           } catch (err) {
-            console.error("리뷰 목록 불러오기 실패:", err);
+            // console.error("리뷰 목록 불러오기 실패:", err);
           }
         };
     

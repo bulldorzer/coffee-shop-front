@@ -23,7 +23,7 @@ const SupportComponent = ({ memberId, name }) => {
             const data = await getCfaqsByMember(memberId);
             setCfaqs(data.content);
         } catch (error) {
-            console.error("내 이용문의 로딩 실패", error);
+            // console.error("내 이용문의 로딩 실패", error);
         }
     };
 

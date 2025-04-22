@@ -16,8 +16,8 @@ export const getCfaqsAll = async () =>{
         const response = await axios.get(`${prefix}/list`);
         return response.data
     } catch (error) {
-        console.error("이용문의 전체목록 불러오기 실패:", error);
-        throw error;
+        // console.error("이용문의 전체목록 불러오기 실패:", error);
+        // throw error;
     }
 }
 
@@ -33,8 +33,8 @@ export const getCfaqsByMember = async (memberId, page=0, size=10) => {
         const response = await axios.get(`${prefix}/list/member/${memberId}?page=${page}&size=${size}`);
         return response.data
     } catch (error) {
-        console.error("내 이용문의 불러오기 실패:", error);
-        throw error;
+        // console.error("내 이용문의 불러오기 실패:", error);
+        // throw error;
     }
 }
 
@@ -51,7 +51,7 @@ export const postAdd = async (memberId, cfaqData) => {
         );
         return response.data;
     } catch (error) {
-        console.error("이용문의 작성 실패:", error);
-    throw error;
+        // console.error("이용문의 작성 실패:", error);
+        // throw error;
     }
 }

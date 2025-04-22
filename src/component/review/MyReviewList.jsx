@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getReviewsByMember } from '../../api/review/reviewApi';
 import DynamicTable from '../utilComponent/DynamicTable';
-import ReviewForm from './ReviewForm';
-import { useMember } from '../myPage/MemberContextComponent';
+
 
 /**
  * 별이 5개면 별 5개 표시
