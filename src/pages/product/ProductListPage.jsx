@@ -63,7 +63,7 @@ export default function ProductListPage() {
     let sorted = [...filteredProducts];
     if (type === "high") sorted.sort((a, b) => b.price - a.price);
     else if (type === "low") sorted.sort((a, b) => a.price - b.price);
-    else if (type === "recommend") sorted.sort(() => Math.random() - 0.5);      // 나중에 수정 : '추천순' 정렬 방식 설정
+    else if (type === "recommend") sorted.sort((a, b) => (b.eventFlag === true) - (a.eventFlag === true));
     setSortedProducts(sorted);
     setCurrentPage(1);
   };
