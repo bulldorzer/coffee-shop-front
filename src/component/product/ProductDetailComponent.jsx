@@ -59,8 +59,7 @@ const total = quantity * product.price + (quantity * product.price >= 30000 ? 0 
                         productImage:product.image,
                         productPrice:product.price,
                         quantity,
-                        option1,
-                        option2,
+                        option,
                         total
                       }
                 });}}>바로 구매하기</button>
@@ -71,8 +70,7 @@ const total = quantity * product.price + (quantity * product.price >= 30000 ? 0 
                         productImage:product.image,
                         productPrice:product.price,
                         quantity,
-                        option1,
-                        option2,
+                        option,
                         total
                       }
                 });}}>장바구니 담기</button>
