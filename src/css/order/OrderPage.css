@@ -1,0 +1,88 @@
+.order-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* 섹션 제목 */
+.order-page .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1.5rem 0 0.75rem;
+  padding-left: 0.5rem;
+}
+
+/* 공통 입력 필드 */
+.order-page input[type="text"],
+.order-page textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.order-page textarea {
+  resize: vertical;
+}
+
+/* 입력 필드 그룹 정렬 */
+.order-page .flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* 주소 검색 버튼 */
+.order-page .order-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.order-page button:hover {
+  background-color: #555;
+}
+
+/* 결제 정보 라인 */
+.order-page section > div {
+  margin-bottom: 1.5rem;
+}
+
+/* 결제 총합 정보 박스 */
+.order-page .total-payment-box {
+  border: 2px solid #000;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background-color: #f9f9f9;
+}
+
+/* 체크박스 및 라디오 버튼 줄맞춤 */
+.order-page input[type="checkbox"],
+.order-page input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+/* 버튼 그룹 */
+.order-page .button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.order-page .button-group button {
+    padding: 5px 10px;
+    border: 1px solid black;
+    background: white;
+    cursor: pointer;
+}
+
+.order-page .button-group button:hover {
+  background-color: #f0f0f0;
+}
