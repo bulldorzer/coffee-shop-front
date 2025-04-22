@@ -90,7 +90,7 @@
 }
 
 /* 삭제버튼 위치 */
-.delete-btn {
+.delete-item-btn {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
