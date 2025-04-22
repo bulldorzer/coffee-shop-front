@@ -1,0 +1,176 @@
+/* 공통 제목 스타일 */
+.page-subtitle {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  /* 페이지 전체 레이아웃 */
+  .profilePage {
+    max-width: 800px;
+    padding: 0 20px;
+  }
+  
+  /* 상단 제목 + 탈퇴 버튼 정렬 */
+  .page-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  /* '정보 변경' + 안내문구 영역 */
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  .info span:last-child {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* ProfileComponent 컨테이너 */
+  .profileComponent {
+    max-width: 800px;
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+  }
+  
+  /* 입력 폼 */
+  .join-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* 공통 라벨 스타일 */
+  .join-form label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* 공통 input, select 스타일 */
+  .join-form input,
+  .join-form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  /* 이메일 입력 그룹 */
+  .email-id {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .email-id input,
+  .email-id select {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .email-id .at {
+    font-weight: bold;
+  }
+  
+  /* 주소 영역 */
+  .address {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .address label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .address input {
+    flex: 1;
+    min-width: 160px;
+  }
+  
+  .address button {
+    padding: 10px 14px;
+    font-size: 14px;
+    background-color: #2a7ae2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+  }
+  
+  .address button:hover {
+    background-color: #1e5dbb;
+  }
+  
+  /* 이벤트 수신 동의 영역 */
+  .event-agree {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.4;
+    cursor: pointer;
+    white-space: nowrap; /* ← 한 줄로 유지 */
+  }
+
+  
+ /* 체크박스 스타일 */
+ .event-check {
+    width: 18px;
+    height: 18px;
+    accent-color: #2a7ae2;
+    margin: 0;
+  }
+  
+  /* 제출 버튼 */
+  .update-btn {
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #2a7ae2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .update-btn:hover {
+    background-color: #1d5fba;
+  }
+  
+  .delete-account {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #f44336; /* 붉은 계열 */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-account:hover {
+    background-color: #d32f2f;
+  }
