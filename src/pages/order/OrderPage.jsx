@@ -28,8 +28,7 @@ const OrderPage = () =>{
         productImage,// 상품 이미지
         productPrice,// 상품 가격
         quantity,// 수량
-        option1,// 옵션1
-        option2,// 옵션2
+        option, // 옵션
         total // 총 금액
     } = location.state; // 상품 정보 가져오기
 
@@ -95,9 +94,8 @@ const OrderPage = () =>{
             <div className="flex gap-4">
                 <img src={productImage} alt={productName} className="w-24 h-24" />
                 <div>
-                <p>{productName}</p>
-                <p>- {option1}</p>
-                <p>- {option2}</p>
+                    <p>{productName}</p>
+                    <p>- {option}</p>
                 </div>
             </div>
             ),
