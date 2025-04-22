@@ -55,7 +55,7 @@ const ReviewList = ({coffeeBeanId}) =>{
     // };
     return(
         <>
-            <div className='review-list-coontainer'>
+            <div className='review-list-container'>
                 <h2>상품후기</h2>
                 <DynamicTable
                   columns={columns}

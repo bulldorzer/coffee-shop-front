@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getpfaqsAll, getpfaqsByCoffeeBean } from '../../api/productInquiry/ProductInquiryApi';
+import { getpfaqsByCoffeeBean } from '../../api/productInquiry/ProductInquiryApi';
 import DynamicTable from '../utilComponent/DynamicTable';
+import "../../css/product/ProductInquiry.css";
 
 {/* 필드 정의 */}
 const columns = [
@@ -16,10 +17,10 @@ const ProductInquiryComponent = ({coffeeBeanId}) => {
 
     const fetchPfaqsAll = async () => {
         try {
-            console.log("받은 coffeeBeanId:", coffeeBeanId);
+            // console.log("받은 coffeeBeanId:", coffeeBeanId);
             const data = await getpfaqsByCoffeeBean(coffeeBeanId);
             setPfaqs(data.content);
-            console.log("상품문의 전체목록 조회 성공:", data.content);
+            // console.log("상품문의 전체목록 조회 성공:", data.content);
         } catch (error) {
             console.error("상품문의 전체목록 불러오기 실패:", error);
         }
@@ -30,14 +31,13 @@ const ProductInquiryComponent = ({coffeeBeanId}) => {
     }, []);
     return (
         <>
-            <div>
+            <div className='pfq-list-coontainer'>
                 <h3>상품 문의</h3>
-            </div>
-            <div>
                 <DynamicTable
                     columns={columns}
                     data={pfaqs}
                     itemsPerPage={6}
+                    emptyMessage="상품문의가 없습니다."
                 />
             </div>
         </>

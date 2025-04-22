@@ -109,3 +109,14 @@
   .tab-menu li.active a {
     font-weight: bold;
   }
+
+  .productBoard .product-details{
+    max-width: 1200px;
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 40px 20px;
+  }
+  .request-exchange{
+    max-width: 1200px;
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 40px 20px;
+  }

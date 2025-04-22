@@ -3,10 +3,9 @@ import '../../css/util/dynamicTable.css'; // 스타일 분리
 
 /**
  * 
- * @param { columns(필드), data(데이터), itemsPerPage = 5(표시페이지 default 5) }
+ * @param { columns(필드), data(데이터), itemsPerPage = 5(표시페이지 default 5), showWriteButton = false(작성하기 버튼), onWriteClick = () => {}(작성하기 버튼 클릭시 이벤트) } props
  * @returns
- * columns는 {key=?, label=?} 객체값이 필요하며 배열로 구성할것(컬럼이 여러개일 때)
- * data는 정의한 columns key 값에 맞추어 정의할것 배열로 구성
+ * 동적 테이블
  */
 const DynamicTable = ({ 
     columns, 
