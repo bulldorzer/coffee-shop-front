@@ -32,17 +32,28 @@ const OrderPage = () =>{
         total // 총 금액
     } = location.state; // 상품 정보 가져오기
 
+    // useMemberInfo 훅을 사용하여 로그인한 회원 정보 가져오기
+    const { member, loading } = useMemberInfo();
     
-    // 이메일 상태 관리
-    // const [email, setEmail] = useState(""); 
     // 로그인한 memberDTO 정보 가져오기
     const [loginMember, setLoginMember] = useState({}); // 회원 정보 상태 관리
+
+    const [orderInfo, setOrderInfo] = useState({
+        name: '', // 주문자 이름
+        phone: '',// 주문자 전화번호
+        receiverName: '',// 수령인 이름
+        receiverPhone: '',// 수령인 전화번호
+        address: '',// 주소
+        addressDetail: '', // 상세주소
+        deliveryRequest: '',// 배송 요청 사항
+    }); // 주문 정보 상태 관리
+
     
-     const { member, loading } = useMemberInfo();
+
 
     // 멤버쉽에 따른 포인트 적립 비율 계산 함수
     const calculatePointRate = (loginMember)=> {
-        console.log("멤버쉽 등급:", loginMember); // 멤버쉽 등급 확인
+        // console.log("멤버쉽 등급:", loginMember); // 멤버쉽 등급 확인
         switch (loginMember) {
             case "BRONZE" :
                 return 0.05; // 5% 포인트 적립
@@ -66,8 +77,16 @@ const OrderPage = () =>{
         if (!loading) {
             if (member) {
               console.log("로그인한 사용자 정보:", member);
-              console.log("로그인한 사용자 정보:", member.memberShip);
               setLoginMember(member); // 로그인한 회원 정보 설정
+
+              setOrderInfo(prev => ({
+                ...prev,
+                name: member.name || '', // 주문자 이름
+                phone: member.phone || '', // 주문자 전화번호
+                receiverName: member.name || '', // 수령인 이름
+                receiverPhone: member.phone || '', // 수령인 전화번호
+                address: member.city+" "+member.street+" "+member.zipcode|| '', // 주소
+              }));
             } else {
               console.log("로그인한 사용자 정보 없음");
             }
@@ -125,6 +144,20 @@ const OrderPage = () =>{
         return { totalQuantity, totalPrice, totalPoint };
     };
 
+    // 주소 검색 버튼 클릭 시 Daum 우편번호 서비스 호출
+    const handleAddressSearch = () => {
+        new window.daum.Postcode({
+          oncomplete: function (data) {
+            // 도로명 주소 기준
+            const fullAddress = data.roadAddress;
+            setOrderInfo(prev => ({
+              ...prev,
+              address: fullAddress
+            }));
+          }
+        }).open();
+      };
+
 
     
     return(
@@ -166,11 +199,11 @@ const OrderPage = () =>{
                     <div className="space-y-2">
                         <div className="flex items-center gap-4">
                             <label>*이름</label>
-                            <input className="border px-2 py-1 flex-1" type="text" />
+                            <input className="border px-2 py-1 flex-1" type="text" value={orderInfo.name} onChange={e=> setOrderInfo({...orderInfo,name:e.target.value})}/>
                         </div>
                         <div className="flex items-center gap-4">
                             <label>*휴대폰 번호</label>
-                            <input className="border px-2 py-1 flex-1" type="text" />
+                            <input className="border px-2 py-1 flex-1" type="text" value={orderInfo.phone} onChange={e=> setOrderInfo({...orderInfo,phone:e.target.value})}/>
                             <span>배송 안내 SMS로 알려드립니다.</span>
                         </div>
                     </div>
@@ -182,23 +215,23 @@ const OrderPage = () =>{
                     <div className="space-y-2">
                         <div className="flex items-center gap-4">
                             <label>*수령인</label>
-                            <input className="border px-2 py-1 flex-1" type="text" />
+                            <input className="border px-2 py-1 flex-1" type="text" value={orderInfo.receiverName} onChange={e=> setOrderInfo({...orderInfo, receiverName:e.target.value})}/>
                             <span>0자 / 25자</span>
                         </div>
                         <div className="flex items-center gap-4">
                             <label>*휴대폰 번호</label>
-                            <input className="border px-2 py-1 flex-1" type="text" />
+                            <input className="border px-2 py-1 flex-1" type="text" value={orderInfo.receiverPhone} onChange={e=> setOrderInfo({...orderInfo,receiverPhone:e.target.value})}/>
                             <span>상품 도착 안내를 SMS로 알려드립니다</span>
                         </div>
                         <div className="flex items-center gap-4">
                             <label>*주소</label>
-                            <input className="border px-2 py-1 w-1/3" type="text" />
-                            <button className="order-button">주소검색</button>
-                            <input className="border px-2 py-1 flex-1" type="text" placeholder="상세주소" />
+                            <input className="border px-2 py-1 w-1/3" type="text" value={orderInfo.address} onChange={e => setOrderInfo({...orderInfo, address:e.target.value})}/>
+                            <button className="order-button" onClick={handleAddressSearch}>주소검색</button>
+                            <input className="border px-2 py-1 flex-1" type="text" placeholder="상세주소" value={orderInfo.addressDetail} onChange={e=>setOrderInfo({...orderInfo,addressDetail:e.target.value})}/>
                         </div>
                         <div>
                             <label>*배송 요청 사항</label>
-                            <textarea className="border px-2 py-1 w-full h-24" />
+                            <textarea className="border px-2 py-1 w-full h-24" value={orderInfo.deliveryRequest} onChange={e=>setOrderInfo({...orderInfo,deliveryRequest:e.target.va})}/>
                             <span className="block text-right">0자 / 100자</span>
                         </div>
                     </div>
