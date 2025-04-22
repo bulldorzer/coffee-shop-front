@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { API_SERVER_PORT } from '../../api/utilApi';
 import ReviewList from '../../component/review/ReviewList';
 import BasicLayout from '../../layouts/BasicLayout';
 import ProductImageComponent from '../../component/product/ProductImageComponent';
@@ -7,42 +9,54 @@ import ProductDetailComponent from '../../component/product/ProductDetailCompone
 import ProductInquiryComponent from '../../component/ProductInquiry/ProductInquiryComponent';
 import "../../css/product/ProductDetailPage.css";
 
+
 /**
- * 상품 상세 페이지 - 나영일(ChatGPT)
+ * 상품 상세 페이지 - 나영일(ChatGPT) 
  * @returns 
  */
 export default function ProductDetailPage() {
+
   const { id } = useParams();
-
-  // 더미 데이터로 예시 구현
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {                                 
-    // 나중에 수정 : 상품(CoffeeBean) 정보 백엔드에서 받아올 것
-    const dummy = {
-      id,
-      name: `상품 ${id}`,
-      price: 12000,
-      origin: '국내산',
-      shipping: 3000,
-      freeShippingOver: 30000,
-      options1: ['소형 - 12000원', '중형 - 15000원', '대형 - 18000원'],
-      options2: ['기본 - 무향', '라벤더 - 은은함', '자몽 - 상큼함'],
-      image: 'https://via.placeholder.com/300x300?text=제품사진',
+  const prefix = `${API_SERVER_PORT}/api/coffeeBeans`;
+
+  useEffect(() => {
+    const getProduct = async () => {
+        try {
+            const response = await axios.get(`${prefix}/${id}`);
+            const data = response.data;
+
+            // options1과 options2를 추가
+            const updatedData = {
+                ...data,
+                options: ['홀빈(분쇄안함)', '프렌치프레스', '핸드드립/커피메이커', '더치', '모카포트', '에스프레소']
+            };
+            setProduct(updatedData);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
-    setProduct(dummy);
-  }, [id]);
 
-  if (!product) return <div className="p-6">로딩 중...</div>;
+    getProduct();
+}, [id]);
+
+  if (loading) return <div className="p-6">로딩 중...</div>;
+  if (error) return <div className="p-6 text-red-500">{error}</div>;
+  if (!product) return null;
 
   return (
     <BasicLayout>
       <div className="product-detail-container">
         {/* 왼쪽: 이미지 */}
-        <ProductImageComponent product={product}/>
+        <ProductImageComponent product={product} />
 
         {/* 오른쪽: 상세정보 */}
-        <ProductDetailComponent product={product}/>
+        <ProductDetailComponent product={product} />
       </div>
       <div className="tab-menu">
         <ul>
@@ -68,7 +82,7 @@ export default function ProductDetailPage() {
 
       {/* 사용자 후기 */}
       <div id='p2'>
-        <ReviewList coffeeBeanId={id}></ReviewList>
+        <ReviewList coffeeBeanId={id} />  
       </div>
 
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -126,7 +140,7 @@ export default function ProductDetailPage() {
 
         ※ 반품시 편의점 택배는 이용이 불가합니다.
       </div>
-      
+
 
 
 
