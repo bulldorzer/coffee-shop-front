@@ -27,6 +27,7 @@ export default function ProductListComponent({ products }) {
           />
           <div>{product.name}</div>
           <div>{product.price.toLocaleString()}원</div>
+          {product.eventFlag && <div className="event-badge">EVENT</div>}
         </div>
       ))}
     </div>
