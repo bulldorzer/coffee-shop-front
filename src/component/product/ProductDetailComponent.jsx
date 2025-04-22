@@ -1,11 +1,14 @@
 import { useState } from "react";
 import "../../css/product/ProductDetailPage.css"
+import { useNavigate } from "react-router-dom";
 
 export default function ProductDetailComponent({product}) {
 
 const [quantity, setQuantity] = useState(1);
 const [option1, setOption1] = useState('');
 const [option2, setOption2] = useState('');
+
+const navigate = useNavigate();
 
 const total = quantity * product.price + (quantity * product.price >= product.freeShippingOver ? 0 : 3000);
 
@@ -65,9 +68,39 @@ const total = quantity * product.price + (quantity * product.price >= product.fr
             </div>
 
             <div className="button-group">
-                <button>바로 구매하기</button>
-                <button>장바구니 담기</button>
-                <button>관심상품 등록</button>
+                <button onClick={()=>{navigate("/order",{
+                    state: {
+                        productId:product.id,
+                        productName:product.name,
+                        productImage:product.image,
+                        productPrice:product.price,
+                        quantity,
+                        option1,
+                        option2,
+                        total
+                      }
+                });}}>바로 구매하기</button>
+                <button onClick={()=>{navigate("/cart",{
+                    state: {
+                        productId:product.id,
+                        productName:product.name,
+                        productImage:product.image,
+                        productPrice:product.price,
+                        quantity,
+                        option1,
+                        option2,
+                        total
+                      }
+                });}}>장바구니 담기</button>
+                <button onClick={()=>{navigate("/mypage/membersave",{
+                    state: {
+                        productId:product.id,
+                        productName:product.name,
+                        productImage:product.image,
+                        productPrice:product.price
+                        
+                      }
+                });}}>관심상품 등록</button>
             </div>
 
         </container>
