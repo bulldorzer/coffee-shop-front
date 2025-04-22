@@ -20,8 +20,8 @@ export const postAdd = async (memberId, coffeeBeanId, reviewData) => {
     );
     return response.data;
   } catch (error) {
-    console.error("리뷰 작성 실패:", error);
-    throw error;
+    // console.error("리뷰 작성 실패:", error);
+    // throw error;
   }
 };
 
@@ -34,8 +34,8 @@ export const getAllReviews = async (page = 0, size = 999) =>{
     const response = await axios.get(`${prefix}/list?page=${page}&size=${size}`);
     return response.data
   } catch (error) {
-    console.error("리뷰 목록 불러오기실패:", error);
-    throw error;
+    // console.error("리뷰 목록 불러오기실패:", error);
+    // throw error;
   }
 }
 
@@ -52,8 +52,8 @@ export const getReviewsByCoffeeBean = async (coffeeBeanId, page = 0, size = 999)
     const response = await axios.get(`${prefix}/list/product/${coffeeBeanId}?page=${page}&size=${size}`);
     return response.data;
   } catch (error) {
-    console.error("해당 상품의 리뷰 목록 불러오기실패:", error);
-    throw error;
+    // console.error("해당 상품의 리뷰 목록 불러오기실패:", error);
+    // throw error;
   } 
 };
 
@@ -69,8 +69,8 @@ export const getReviewsByMember = async (memberId, page = 0, size = 10) => {
     const response = await axios.get(`${prefix}/member/${memberId}?page=${page}&size=${size}`);
     return response.data;
   } catch (error) {
-    console.error("내 리뷰 불러오기 실패:", error);
-    throw error;
+    // console.error("내 리뷰 불러오기 실패:", error);
+    // throw error;
   }
 };
 

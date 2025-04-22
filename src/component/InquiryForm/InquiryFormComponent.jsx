@@ -22,7 +22,7 @@ const InquiryFormComponent = () => {
             setCfaqs(data.content)
             setFilteredOrders(data.content);
         } catch (error) {
-            console.error("전체 이용문의 조회 실패", error);
+            // console.error("전체 이용문의 조회 실패", error);
         }
     };
 

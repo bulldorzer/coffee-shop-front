@@ -10,7 +10,12 @@ const columns = [
     { key: 'writer', label: '작성자' },
     { key: 'answer', label: '응답상태'},
 ];
-
+/**
+ * 상품문의 컴포넌트 - 진우
+ * @param {number} coffeeBeanId - 커피빈 아이디
+ * @param {number} memberId - 멤버 아이디
+ * @returns 
+ */
 const ProductInquiryComponent = ({coffeeBeanId}) => {
 
     const [pfaqs, setPfaqs] = useState([]);
@@ -22,7 +27,7 @@ const ProductInquiryComponent = ({coffeeBeanId}) => {
             setPfaqs(data.content);
             // console.log("상품문의 전체목록 조회 성공:", data.content);
         } catch (error) {
-            console.error("상품문의 전체목록 불러오기 실패:", error);
+            // console.error("상품문의 전체목록 불러오기 실패:", error);
         }
     };
 

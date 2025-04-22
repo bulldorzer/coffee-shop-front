@@ -20,8 +20,8 @@ export const postAdd = async (memberId, coffeeBeanId, pfaqData) => {
         );
         return response.data;
     } catch (error) {
-        console.error("상품문의 작성 실패:", error);
-        throw error;
+        // console.error("상품문의 작성 실패:", error);
+        // throw error;
     }
 }
 
@@ -35,8 +35,8 @@ export const getpfaqsAll = async () =>{
         const response = await axios.get(`${prefix}/list`);
         return response.data
     } catch (error) {
-        console.error("상품문의 전체목록 불러오기 실패:", error);
-        throw error;
+        // console.error("상품문의 전체목록 불러오기 실패:", error);
+        // throw error;
     }
 };
 
@@ -54,8 +54,8 @@ export const getpfaqsByCoffeeBean = async (coffeeBeanId, page = 0, size = 999) =
         const response = await axios.get(`${prefix}/list/product/${coffeeBeanId}?page=${page}&size=${size}`);
         return response.data;
     } catch (error) {
-        console.error("해당 상품의 상품문의 목록 불러오기실패:", error);
-        throw error;
+        // console.error("해당 상품의 상품문의 목록 불러오기실패:", error);
+        // throw error;
     } 
 };
 
@@ -73,7 +73,7 @@ export const getpfaqsByMember = async (memberId, page = 0, size = 999) => {
         const response = await axios.get(`${prefix}/member/${memberId}?page=${page}&size=${size}`);
         return response.data;
     } catch (error) {
-        console.error("해당 회원의 상품문의 목록 불러오기실패:", error);
-        throw error;
+        // console.error("해당 회원의 상품문의 목록 불러오기실패:", error);
+        // throw error;
     } 
 }
