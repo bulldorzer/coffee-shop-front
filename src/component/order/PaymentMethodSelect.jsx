@@ -1,13 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { addOrderItem, createOrder } from "../../api/order/orderApi";
+import { useState } from "react";
 
 
 const PaymentMethodSelect = ({finalAmount, orderInfo, productInfo, loginMember }) => {
 
+    const [isChecked, setIsChecked] = useState(false); // 체크박스 상태 관리
+
     const navigate = useNavigate(); // navigate 훅을 사용하여 페이지 이동
+    const handleCancel = () => {
+        navigate(-1); // 바로 이전 페이지로 이동
+      };
 
     const handlePayment = async ()=>{
         try {
+            if (!isChecked) {
+                alert('필수 약관에 동의해주세요.');
+                return;
+            }
             // 1. 결제 로직 (실제 결제 API 호출시 이단계에서 결제진행)
             const isPaymentSuccess = true; // 결제 성공 여부 (가정)
             if (!isPaymentSuccess) return alert("결제에 실패하였습니다.");
@@ -27,21 +37,22 @@ const PaymentMethodSelect = ({finalAmount, orderInfo, productInfo, loginMember }
                 memberId: loginMember.memberId 
             }
 
+            // 3. 주문서 생성 API 호출
             const order = await createOrder(loginMember.memberId, orderRequest); // 주문서 생성 API 호출
             console.log("order", order);
             const orderId = order; // 생성된 주문서 ID
 
-            // 3. 주문서 상품추가 API 호출
+            // 4. 주문서 상품추가 API 호출
             const orderItemRequest = {
                 coffeeBeanId: productInfo.productId,
                 qty: productInfo.quantity
             };
-            await addOrderItem(2, orderItemRequest); // 주문서 상품추가 API 호출
+            await addOrderItem(orderId, orderItemRequest); // 주문서 상품추가 API 호출
 
-            // 4. 결제 성공 후 주문서 상세 페이지로 이동
-            alert("결제 및 주문이 완료되었습니다.");
+            // 5. 결제 성공 후 주문서 마이 페이지로 이동
+            alert("결제 및 주문이 완료되었습니다. 주문서내역은 마이페이지에서 확인 가능합니다");
             // 잠시 막아둠
-            // navigate(`/order/${orderId}`); // 주문서 상세 페이지로 이동
+            navigate(`/mypage/orders`); // 주문서 상세 페이지로 이동
 
         } catch (error) {
             console.error("결제 실패 또는 서버 오류:", error);
@@ -60,10 +71,11 @@ const PaymentMethodSelect = ({finalAmount, orderInfo, productInfo, loginMember }
             최종 결제 금액 : <strong>{finalAmount.toLocaleString()}원</strong> 원
             </div>
             <div className="mt-4">
-                <label><input type="checkbox" /> (필수) 구매하실 상품의 결제 정보를 확인하였으며, 구매 진행에 동의합니다.</label>
+                <label><input type="checkbox" checked={isChecked}
+          onChange={(e) => setIsChecked(e.target.checked)} /> (필수) 구매하실 상품의 결제 정보를 확인하였으며, 구매 진행에 동의합니다.</label>
             </div>
             <div className="mt-4 flex justify-center gap-4">
-                <button className="order-button">취소</button>
+                <button className="order-button" onClick={handleCancel}>취소</button>
                 <button className="order-button" onClick={handlePayment}>결제</button>
             </div>
         </section>
