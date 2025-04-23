@@ -10,7 +10,7 @@
 /* 공통 박스 스타일 */
 .membership,
 .point {
-    width: 480px; 
+    width: 400px; 
     border: 1px solid #ccc; 
     border-radius: 10px; 
     padding: 20px; 
