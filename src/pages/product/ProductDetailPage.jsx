@@ -32,7 +32,9 @@ export default function ProductDetailPage() {
             // options1과 options2를 추가
             const updatedData = {
                 ...data,
-                options: ['홀빈(분쇄안함)', '프렌치프레스', '핸드드립/커피메이커', '더치', '모카포트', '에스프레소']
+                options: ['홀빈(분쇄안함)', '프렌치프레스', '핸드드립/커피메이커', '더치', '모카포트', '에스프레소'],
+                deliveryFee: 3000,
+                freeShippingPrice: 30000
             };
             setProduct(updatedData);
         } catch (err) {
