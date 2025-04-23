@@ -9,7 +9,7 @@ const menu = [
     items: [
       { label: "- 주문목록/배송조회", path: "/mypage/orders" },
       { label: "- 취소/환불/교환내역", path: "/mypage/orders_cancel" },
-      { label: "- 장바구니", path: "/mypage/cart" },
+      // { label: "- 장바구니", path: "/mypage/cart" },
       { label: "- 관심상품", path: "/mypage/membersave" },
     ],
   },
@@ -19,7 +19,9 @@ const menu = [
   },
   {
     title: "회원정보",
-    items: [{ label: "- 회원정보 변경/탈퇴", path: "/mypage/profile" }],
+    items: [
+      { label: "- 회원정보 변경/탈퇴", path: "/mypage/profile" }, // 변경/탈퇴 메뉴 하나로 유지
+    ],
   },
   {
     title: "고객센터",
@@ -41,7 +43,10 @@ function SidebarMenu() {
           <h3>{section.title}</h3>
           <ul>
             {section.items.map((item, idx) => {
-              const isActive = location.pathname === item.path;
+              // 회원정보 변경/탈퇴 경로 (profile 또는 deleteaccount 경로에서만 active)
+              const isActive = location.pathname === item.path || 
+                               (item.path === "/mypage/profile" && (location.pathname.includes("/mypage/profile") || location.pathname.includes("/mypage/deleteaccount")));
+
               return (
                 <li key={idx} className={isActive ? "active" : ""}>
                   <Link to={item.path}>
