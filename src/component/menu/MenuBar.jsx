@@ -49,7 +49,7 @@ const MenuBar = () =>{
                     <ul className="user-menu">
                         {isLoggedIn ? (
                         <>
-                            <li><Link to="/mypage">마이페이지</Link></li>
+                            <li><Link to="/mypage/orders">마이페이지</Link></li>
                             <li><Link to="/" onClick={handleLogout}>로그아웃</Link></li>
                         </>
                         ) : (
