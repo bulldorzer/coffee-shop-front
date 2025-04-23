@@ -9,7 +9,7 @@ const [option, setOption] = useState('');
 
 const navigate = useNavigate();
 
-const total = quantity * product.price + (quantity * product.price >= 30000 ? 0 : 3000);    // 배송비 포함 (30,000원 이상 주문시 배송비 무료)
+const total = quantity * product.price + (quantity * product.price >= product.freeShippingPrice ? 0 : product.deliveryFee);    // 배송비 포함 (30,000원 이상 주문시 배송비 무료)
 
     return (
         <container className="product-info-section">
@@ -21,7 +21,8 @@ const total = quantity * product.price + (quantity * product.price >= 30000 ? 0 
                 <p>판매가: {product.price.toLocaleString()}원</p>
                 <p>원산지: {product.country}</p>
                 <p>용량: {product.amount}</p>
-                <p>배송비: 3,000원 (30,000원 이상 구매 시 무료)</p>
+                <p>배송비: {product.deliveryFee}원 (
+                    {product.freeShippingPrice}원 이상 구매 시 무료)</p>
             </div>
 
             <div className="select-group">
