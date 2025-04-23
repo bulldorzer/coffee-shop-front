@@ -64,7 +64,7 @@ const OrderPage = () =>{
                 phone: member.phone || '', // 주문자 전화번호
                 receiverName: member.name || '', // 수령인 이름
                 receiverPhone: member.phone || '', // 수령인 전화번호
-                address: member.city+" "+member.street+" "+member.zipcode|| '', // 주소
+                address: member.city+" "+member.street+""+member.zipcode|| '', // 주소
               }));
             } else {
               console.log("로그인한 사용자 정보 없음");

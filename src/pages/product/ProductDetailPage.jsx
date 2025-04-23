@@ -7,6 +7,7 @@ import BasicLayout from '../../layouts/BasicLayout';
 import ProductImageComponent from '../../component/product/ProductImageComponent';
 import ProductDetailComponent from '../../component/product/ProductDetailComponent';
 import ProductInquiryComponent from '../../component/ProductInquiry/ProductInquiryComponent';
+import useMemberInfo from "../../hook/useMemberInfo";
 import "../../css/product/ProductDetailPage.css";
 
 
@@ -20,6 +21,9 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // useMemberInfo 훅을 사용하여 로그인한 회원 정보 가져오기
+  const { member, memberloading } = useMemberInfo();
 
   const prefix = `${API_SERVER_PORT}/api/coffeeBeans`;
 
@@ -97,7 +101,7 @@ export default function ProductDetailPage() {
           <li><a href="#p4">배송반품교환안내</a></li>
         </ul>
       </div>
-      <div className='productBoard' id='p3'><ProductInquiryComponent coffeeBeanId={id}></ProductInquiryComponent></div>
+      <div className='productBoard' id='p3'><ProductInquiryComponent coffeeBeanId={id} member={member}></ProductInquiryComponent></div>
 
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 

@@ -10,6 +10,10 @@ const columns = [
     { key: 'writer', label: '작성자'},
     { key: 'answer', label: '응답상태'},
 ]
+/**
+ * 이용문의 컴포넌트 - 진우
+ * @returns 
+ */
 const InquiryFormComponent = () => {
 
     const [cfaqs, setCfaqs] = useState([]);
