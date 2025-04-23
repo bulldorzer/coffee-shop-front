@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../component/footer/Footer";
 import MenuBar from "../component/menu/MenuBar";
+import "../css/layout/BasicLayout.css";
 
 
 /**
@@ -15,8 +16,7 @@ const BasicLayout = ({children}) => {
             
             <MenuBar></MenuBar>
             <div>
-                <main className="main">{children}</main>
-                <Outlet />
+                <main className="main">{children}<Outlet /></main>  
             </div>
             <Footer></Footer>
         </>
