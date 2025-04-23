@@ -1,6 +1,54 @@
+import { useNavigate } from "react-router-dom";
+import { addOrderItem, createOrder } from "../../api/order/orderApi";
 
 
-const PaymentMethodSelect = () => {
+const PaymentMethodSelect = ({finalAmount, orderInfo, productInfo, loginMember }) => {
+
+    const navigate = useNavigate(); // navigate 훅을 사용하여 페이지 이동
+
+    const handlePayment = async ()=>{
+        try {
+            // 1. 결제 로직 (실제 결제 API 호출시 이단계에서 결제진행)
+            const isPaymentSuccess = true; // 결제 성공 여부 (가정)
+            if (!isPaymentSuccess) return alert("결제에 실패하였습니다.");
+
+            console.log("orderInfo" , orderInfo);
+            console.log("productInfo" , productInfo);
+            console.log("loginMember" , loginMember);
+
+            // 2. 결제 성공시 주문서 생성 API 호출
+            const orderRequest = {
+                shipper : orderInfo.name,
+                request : orderInfo.deliveryRequest,
+                city : orderInfo.address.split(" ")[0],
+                street : orderInfo.address.split(" ")[1],
+                zipcode : orderInfo.address.split(" ")[2],
+                status: "READY",
+                memberId: loginMember.memberId 
+            }
+
+            const order = await createOrder(loginMember.memberId, orderRequest); // 주문서 생성 API 호출
+            console.log("order", order);
+            const orderId = order; // 생성된 주문서 ID
+
+            // 3. 주문서 상품추가 API 호출
+            const orderItemRequest = {
+                coffeeBeanId: productInfo.productId,
+                qty: productInfo.quantity
+            };
+            await addOrderItem(2, orderItemRequest); // 주문서 상품추가 API 호출
+
+            // 4. 결제 성공 후 주문서 상세 페이지로 이동
+            alert("결제 및 주문이 완료되었습니다.");
+            // 잠시 막아둠
+            // navigate(`/order/${orderId}`); // 주문서 상세 페이지로 이동
+
+        } catch (error) {
+            console.error("결제 실패 또는 서버 오류:", error);
+            alert("결제 처리 중 오류가 발생했습니다.");
+        }
+    }
+
     return (
         <section>
             <h2 className="font-bold">결제 수단</h2>
@@ -9,14 +57,14 @@ const PaymentMethodSelect = () => {
                 <label><input type="radio" name="pay" /> 계좌 이체</label>
             </div>
             <div className="border p-4 mt-4 text-right text-lg font-bold">
-            최종 결제 금액 : 원
+            최종 결제 금액 : <strong>{finalAmount.toLocaleString()}원</strong> 원
             </div>
             <div className="mt-4">
                 <label><input type="checkbox" /> (필수) 구매하실 상품의 결제 정보를 확인하였으며, 구매 진행에 동의합니다.</label>
             </div>
             <div className="mt-4 flex justify-center gap-4">
                 <button className="order-button">취소</button>
-                <button className="order-button">결제</button>
+                <button className="order-button" onClick={handlePayment}>결제</button>
             </div>
         </section>
     );

@@ -16,6 +16,12 @@ const ProductSummary = ({ tableData }) => {
     { key: 'addPoint', label: '적립포인트' },
   ];
 
+   /**
+     * 테이블 데이터에서 총합 계산
+     * @param {Array} data - 테이블 데이터
+     * @returns {Object} - 총합 객체
+     
+     */
   const calculateTotals = (data) => {
     let totalQuantity = 0, totalPrice = 0, totalPoint = 0;
     data.forEach(item => {

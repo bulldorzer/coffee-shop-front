@@ -12,14 +12,6 @@ import PaymentMethodSelect from "../../component/order/PaymentMethodSelect";
 
 
 
-{/* 필드 정의 */}
-const columns = [
-  { key: 'productName', label: '상품정보'},
-  { key: 'quantity', label: '수량' },
-  { key: 'productPrice', label: '금액' },
-  { key: 'addPoint', label: '적립포인트' },
-];
-
 /**
  * 주문서 화면 - 진우
  * @returns 
@@ -30,6 +22,7 @@ const OrderPage = () =>{
         productName,// 상품명
         productImage,// 상품 이미지
         productPrice,// 상품 가격
+        deliveryFee,// 배송비
         quantity,// 수량
         option, // 옵션
         total // 총 금액
@@ -52,30 +45,12 @@ const OrderPage = () =>{
         deliveryRequest: '',// 배송 요청 사항
     }); // 주문 정보 상태 관리
 
+    // 배송비가 무료인 경우 배송비를 0으로 설정
+    const [finalAmount, setFinalAmount] = useState(total);
     
-
-
-    // 멤버쉽에 따른 포인트 적립 비율 계산 함수
-    const calculatePointRate = (loginMember)=> {
-        // console.log("멤버쉽 등급:", loginMember); // 멤버쉽 등급 확인
-        switch (loginMember) {
-            case "BRONZE" :
-                return 0.05; // 5% 포인트 적립
-            case "SILVER" :
-                return 0.07; // 7% 포인트 적립
-            case "GOLD" :
-                return 0.12; // 12% 포인트 적립
-            case "VIP" :
-                return 0.2; // 20% 포인트 적립
-            default:
-                return 0; // 적립 없음
-        }
-    };
-
-    // 포인트 적립 비율 계산
-    const pointRate = calculatePointRate(loginMember.memberShip); 
-    // const pointRate = 0.05; // 임시로 5%로 설정 (나중에 멤버십에 따라 변경 예정)
-
+    /**
+     * 로그인한 회원 정보가 로딩 완료되면 실행되는 useEffect
+     */
     useEffect(() => {
 
         if (!loading) {
@@ -100,6 +75,29 @@ const OrderPage = () =>{
         // console.log("로그인한 회원 정보:",loginMember); // 로그인한 회원 정보 확인
         
     } , [loading, member]); // 컴포넌트 마운트 시 실행
+
+    // 멤버쉽에 따른 포인트 적립 비율 계산 함수
+    const calculatePointRate = (memberShip)=> {
+        // console.log("멤버쉽 등급:", loginMember); // 멤버쉽 등급 확인
+        switch (memberShip) {
+            case "BRONZE" :
+                return 0.05; // 5% 포인트 적립
+            case "SILVER" :
+                return 0.07; // 7% 포인트 적립
+            case "GOLD" :
+                return 0.12; // 12% 포인트 적립
+            case "VIP" :
+                return 0.2; // 20% 포인트 적립
+            default:
+                return 0; // 적립 없음
+        }
+    };
+
+    // 포인트 적립 비율 계산
+    const pointRate = calculatePointRate(loginMember.memberShip); 
+    // const pointRate = 0.05; // 임시로 5%로 설정 (나중에 멤버십에 따라 변경 예정)
+
+    
 
     /**
      * 테이블 데이터 생성
@@ -127,26 +125,6 @@ const OrderPage = () =>{
             addPoint: productPrice * pointRate * quantity,
         },
     ];
-
-    /**
-     * 테이블 데이터에서 총합 계산
-     * @param {Array} data - 테이블 데이터
-     * @returns {Object} - 총합 객체
-     
-     */
-    const calculateTotals = (data) => {
-        let totalQuantity = 0;
-        let totalPrice = 0;
-        let totalPoint = 0;
-        
-        data.forEach(item => {
-            totalQuantity += Number(item.quantity);
-            totalPrice += Number(item.productPrice);
-            totalPoint += Number(item.addPoint);
-        });
-        
-        return { totalQuantity, totalPrice, totalPoint };
-    };
 
     // 주소 검색 버튼 클릭 시 Daum 우편번호 서비스 호출
     const handleAddressSearch = () => {
@@ -177,10 +155,20 @@ const OrderPage = () =>{
                 <DeliveryInfoForm orderInfo={orderInfo} setOrderInfo={setOrderInfo} handleAddressSearch={handleAddressSearch} />
 
                 {/* 결제 정보 */}
-                <PaymentInfo/>
+                <PaymentInfo loginMember={loginMember} productPrice={productPrice} deliveryFee={deliveryFee} total={total}
+                onFinalAmountChange={setFinalAmount}
+                />
 
                 {/* 결제 수단 및 버튼 */}
-                <PaymentMethodSelect/>
+                <PaymentMethodSelect 
+                    finalAmount={finalAmount}
+                    orderInfo={orderInfo}
+                    loginMember={loginMember}
+                    productInfo={{
+                      productId,
+                      quantity
+                    }}
+                />
         
             </div>
         </BasicLayout>
