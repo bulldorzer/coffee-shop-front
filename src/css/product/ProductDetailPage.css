@@ -51,9 +51,9 @@
   .product-details p {
     margin: 6px 0;
   }
-  
-  .select-group {
-    margin-top: 10px;
+
+  .checkbox-group input[type="checkbox"] {
+    margin-left: 5px;
   }
   
   .quantity-input {
