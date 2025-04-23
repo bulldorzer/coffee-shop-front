@@ -64,8 +64,7 @@ const JoinForm = () => {
     return (
         <div className="join-form-container">
             <h2>정보 입력</h2>
-            <span>* 표시는 반드시 입력하셔야 하는 항목입니다.</span>
-            
+            <div className="join-info">* 표시는 반드시 입력하셔야 하는 항목입니다.</div>
             <form onSubmit={handleSubmit}>
                 <div className="labeled-input">
                     <label>* 이메일ID</label>
@@ -98,7 +97,7 @@ const JoinForm = () => {
                 </div>
 
                 <div className="labeled-input">
-                    <label>* 비밀번호 (비밀번호는 8자 이상이어야 합니다.) </label>
+                    <label>* 비밀번호 ( 비밀번호는 8자 이상이어야 합니다. ) </label>
                     <input
                         type="password"
                         value={password}
@@ -165,7 +164,7 @@ const JoinForm = () => {
                     <label>정보/이벤트 수신에 동의합니다.</label>
                 </div>
 
-                <div className="button-group">
+                <div className="join-btngroup">
                     <Link to="/join/agree">이전단계</Link>
                     <button type="submit">회원가입</button>
                 </div>

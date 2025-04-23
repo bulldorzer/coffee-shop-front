@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
+import "../../css/login/SelectJoin.css";
 
 // 회원가입 선택화면 - 이재민
 const SelectJoin = () => {
@@ -11,12 +12,12 @@ const SelectJoin = () => {
 
     return(
         <BasicLayout>
-            <h2>가입 방법 선택</h2>
-            <div>
-                <button type="button" onClick={handleJoinButtonClick}>
+            <h2 className="title">가입 방법 선택</h2>
+            <div className="join-select-btn">
+                <button className="shopjoin-btn" type="button" onClick={handleJoinButtonClick}>
                     쇼핑몰 회원가입
                 </button>
-                <button>카카오 아이디 회원가입</button>
+                <button className="kakaojoin-btn">카카오 아이디 회원가입</button>
             </div>
         </BasicLayout>
     );

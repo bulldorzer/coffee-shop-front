@@ -11,7 +11,7 @@ const JoinPage = () => {
 
     return (
         <BasicLayout>
-            <JoinStepHeader step={2} />
+            <JoinStepHeader step={1} />
             <JoinForm />
         </BasicLayout>
     );
