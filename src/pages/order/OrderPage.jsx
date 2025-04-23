@@ -38,6 +38,10 @@ const OrderPage = () =>{
     const [orderInfo, setOrderInfo] = useState({
         name: '', // 주문자 이름
         phone: '',// 주문자 전화번호
+    }); // 주문 정보 상태 관리
+
+    // 주문 정보 상태 관리
+    const [deliveryInfo, setDeliveryInfo] = useState({
         receiverName: '',// 수령인 이름
         receiverPhone: '',// 수령인 전화번호
         address: '',// 주소
@@ -62,9 +66,15 @@ const OrderPage = () =>{
                 ...prev,
                 name: member.name || '', // 주문자 이름
                 phone: member.phone || '', // 주문자 전화번호
+              }));
+
+              setDeliveryInfo(prev => ({
+                ...prev,
                 receiverName: member.name || '', // 수령인 이름
                 receiverPhone: member.phone || '', // 수령인 전화번호
-                address: member.city+" "+member.street+""+member.zipcode|| '', // 주소
+                address: `${member.city} ${member.street} ${member.zipcode}` || '', // 주소
+                addressDetail: '',  // 상세주소
+                deliveryRequest: '', // 배송 요청 사항
               }));
             } else {
               console.log("로그인한 사용자 정보 없음");
@@ -152,7 +162,7 @@ const OrderPage = () =>{
                 <OrdererInfoForm orderInfo={orderInfo} setOrderInfo={setOrderInfo} />
 
                 {/* 배송 정보 */}
-                <DeliveryInfoForm orderInfo={orderInfo} setOrderInfo={setOrderInfo} handleAddressSearch={handleAddressSearch} />
+                <DeliveryInfoForm deliveryInfo={deliveryInfo} setDeliveryInfo={setDeliveryInfo} orderInfo={orderInfo} handleAddressSearch={handleAddressSearch} />
 
                 {/* 결제 정보 */}
                 <PaymentInfo loginMember={loginMember} productPrice={productPrice} deliveryFee={deliveryFee} total={total}
