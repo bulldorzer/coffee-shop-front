@@ -59,6 +59,7 @@ const total = quantity * product.price + (quantity * product.price >= product.fr
                         productName:product.name,
                         productImage:product.image,
                         productPrice:product.price,
+                        deliveryFee:product.deliveryFee,
                         quantity,
                         option,
                         total
