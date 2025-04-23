@@ -6,7 +6,7 @@ import ProductListComponent from "../../component/product/ProductListComponent";
 import "../../css/product/ProductListPage.css";
 
 /**
- * 상품 목록 페이지 - 나영일(ChatGPT)
+ * 상품 목록 페이지 - 나영일
  * 
  */
 
@@ -19,34 +19,32 @@ export default function ProductListPage() {
   const [totalPages, setTotalPages] = useState(0);      // 총 페이지수
   const [totalItems, setTotalItems] = useState(0);      // 총 상품 수
   const itemsPerPage = 20;                              // 페이지당 상품 수
-  const navigate = useNavigate();
+
+  const paginatedProducts = sortedProducts.slice(       // 현재 페이지에 맞는 상품만 추출해서 렌더링
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   // 서버에서 상품(product = coffeeBean) 가져오기
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchAllProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:8081/api/coffeeBeans/list", {
-          params : {
-            page : currentPage - 1,
-            size : itemsPerPage
-          }
-        });
-        const { content, totalPages, totalElements } = res.data;
+        const res = await axios.get("http://localhost:8081/api/coffeeBeans/listAll");
 
         console.log("상품(원두) 응답:", res.data);  // 응답 구조 확인
 
-        setProducts(content);
-        setFilteredProducts(content);
-        setSortedProducts(content);
-        setTotalPages(totalPages);
-        setTotalItems(totalElements);
+        setProducts(res.data);
+        setFilteredProducts(res.data);
+        setSortedProducts(res.data);
+        setTotalItems(res.data.length);
+        setTotalPages(Math.ceil(res.data.length / itemsPerPage)); // 총 페이지 수 계산 
       } catch (error) {
         console.error("상품 목록 불러오기 실패:", error);
       }
     };
   
-    fetchProducts();
-  }, [currentPage]);
+    fetchAllProducts();
+  }, []);
 
   // 서버에서 카테고리 가져오기
   useEffect(() => {
@@ -66,6 +64,7 @@ export default function ProductListPage() {
     else if (type === "recommend") sorted.sort((a, b) => (b.eventFlag === true) - (a.eventFlag === true));
     setSortedProducts(sorted);
     setCurrentPage(1);
+    setTotalPages(Math.ceil(sorted.length / itemsPerPage));
   };
 
   // 카테고리로 상품 필터링
@@ -75,6 +74,7 @@ export default function ProductListPage() {
     setFilteredProducts(filtered);
     setSortedProducts(filtered);
     setTotalItems(filtered.length);
+    setTotalPages(Math.ceil(filtered.length / itemsPerPage));
     setCurrentPage(1);
   };
 
@@ -101,7 +101,7 @@ export default function ProductListPage() {
           <button onClick={() => sortProducts("low")}>낮은가격순</button>
         </div>
 
-        <ProductListComponent products={sortedProducts}/>
+        <ProductListComponent products={paginatedProducts}/>
 
         <div className="pagination">
           {Array.from({ length: totalPages }).map((_, i) => (
