@@ -11,9 +11,9 @@ const prefix = `${API_SERVER_PORT}/api/orders`;
  */
 export const createOrder = async (memberId, orderData) =>{
     try {
-        // console.log("--------createOrder--------");
-        // console.log("memberId", memberId);
-        // console.log("orderData", orderData);
+        console.log("--------createOrder--------");
+        console.log("memberId", memberId);
+        console.log("orderData", orderData);
         const response = await axios.post(`${prefix}/${memberId}`, orderData);
         return response.data;
     } catch (error) {
@@ -31,18 +31,13 @@ export const createOrder = async (memberId, orderData) =>{
  */
 export const addOrderItem = async ( orderId, {coffeeBeanId, qty}) => {
     try {
-        // console.log("--------addOrderItem--------");
-        // console.log("orderId", orderId);
-        // console.log("coffeeBeanId", coffeeBeanId);
-        // console.log("qty", qty);
-        const response = await axios.post(`${prefix}/${orderId}/coffeeBean`, null,
-            {
-                params: {
-                    coffeeBeanId,
-                    qty
-                }
-            }
+        console.log("--------addOrderItem--------");
+        console.log("orderId", orderId);
+        console.log("coffeeBeanId", coffeeBeanId);
+        console.log("qty", qty);
+        const response = await axios.post(`${prefix}/${orderId}/coffeeBean?coffeeBeanId=${coffeeBeanId}&qty=${qty}`
         );
+        console.log("주문서 상품추가 성공:", response.data);
         return response.data;
     } catch (error) {
         console.error("주문서 상품추가 실패:", error);
