@@ -5,11 +5,15 @@ import { useNavigate } from "react-router-dom";
 export default function ProductDetailComponent({product}) {
 
 const [quantity, setQuantity] = useState(1);
-const [option, setOption] = useState('');
+const [grindFlag, setGrindFlag] = useState(1); // 분쇄 여부
 
 const navigate = useNavigate();
 
 const total = quantity * product.price + (quantity * product.price >= product.freeShippingPrice ? 0 : product.deliveryFee);    // 배송비 포함 (30,000원 이상 주문시 배송비 무료)
+
+const handleGrindFlagChange = (e) => {
+    setGrindFlag(e.target.checked ? 1 : 0); // 체크 여부에 따라 grindFlag 업데이트
+};
 
     return (
         <container className="product-info-section">
@@ -25,17 +29,14 @@ const total = quantity * product.price + (quantity * product.price >= product.fr
                     {product.freeShippingPrice}원 이상 구매 시 무료)</p>
             </div>
 
-            <div className="select-group">
+            <div className="checkbox-group">
                 <label>분쇄:</label>
-                <select
-                    value={option}
-                    onChange={(e) => setOption(e.target.value)}
-                >
-                    <option value="">- 옵션 선택 -</option>
-                    {product.options.map((opt, idx) => (
-                    <option key={idx} value={opt}>{opt}</option>
-                    ))}
-                </select>
+                <input
+                className="checkbox"
+                type="checkbox"
+                checked={grindFlag === 1}
+                onChange={handleGrindFlagChange}
+                />
             </div>
 
             <div className="quantity-input">
@@ -61,7 +62,7 @@ const total = quantity * product.price + (quantity * product.price >= product.fr
                         productPrice:product.price,
                         deliveryFee:product.deliveryFee,
                         quantity,
-                        option,
+                        grindFlag,
                         total
                       }
                 });}}>바로 구매하기</button>
@@ -72,7 +73,7 @@ const total = quantity * product.price + (quantity * product.price >= product.fr
                         productImage:product.image,
                         productPrice:product.price,
                         quantity,
-                        option,
+                        grindFlag,
                         total
                       }
                 });}}>장바구니 담기</button>
