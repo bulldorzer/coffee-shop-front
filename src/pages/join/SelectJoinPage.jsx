@@ -12,7 +12,7 @@ const SelectJoin = () => {
 
     return(
         <BasicLayout>
-            <h2 className="title">가입 방법 선택</h2>
+            <h2 className="selectjoin-title">가입 방법 선택</h2>
             <div className="join-select-btn">
                 <button className="shopjoin-btn" type="button" onClick={handleJoinButtonClick}>
                     쇼핑몰 회원가입
