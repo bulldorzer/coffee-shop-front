@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { addOrderItem, createOrder } from "../../api/order/orderApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-const PaymentMethodSelect = ({finalAmount, orderInfo, productInfo, loginMember }) => {
+const PaymentMethodSelect = ({finalAmount, usepoint, orderInfo, productInfo, deliveryInfo, loginMember }) => {
 
     const [isChecked, setIsChecked] = useState(false); // 체크박스 상태 관리
 
     const navigate = useNavigate(); // navigate 훅을 사용하여 페이지 이동
+
     const handleCancel = () => {
         navigate(-1); // 바로 이전 페이지로 이동
       };
@@ -22,34 +23,50 @@ const PaymentMethodSelect = ({finalAmount, orderInfo, productInfo, loginMember }
             const isPaymentSuccess = true; // 결제 성공 여부 (가정)
             if (!isPaymentSuccess) return alert("결제에 실패하였습니다.");
 
+            console.log("usepoint", usepoint);
             console.log("orderInfo" , orderInfo);
             console.log("productInfo" , productInfo);
+            console.log("deliveryInfo" , deliveryInfo);
             console.log("loginMember" , loginMember);
 
-            // 2. 결제 성공시 주문서 생성 API 호출
+            
             const orderRequest = {
-                shipper : orderInfo.name,
-                request : orderInfo.deliveryRequest,
-                city : orderInfo.address.split(" ")[0],
-                street : orderInfo.address.split(" ")[1],
-                zipcode : orderInfo.address.split(" ")[2],
+                shipper : deliveryInfo.receiverName,
+                request : deliveryInfo.deliveryRequest,
+                city : deliveryInfo.address.split(" ")[0],
+                street : deliveryInfo.address.split(" ")[1],
+                zipcode : deliveryInfo.address.split(" ")[2],
                 status: "READY",
                 memberId: loginMember.memberId 
             }
 
-            // 3. 주문서 생성 API 호출
+            // 2. 주문서 생성 API 호출
             const order = await createOrder(loginMember.memberId, orderRequest); // 주문서 생성 API 호출
             console.log("order", order);
             const orderId = order; // 생성된 주문서 ID
 
-            // 4. 주문서 상품추가 API 호출
+            // 3. 주문서 상품추가 API 호출
             const orderItemRequest = {
                 coffeeBeanId: productInfo.productId,
                 qty: productInfo.quantity
             };
-            await addOrderItem(orderId, orderItemRequest); // 주문서 상품추가 API 호출
+            await addOrderItem({
+                orderId,
+                coffeeBeanId: productInfo.productId,
+                qty: productInfo.quantity,
+                usepoint: usepoint,
+                deliveryDTO: {
+                  shipper : deliveryInfo.receiverName,
+                  request : deliveryInfo.deliveryRequest,
+                  city : deliveryInfo.address.split(" ")[0],
+                  street : deliveryInfo.address.split(" ")[1],
+                  zipcode : deliveryInfo.address.split(" ")[2],
+                  status: "READY",
+                  memberId: loginMember.memberId 
+                }
+              }); // 주문서 상품추가 API 호출
 
-            // 5. 결제 성공 후 주문서 마이 페이지로 이동
+            // 4. 결제 성공 후 주문서 마이 페이지로 이동
             alert("결제 및 주문이 완료되었습니다. 주문서내역은 마이페이지에서 확인 가능합니다");
             // 잠시 막아둠
             navigate(`/mypage/orders`); // 주문서 상세 페이지로 이동
