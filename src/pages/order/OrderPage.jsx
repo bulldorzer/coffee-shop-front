@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 
 import BasicLayout from "../../layouts/BasicLayout"
 import useMemberInfo from "../../hook/useMemberInfo";
-import "../../css/order/orderPage.css";
 import ProductSummary from "../../component/order/ProductSummary";
 import OrdererInfoForm from "../../component/order/OrdererInfoForm";
 import DeliveryInfoForm from "../../component/order/DeliveryInfoForm";
 import PaymentInfo from "../../component/order/PaymentInfo";
 import PaymentMethodSelect from "../../component/order/PaymentMethodSelect";
+import "../../css/order/orderPage.css";
 
 
 
