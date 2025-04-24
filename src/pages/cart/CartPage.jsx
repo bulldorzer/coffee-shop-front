@@ -9,7 +9,7 @@ import CartComponent from "../../component/cart/CartComponent";
 const CartPage = () => {
   return (
     <BasicLayout>
-        <h2 className="text-4xl font-bold text-center">장바구니</h2>
+        <h2>장바구니</h2>
         <CartComponent/>
     </BasicLayout>
   );
