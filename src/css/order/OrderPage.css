@@ -86,3 +86,7 @@
 .order-page .button-group button:hover {
   background-color: #f0f0f0;
 }
+
+.order-page .table-container .product-image{
+  width: 200px;
+}
