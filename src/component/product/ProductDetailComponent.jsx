@@ -129,7 +129,7 @@ useEffect(() => {
                     state: {
                         productId:product.id,
                         productName:product.name,
-                        productImage:product.image,
+                        productImage:product.uploadFileNames[0],
                         productPrice:product.price,
                         deliveryFee:product.deliveryFee,
                         quantity,

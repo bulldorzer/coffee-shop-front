@@ -28,6 +28,8 @@ const OrderPage = () =>{
         total // 총 금액
     } = location.state; // 상품 정보 가져오기
 
+    console.log("productImage:", productImage);
+
     // useMemberInfo 훅을 사용하여 로그인한 회원 정보 가져오기
     const { member, loading } = useMemberInfo();
     
@@ -135,10 +137,11 @@ const OrderPage = () =>{
         {
             productName: (
             <div className="flex gap-4">
-                <img src={productImage} alt={productName} className="w-24 h-24" />
+                <img className="product-image" src={`http://localhost:8081/api/coffeeBeans/view/${productImage}`} 
+            alt={productName}/> 
                 <div>
                     <p>{productName}</p>
-                    <p>- {grindFlag}</p>
+                    <p>- {grindFlag == 1 ? "분쇄 O" : "분쇄 X" }</p>
                 </div>
             </div>
             ),
