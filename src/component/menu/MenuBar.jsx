@@ -36,10 +36,10 @@ const MenuBar = () =>{
                 {/* 가운데: 메인 카테고리 메뉴 */}
                 <div className="nav-center">
                     <ul className="main-menu">
-                        <li><Link to="/special">특가상품</Link></li>
-                        <li><Link to="/productList">원두커피</Link></li>
-                        <li><Link to="/coldbrew">콜드브루</Link></li>
-                        <li><Link to="/gift">선물세트</Link></li>
+                        <li><Link to="/productList?eventFlag=1">특가상품</Link></li>
+                        <li><Link to="/productList?category=원두커피">원두커피</Link></li>
+                        <li><Link to="/productList?category=콜드브루">콜드브루</Link></li>
+                        <li><Link to="/productList?category=선물세트">선물세트</Link></li>
                     </ul>
                 </div>
 
