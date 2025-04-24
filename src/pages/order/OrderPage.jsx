@@ -51,6 +51,7 @@ const OrderPage = () =>{
 
     // 배송비가 무료인 경우 배송비를 0으로 설정
     const [finalAmount, setFinalAmount] = useState(total);
+    const [usePoint, setUsePoint] = useState(0); // 사용 포인트 상태 관리
     
     /**
      * 로그인한 회원 정보가 로딩 완료되면 실행되는 useEffect
@@ -80,9 +81,6 @@ const OrderPage = () =>{
               console.log("로그인한 사용자 정보 없음");
             }
           }
-        
-        // console.log("주문서 정보:",productId,productName,productImage,productPrice , quantity, option1, option2, total); // 상품 정보 확인
-        // console.log("로그인한 회원 정보:",loginMember); // 로그인한 회원 정보 확인
         
     } , [loading, member]); // 컴포넌트 마운트 시 실행
 
@@ -142,7 +140,7 @@ const OrderPage = () =>{
           oncomplete: function (data) {
             // 도로명 주소 기준
             const fullAddress = data.roadAddress;
-            setOrderInfo(prev => ({
+            setDeliveryInfo(prev => ({
               ...prev,
               address: fullAddress
             }));
@@ -165,19 +163,25 @@ const OrderPage = () =>{
                 <DeliveryInfoForm deliveryInfo={deliveryInfo} setDeliveryInfo={setDeliveryInfo} orderInfo={orderInfo} handleAddressSearch={handleAddressSearch} />
 
                 {/* 결제 정보 */}
-                <PaymentInfo loginMember={loginMember} productPrice={productPrice} deliveryFee={deliveryFee} total={total}
+                <PaymentInfo loginMember={loginMember} productPrice={productPrice} 
+                deliveryFee={deliveryFee} 
+                total={total}
                 onFinalAmountChange={setFinalAmount}
+                usePoint={setUsePoint} // 부모 컴포넌트에 포인트 사용 금액 전달
                 />
 
                 {/* 결제 수단 및 버튼 */}
                 <PaymentMethodSelect 
                     finalAmount={finalAmount}
+                    usepoint={usePoint}
                     orderInfo={orderInfo}
-                    loginMember={loginMember}
                     productInfo={{
                       productId,
                       quantity
                     }}
+                    deliveryInfo={deliveryInfo}
+                    loginMember={loginMember}
+                    
                 />
         
             </div>

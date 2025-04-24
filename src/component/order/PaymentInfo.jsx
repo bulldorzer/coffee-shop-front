@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-const PaymentInfo = ({loginMember, productPrice, deliveryFee, total, onFinalAmountChange}) => {
+const PaymentInfo = ({loginMember, productPrice, deliveryFee, total, onFinalAmountChange,usePoint}) => {
 
     const [useMileage, setUseMileage] = useState(0); // 마일리지 사용 금액 상태 관리
     const [useAllMileage, setUseAllMileage] = useState(false); // 전액 사용 체크 상태 관리
@@ -9,7 +9,8 @@ const PaymentInfo = ({loginMember, productPrice, deliveryFee, total, onFinalAmou
     useEffect(() =>{
         const final = total - useMileage; // 최종 결제 금액 계산
         onFinalAmountChange(final < 0 ? 0 : final); // 부모 컴포넌트에 최종 결제 금액 전달 음수방지
-    },[useMileage, total, onFinalAmountChange]); // useMileage, total이 변경될 때마다 실행
+        usePoint = useMileage; // 사용 포인트 설정
+    },[useMileage, total, onFinalAmountChange, usePoint]); // useMileage, total이 변경될 때마다 실행
 
     // 마일리지 모두사용 체크박스 이벤트관리
     const handleCheckboxChange = (e) => {
@@ -30,6 +31,7 @@ const PaymentInfo = ({loginMember, productPrice, deliveryFee, total, onFinalAmou
             value = loginMember.point; // 보유 마일리지 초과시 보유 마일리지로 설정
         }
         setUseMileage(value); // 마일리지 사용 금액 설정
+        usePoint(value); // 사용 포인트 설정
     }
 
     return (
