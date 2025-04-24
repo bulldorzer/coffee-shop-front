@@ -3,7 +3,7 @@ import { addOrderItem, createOrder } from "../../api/order/orderApi";
 import { useEffect, useState } from "react";
 
 
-const PaymentMethodSelect = ({finalAmount, usepoint, orderInfo, productInfo, deliveryInfo, loginMember }) => {
+const PaymentMethodSelect = ({finalAmount, usepoint, addPoint, orderInfo, productInfo, deliveryInfo, loginMember }) => {
 
     const [isChecked, setIsChecked] = useState(false); // 체크박스 상태 관리
 
@@ -46,14 +46,11 @@ const PaymentMethodSelect = ({finalAmount, usepoint, orderInfo, productInfo, del
             const orderId = order; // 생성된 주문서 ID
 
             // 3. 주문서 상품추가 API 호출
-            const orderItemRequest = {
-                coffeeBeanId: productInfo.productId,
-                qty: productInfo.quantity
-            };
             await addOrderItem({
                 orderId,
                 coffeeBeanId: productInfo.productId,
                 qty: productInfo.quantity,
+                addPoint: addPoint,
                 usepoint: usepoint,
                 deliveryDTO: {
                   shipper : deliveryInfo.receiverName,

@@ -5,7 +5,7 @@ import { axiosInstance } from "../axoisInstance";
 // const prefix = `${API_SERVER_PORT}/api/orders`;
 
 /**
- * @description 주문서 생성 API  
+ * @description 주문서 생성 API  - 진우
  * @param {*} memberId 
  * @param {*} orderData 
  * @returns 
@@ -30,17 +30,18 @@ export const createOrder = async (memberId, orderData) =>{
  * @param {*} itemData 
  * @returns 
  */
-export const addOrderItem = async ( {orderId, coffeeBeanId, qty, usepoint, deliveryDTO}) => {
+export const addOrderItem = async ( {orderId, coffeeBeanId, qty, addPoint, usepoint, deliveryDTO}) => {
     try {
         console.log("--------addOrderItem--------");
         console.log("orderId", orderId);
         console.log("coffeeBeanId", coffeeBeanId);
         console.log("qty", qty);
+        console.log("addPoint", addPoint);
         console.log("usepoint", usepoint);
         console.log("deliveryDTO", deliveryDTO);
     
         const response = await axiosInstance.post(
-          `/api/orders/${orderId}/coffeeBean?coffeeBeanId=${coffeeBeanId}&qty=${qty}&usepoint=${usepoint}`, // ✅ 쿼리 파라미터에 coffeeBeanId, qty, usepoint 추가
+          `/api/orders/${orderId}/coffeeBean?coffeeBeanId=${coffeeBeanId}&qty=${qty}&addpoint=${addPoint}&usepoint=${usepoint}`, // ✅ 쿼리 파라미터에 coffeeBeanId, qty, usepoint 추가
           deliveryDTO // ✅ request body에 deliveryDTO 보내기
         );
     

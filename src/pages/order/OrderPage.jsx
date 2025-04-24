@@ -24,7 +24,7 @@ const OrderPage = () =>{
         productPrice,// 상품 가격
         deliveryFee,// 배송비
         quantity,// 수량
-        option, // 옵션
+        grindFlag, // 옵션
         total // 총 금액
     } = location.state; // 상품 정보 가져오기
 
@@ -51,8 +51,33 @@ const OrderPage = () =>{
 
     // 배송비가 무료인 경우 배송비를 0으로 설정
     const [finalAmount, setFinalAmount] = useState(total);
-    const [usePoint, setUsePoint] = useState(0); // 사용 포인트 상태 관리
     
+    const [addPoint, setAddPoint] = useState(0); // 적립 포인트 상태 관리
+    
+    // 사용 포인트 상태 관리
+    const [usePoint, setUsePoint] = useState(0); 
+
+    // 멤버쉽에 따른 포인트 적립 비율 계산 함수
+    const calculatePointRate = (memberShip)=> {
+      // console.log("멤버쉽 등급:", loginMember); // 멤버쉽 등급 확인
+      switch (memberShip) {
+          case "BRONZE" :
+              return 0.05; // 5% 포인트 적립
+          case "SILVER" :
+              return 0.07; // 7% 포인트 적립
+          case "GOLD" :
+              return 0.12; // 12% 포인트 적립
+          case "VIP" :
+              return 0.2; // 20% 포인트 적립
+          default:
+              return 0; // 적립 없음
+      }
+  };
+
+    // 포인트 적립 비율 계산
+    const pointRate = calculatePointRate(loginMember.memberShip); 
+     
+
     /**
      * 로그인한 회원 정보가 로딩 완료되면 실행되는 useEffect
      */
@@ -84,26 +109,16 @@ const OrderPage = () =>{
         
     } , [loading, member]); // 컴포넌트 마운트 시 실행
 
-    // 멤버쉽에 따른 포인트 적립 비율 계산 함수
-    const calculatePointRate = (memberShip)=> {
-        // console.log("멤버쉽 등급:", loginMember); // 멤버쉽 등급 확인
-        switch (memberShip) {
-            case "BRONZE" :
-                return 0.05; // 5% 포인트 적립
-            case "SILVER" :
-                return 0.07; // 7% 포인트 적립
-            case "GOLD" :
-                return 0.12; // 12% 포인트 적립
-            case "VIP" :
-                return 0.2; // 20% 포인트 적립
-            default:
-                return 0; // 적립 없음
-        }
-    };
+    useEffect(() => {
+      const calculatedAddPoint = productPrice * quantity * pointRate; // 적립 포인트 계산
+      setAddPoint(calculatedAddPoint); // 상태 업데이트
+      console.log("적립 포인트:", calculatedAddPoint); // 디버깅용 로그
+  }, [productPrice, quantity, pointRate]); // 의존성 배열에 필요한 값 추가
 
-    // 포인트 적립 비율 계산
-    const pointRate = calculatePointRate(loginMember.memberShip); 
-    // const pointRate = 0.05; // 임시로 5%로 설정 (나중에 멤버십에 따라 변경 예정)
+    
+
+    
+    
 
     
 
@@ -113,8 +128,7 @@ const OrderPage = () =>{
      * @param {string} productImage - 상품 이미지 URL
      * @param {number} productPrice - 상품 가격
      * @param {number} quantity - 수량
-     * @param {string} option1 - 옵션1
-     * @param {string} option2 - 옵션2
+     * @param {string} grindFlag - 분쇄 옵션
      * @param {number} pointRate - 포인트 적립 비율
      */
     const tableData = [
@@ -124,7 +138,7 @@ const OrderPage = () =>{
                 <img src={productImage} alt={productName} className="w-24 h-24" />
                 <div>
                     <p>{productName}</p>
-                    <p>- {option}</p>
+                    <p>- {grindFlag}</p>
                 </div>
             </div>
             ),
@@ -174,6 +188,7 @@ const OrderPage = () =>{
                 <PaymentMethodSelect 
                     finalAmount={finalAmount}
                     usepoint={usePoint}
+                    addPoint={addPoint}
                     orderInfo={orderInfo}
                     productInfo={{
                       productId,
