@@ -6,9 +6,10 @@ const deleteMemberSave = async (memberId, selectedItems, onSuccess, onError) => 
     await axios.delete(
       `http://localhost:8081/api/membersave/delete/${memberId}`,
       {
-        data: selectedItems,
+        data: selectedItems, 
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json", 
         },
       }
     );

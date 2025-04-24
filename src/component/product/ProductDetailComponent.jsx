@@ -82,7 +82,7 @@ useEffect(() => {
             alert("관심상품에 등록되었습니다.");
         } catch (error) {
             console.error("관심상품 등록 실패:", error);
-            alert("관심상품 등록에 실패했습니다.");
+            alert("이미 등록되어있는 상품입니다.");
         }
     };
 

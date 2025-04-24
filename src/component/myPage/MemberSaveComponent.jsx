@@ -27,12 +27,21 @@ const MemberSaveComponent = () => {
           },
         }
       );
+      // 데이터가 있으면 받아와서 상태 업데이트
       setWishlist(response.data.content);
       setTotalItems(response.data.totalElements);
       setSelectedItems([]); // 데이터 새로 불러올 때 선택 초기화
       setIsAllSelected(false);
     } catch (error) {
-      console.error("관심 상품 조회 실패:", error);
+      if (error.response && error.response.status === 404) {
+        // 404 에러 발생 시 빈 리스트 처리
+        setWishlist([]); // 빈 리스트를 설정
+        setTotalItems(0); // 전체 아이템 수는 0으로 설정
+        setSelectedItems([]); // 선택된 아이템 초기화
+        setIsAllSelected(false); // '전체 선택' 초기화
+      } else {
+        console.error("관심 상품 조회 실패:", error);
+      }
     }
   };
 
@@ -70,9 +79,10 @@ const MemberSaveComponent = () => {
     deleteMemberSave(
       memberId,
       selectedItems,
-      () => {
+      async () => {
         alert("삭제 완료!");
         setSelectedItems([]);
+        // 목록을 다시 불러와서 업데이트
         fetchWishlist();
       },
       (error) => {
@@ -94,14 +104,14 @@ const MemberSaveComponent = () => {
           <span>상품명</span>
           <span>상품금액</span>
         </li>
-      
+
         <div>
           {wishlist.length === 0 ? (
             <p className="empty-orders">관심상품 목록이 없습니다.</p>
           ) : (
             <ul>
               {wishlist.map((item) => (
-                <li className="membersave-item" key={item.coffeeBeanId} >
+                <li className="membersave-item" key={item.coffeeBeanId}>
                   <input
                     className="membersave-checkbox"
                     type="checkbox"
