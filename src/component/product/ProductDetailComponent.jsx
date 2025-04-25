@@ -7,6 +7,7 @@ export default function ProductDetailComponent({product}) {
 const [member, setMember] = useState(null);
 const [quantity, setQuantity] = useState(1);
 const [grindFlag, setGrindFlag] = useState(1); // 분쇄 여부
+const [loading, setLoading] = useState(true);
 
 const navigate = useNavigate();
 
