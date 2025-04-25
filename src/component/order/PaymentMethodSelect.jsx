@@ -11,11 +11,24 @@ const PaymentMethodSelect = ({finalAmount, usepoint, addPoint, orderInfo, produc
 
     const handleCancel = () => {
         navigate(-1); // 바로 이전 페이지로 이동
-      };
+    };
+
+    const isDeliveryInfoValid = () => {
+        return deliveryInfo.receiverName?.trim() &&
+            deliveryInfo.receiverPhone?.trim() &&
+            deliveryInfo.address?.trim() &&
+            deliveryInfo.addressDetail?.trim();
+    }
+
+    
 
     const handlePayment = async ()=>{
         try {
-            if (!isChecked) {
+            if (!isDeliveryInfoValid()) {
+                alert("배송 정보를 모두 입력해 주세요.");
+                return;
+            }
+            else if (!isChecked) {
                 alert('필수 약관에 동의해주세요.');
                 return;
             }
