@@ -67,7 +67,11 @@ export default function ProductListPage() {
         return;
       }
 
-      if (!categoryParam) return;
+      if (!parentCategoryId || !categoryMap || Object.keys(categoryMap).length === 0) {
+        // parentCategoryId가 유효하지 않거나 categoryMap이 초기화되지 않은 경우 실행하지 않음
+        console.warn("parentCategoryId가 유효하지 않거나 categoryMap이 초기화되지 않았습니다.");
+        return;
+      }
 
       try {
         const res = await axios.get(`http://localhost:8081/api/categories/parents/${parentCategoryId}`);
