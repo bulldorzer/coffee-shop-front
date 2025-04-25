@@ -134,7 +134,9 @@ export default function ProductListPage() {
     const filtered = products.filter((p) => p.categoryIds?.includes(subCategoryId));
     setFilteredProducts(filtered);
     setSortedProducts(filtered);
-    setTotalItems(filtered.length);
+    const totalItemsCount = filtered.length; // 필터링된 상품 수 계산
+    setTotalItems(totalItemsCount);
+    setTotalPages(Math.ceil(totalItemsCount / itemsPerPage)); // 총 페이지 수 계산
     setCurrentPage(1);
   };
 
