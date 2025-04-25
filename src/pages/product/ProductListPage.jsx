@@ -1,5 +1,5 @@
-import React, { useState, useEffect, use } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import BasicLayout from "../../layouts/BasicLayout";
 import axios from "axios";
 import ProductListComponent from "../../component/product/ProductListComponent";
@@ -14,9 +14,9 @@ export default function ProductListPage() {
   const [products, setProducts] = useState([]);                   // 상품 목록
   const [filteredProducts, setFilteredProducts] = useState([]);   // 카테고리로 필터링된 상품 목록
   const [sortedProducts, setSortedProducts] = useState([]);       // 정렬된 상품 목록
-  const [categories, setCategories] = useState([]);               // 카테고리
   const [subCategories, setSubCategories] = useState([]);         // 하위 카테고리
-  const [categoryMap, setCategoryMap] = useState({});             // 동적으로 생성된 카테고리 맵
+  const [categories, setCategories] = useState([]); // 상위 카테고리 목록
+  const [categoryMap, setCategoryMap] = useState({}); // 동적으로 생성된 카테고리 맵
   const [currentPage, setCurrentPage] = useState(1);    // 현재 페이지
   const [totalPages, setTotalPages] = useState(0);      // 총 페이지수
   const [totalItems, setTotalItems] = useState(0);      // 총 상품 수
@@ -29,7 +29,7 @@ export default function ProductListPage() {
   const categoryParam = searchParams.get("category");   // 카테고리 파라미터
   const eventFlagParam = searchParams.get("eventFlag"); // 이벤트 상품 여부 파라미터
 
-  const categoryId = categoryMap[categoryParam];    // 동적으로 생성된 카테고리 ID
+  const parentCategoryId = categoryMap[categoryParam];   // 부모 카테고리 ID 가져오기
 
   const paginatedProducts = sortedProducts.slice(   // 현재 페이지에 맞는 상품만 추출해서 렌더링
     (currentPage - 1) * itemsPerPage,
@@ -58,6 +58,29 @@ export default function ProductListPage() {
     fetchCategories();
   }, []);
 
+  // 서버에서 하위 카테고리 가져오기
+  useEffect(() => {
+    const fetchSubCategories = async () => {
+      if (eventFlagParam === "1") {
+        // '특가상품' 클릭 시 하위 카테고리를 비웁니다.
+        setSubCategories([]);
+        return;
+      }
+
+      if (!categoryParam) return;
+
+      try {
+        const res = await axios.get(`http://localhost:8081/api/categories/parents/${parentCategoryId}`);
+        console.log("하위 카테고리 응답:", res.data);
+        setSubCategories(res.data);
+      } catch (error) {
+        console.error("하위 카테고리 가져오기 실패:", error);
+      }
+    };
+
+    fetchSubCategories();
+  }, [parentCategoryId, eventFlagParam]);
+
   // 서버에서 상품 목록을 가져오고, 카테고리 및 이벤트 상품 여부에 따라 필터링
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -72,11 +95,12 @@ export default function ProductListPage() {
         if (eventFlagParam === "1") {
           // 이벤트 상품 여부에 따라 필터링
           filtered = res.data.filter((p) => p.eventFlag === true);
-        } else if (categoryParam) {
+        } else if (subCategories.length > 0) {
           // URL 파라미터에 따라 카테고리 필터링
-          filtered = categoryId
-            ? res.data.filter((p) => p.categoryIds?.includes(categoryId))
-            : res.data;
+          const subCategoryIds = subCategories.map((subCat) => subCat.id);
+          filtered = res.data.filter((p) =>
+            p.categoryIds?.some((categoryId) => subCategoryIds.includes(categoryId))
+          );
         }
 
         setFilteredProducts(filtered);
@@ -92,30 +116,7 @@ export default function ProductListPage() {
     };
 
   fetchAllProducts();
-  }, [currentPage, categoryParam, eventFlagParam, categoryId]);
-
-  // 서버에서 하위 카테고리 가져오기
-  useEffect(() => {
-    const fetchSubCategories = async () => {
-      if (eventFlagParam === "1") {
-        // '특가상품' 클릭 시 하위 카테고리를 비웁니다.
-        setSubCategories([]);
-        return;
-      }
-
-      if (!categoryId) return;
-
-      try {
-        const res = await axios.get(`http://localhost:8081/api/categories/parents/${categoryId}`);
-        console.log("하위 카테고리 응답:", res.data);
-        setSubCategories(res.data);
-      } catch (error) {
-        console.error("하위 카테고리 가져오기 실패:", error);
-      }
-    };
-
-    fetchSubCategories();
-  }, [categoryId]);
+  }, [subCategories, eventFlagParam]);
 
   useEffect(() => {
     // URL의 categoryParam이 변경되면 active 상태 초기화
