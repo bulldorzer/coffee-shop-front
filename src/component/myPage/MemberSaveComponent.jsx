@@ -9,13 +9,13 @@ const MemberSaveComponent = () => {
   const member = useMember();
   const [wishlist, setWishlist] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [isAllSelected, setIsAllSelected] = useState(false); // ✅ 추가
+  const [isAllSelected, setIsAllSelected] = useState(false); 
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
   const [totalItems, setTotalItems] = useState(0);
-
+  const [memberSaveId, setMemberSaveId] = useState();
   const memberId = member.memberId;
-
+  
   const fetchWishlist = async () => {
     try {
       const response = await axios.get(
@@ -32,6 +32,8 @@ const MemberSaveComponent = () => {
       setTotalItems(response.data.totalElements);
       setSelectedItems([]); // 데이터 새로 불러올 때 선택 초기화
       setIsAllSelected(false);
+      setMemberSaveId(response.data.content[0].memberSaveId)
+      console.log("넘어온 데이터: ", response.data.content[0].memberSaveId);
     } catch (error) {
       if (error.response && error.response.status === 404) {
         // 404 에러 발생 시 빈 리스트 처리
@@ -49,16 +51,17 @@ const MemberSaveComponent = () => {
     fetchWishlist();
   }, [page, size]);
 
-  const handleCheckboxChange = (coffeeBeanId) => {
+  const handleCheckboxChange = (memberSaveId) => {
     setSelectedItems((prevSelected) => {
-      const updated = prevSelected.includes(coffeeBeanId)
-        ? prevSelected.filter((id) => id !== coffeeBeanId)
-        : [...prevSelected, coffeeBeanId];
-
+      const updated = prevSelected.includes(memberSaveId)
+        ? prevSelected.filter((id) => id !== memberSaveId)
+        : [...prevSelected, memberSaveId];
+  
       setIsAllSelected(updated.length === wishlist.length);
       return updated;
     });
   };
+  
 
   const handleSelectAllChange = () => {
     if (isAllSelected) {
@@ -70,14 +73,14 @@ const MemberSaveComponent = () => {
     setIsAllSelected(!isAllSelected);
   };
 
-  const handleDelete = () => {
+  const handleDeleteMemberSave = () => {
     if (selectedItems.length === 0) {
       alert("삭제할 상품을 선택해주세요.");
       return;
     }
-
+    
     deleteMemberSave(
-      memberId,
+      memberSaveId,
       selectedItems,
       async () => {
         alert("삭제 완료!");
@@ -133,7 +136,7 @@ const MemberSaveComponent = () => {
           )}
         </div>
         <div className="delete-item-btn">
-          <button onClick={handleDelete}>선택 상품 삭제</button>
+          <button onClick={handleDeleteMemberSave}>선택 상품 삭제</button>
         </div>
       </ul>
     </div>

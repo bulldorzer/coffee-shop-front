@@ -1,0 +1,149 @@
+/* 장바구니 컨테이너 */
+.cart-container {
+    padding: 20px;
+    font-size: 14px;
+}
+
+/* 장바구니 리스트 헤더 */
+.cart-header {
+    display: flex;
+    justify-content: space-between; 
+    gap: 90px;
+    align-items: center; 
+    padding: 10px 0; 
+    border-bottom: 1px solid #000; 
+    border-top: 1px solid #000;
+}
+
+/* 장바구니 리스트 헤더 항목 */
+.cart-header > span {
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;  /* 각 항목이 가능한 공간을 균등하게 차지하도록 */
+}
+
+/* 장바구니 항목 */
+.cart-item {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 0;  
+}
+
+/* 상품 이미지 */
+.product-image {
+    width: 50px;
+    height: auto;
+}
+
+/* 상품 정보 */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* 상품 이름 */
+.product-info span {
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin: 0 auto;
+}
+
+/* 분쇄 여부 드롭다운 */
+.grind-select {
+    margin-top: 8px;
+    width: 50px;
+    margin: 0 auto;
+}
+
+/* 수량 변경 */
+.qty-and-grind {
+    display: flex;
+    align-items: center;
+    /* margin-right: 30px; */
+}
+
+/* 수량 input */
+.qty-and-grind input {
+    width: 50px;
+    padding: 5px;
+}
+
+/* 판매가, 배송비, 합계 */
+.price-info {
+    margin-right: 30px;
+}
+
+/* 선택한 제품 구매 및 전체 구매 버튼 */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+/* 버튼 스타일 */
+.buttons button {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.buttons button:hover {
+    background-color: #45a049;
+}
+
+
+.cart-container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.total-section-container {
+    margin-top: 30px;
+}
+
+.total-section {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.total-section .row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.total-section .row.amount {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.button-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.button-section button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.button-section button:hover {
+    background-color: #f5f5f5;
+}
+
+    
