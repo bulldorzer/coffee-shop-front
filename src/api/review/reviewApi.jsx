@@ -18,10 +18,15 @@ export const postAdd = async (memberId, coffeeBeanId, reviewData) => {
       `${prefix}/${memberId}/${coffeeBeanId}`,
       reviewData
     );
+    console.log("리뷰 작성 결과:", response.data);
+    alert("리뷰가 성공적으로 등록되었습니다!");
     return response.data;
   } catch (error) {
-    // console.error("리뷰 작성 실패:", error);
-    // throw error;
+    if (error.response && error.response.status === 404) {
+      alert(error.response.data.message); // 백엔드 에러 메시지 표시
+    } else {
+      alert("리뷰 등록 중 오류가 발생했습니다.");
+    }
   }
 };
 
