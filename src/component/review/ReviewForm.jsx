@@ -12,8 +12,9 @@ const ReviewForm = ({ onCancel, onSubmitComplete, memberId, coffeeBeanId, writer
   const [writerState, setWriterState] = useState(writer);
   const [content,setContent] = useState("");
 
-  console.log("memberId ",memberId, "coffeeBeanId ",coffeeBeanId, "writer ",writer);
-
+  /**
+   * 리뷰 작성 완료 핸들러
+   */
   const handleSubmit = async () =>{
     try {
       const  reviewData ={
@@ -24,8 +25,11 @@ const ReviewForm = ({ onCancel, onSubmitComplete, memberId, coffeeBeanId, writer
       };
 
       // console.log("reviewData ",reviewData);
-      await postAdd(memberId,coffeeBeanId,reviewData)
-      alert("리뷰가 성공적으로 등록되었습니다!");
+      const response =await postAdd(memberId,coffeeBeanId,reviewData)
+      if (response != null && response !== undefined) {
+        console.log("리뷰 등록 성공:", response);
+        alert("리뷰가 성공적으로 등록되었습니다!");
+      }
       if (onSubmitComplete) onSubmitComplete(); // ✅ 리뷰 제출 후 콜백 실행
       if (onCancel) onCancel(); // 작성후 폼닫기
 

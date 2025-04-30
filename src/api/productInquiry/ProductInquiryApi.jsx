@@ -1,9 +1,8 @@
-import axios from "axios";
-import { API_SERVER_PORT } from "../utilApi";
+import apiClient from "../apiClient";
 
 
 
-const prefix =  `${API_SERVER_PORT}/api/pfaq`
+// const prefix =  `${API_SERVER_PORT}/api/pfaq`
 
 /**
  * 상품문의 작성 API - 진우
@@ -14,8 +13,8 @@ const prefix =  `${API_SERVER_PORT}/api/pfaq`
  */
 export const postAdd = async (memberId, coffeeBeanId, pfaqData) => {
     try {
-        const response = await axios.post(
-            `${prefix}/${memberId}/${coffeeBeanId}`,
+        const response = await apiClient.post(
+            `/pfaq/${memberId}/${coffeeBeanId}`,
             pfaqData
         );
         return response.data;
@@ -32,7 +31,7 @@ export const postAdd = async (memberId, coffeeBeanId, pfaqData) => {
  */
 export const getpfaqsAll = async () =>{
     try {
-        const response = await axios.get(`${prefix}/list`);
+        const response = await apiClient.get(`/pfaq/list`);
         return response.data
     } catch (error) {
         // console.error("상품문의 전체목록 불러오기 실패:", error);
@@ -51,7 +50,7 @@ export const getpfaqsAll = async () =>{
  */
 export const getpfaqsByCoffeeBean = async (coffeeBeanId, page = 0, size = 999) => {
     try {
-        const response = await axios.get(`${prefix}/list/product/${coffeeBeanId}?page=${page}&size=${size}`);
+        const response = await apiClient.get(`/pfaq/list/product/${coffeeBeanId}?page=${page}&size=${size}`);
         return response.data;
     } catch (error) {
         // console.error("해당 상품의 상품문의 목록 불러오기실패:", error);
@@ -70,7 +69,7 @@ export const getpfaqsByCoffeeBean = async (coffeeBeanId, page = 0, size = 999) =
  */
 export const getpfaqsByMember = async (memberId, page = 0, size = 999) => {
     try {
-        const response = await axios.get(`${prefix}/member/${memberId}?page=${page}&size=${size}`);
+        const response = await apiClient.get(`/pfaq/member/${memberId}?page=${page}&size=${size}`);
         return response.data;
     } catch (error) {
         // console.error("해당 회원의 상품문의 목록 불러오기실패:", error);

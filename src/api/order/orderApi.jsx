@@ -1,6 +1,5 @@
-import axios from "axios";
-import { API_SERVER_PORT } from "../utilApi";
-import { axiosInstance } from "../axoisInstance";
+
+import apiClient from "../apiClient";
 
 // const prefix = `${API_SERVER_PORT}/api/orders`;
 
@@ -15,7 +14,7 @@ export const createOrder = async (memberId, orderData) =>{
         console.log("--------createOrder--------");
         console.log("memberId", memberId);
         console.log("orderData", orderData);
-        const response = await axiosInstance.post(`/api/orders/${memberId}`, orderData);
+        const response = await apiClient.post(`/orders/${memberId}`, orderData);
         return response.data;
     } catch (error) {
         console.error("주문서 생성 실패:", error);
@@ -40,8 +39,8 @@ export const addOrderItem = async ( {orderId, coffeeBeanId, qty, addPoint, usepo
         console.log("usepoint", usepoint);
         console.log("deliveryDTO", deliveryDTO);
     
-        const response = await axiosInstance.post(
-          `/api/orders/${orderId}/coffeeBean?coffeeBeanId=${coffeeBeanId}&qty=${qty}&addpoint=${addPoint}&usepoint=${usepoint}`, // ✅ 쿼리 파라미터에 coffeeBeanId, qty, usepoint 추가
+        const response = await apiClient.post(
+          `/orders/${orderId}/coffeeBean?coffeeBeanId=${coffeeBeanId}&qty=${qty}&addpoint=${addPoint}&usepoint=${usepoint}`, // ✅ 쿼리 파라미터에 coffeeBeanId, qty, usepoint 추가
           deliveryDTO // ✅ request body에 deliveryDTO 보내기
         );
     

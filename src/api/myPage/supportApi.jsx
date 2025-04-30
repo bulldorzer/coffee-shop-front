@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API_SERVER_PORT } from "../utilApi";
+import apiClient from "../apiClient";
+
 
 
 
@@ -13,7 +13,7 @@ const prefix = `${API_SERVER_PORT}/api/cfaq`;
  */
 export const getCfaqsAll = async () =>{
     try {
-        const response = await axios.get(`${prefix}/list`);
+        const response = await apiClient.get(`/cfaq/list`);
         return response.data
     } catch (error) {
         // console.error("이용문의 전체목록 불러오기 실패:", error);
@@ -30,7 +30,7 @@ export const getCfaqsAll = async () =>{
  */
 export const getCfaqsByMember = async (memberId, page=0, size=10) => {
     try {
-        const response = await axios.get(`${prefix}/list/member/${memberId}?page=${page}&size=${size}`);
+        const response = await apiClient.get(`/cfaq/list/member/${memberId}?page=${page}&size=${size}`);
         return response.data
     } catch (error) {
         // console.error("내 이용문의 불러오기 실패:", error);
@@ -46,7 +46,7 @@ export const getCfaqsByMember = async (memberId, page=0, size=10) => {
  */
 export const postAdd = async (memberId, cfaqData) => {
     try {
-        const response = await axios.post(`${prefix}/${memberId}`,
+        const response = await apiClient.post(`/cfaq/${memberId}`,
             cfaqData
         );
         return response.data;
