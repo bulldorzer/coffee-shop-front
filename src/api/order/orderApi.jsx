@@ -12,8 +12,6 @@ import apiClient from "../apiClient";
 export const createOrder = async (memberId, orderData) =>{
     try {
         console.log("--------createOrder--------");
-        console.log("memberId", memberId);
-        console.log("orderData", orderData);
         const response = await apiClient.post(`/orders/${memberId}`, orderData);
         return response.data;
     } catch (error) {
@@ -29,19 +27,17 @@ export const createOrder = async (memberId, orderData) =>{
  * @param {*} itemData 
  * @returns 
  */
-export const addOrderItem = async ( {orderId, coffeeBeanId, qty, addPoint, usepoint, deliveryDTO}) => {
+export const addOrderItem = async ( {orderId, orderItems, addPoint, usepoint}) => {
     try {
         console.log("--------addOrderItem--------");
         console.log("orderId", orderId);
-        console.log("coffeeBeanId", coffeeBeanId);
-        console.log("qty", qty);
+        console.log("orderItems", orderItems);
         console.log("addPoint", addPoint);
         console.log("usepoint", usepoint);
-        console.log("deliveryDTO", deliveryDTO);
     
         const response = await apiClient.post(
-          `/orders/${orderId}/coffeeBean?coffeeBeanId=${coffeeBeanId}&qty=${qty}&addpoint=${addPoint}&usepoint=${usepoint}`, // ✅ 쿼리 파라미터에 coffeeBeanId, qty, usepoint 추가
-          deliveryDTO // ✅ request body에 deliveryDTO 보내기
+          `/orders/${orderId}/coffeeBean?addpoint=${addPoint}&usepoint=${usepoint}`, // ✅ 쿼리 파라미터에 coffeeBeanId, qty, usepoint 추가
+          orderItems // ✅ request body에 OrderDTO  보내기
         );
     
         console.log("주문서 상품추가 성공:", response.data);

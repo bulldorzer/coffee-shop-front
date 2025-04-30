@@ -61,19 +61,26 @@ const PaymentMethodSelect = ({finalAmount, usepoint, addPoint, orderInfo, produc
             // 3. 주문서 상품추가 API 호출
             await addOrderItem({
                 orderId,
-                coffeeBeanId: productInfo.productId,
-                qty: productInfo.quantity,
-                addPoint: addPoint,
-                usepoint: usepoint,
-                deliveryDTO: {
-                  shipper : deliveryInfo.receiverName,
-                  request : deliveryInfo.deliveryRequest,
-                  city : deliveryInfo.address.split(" ")[0],
-                  street : deliveryInfo.address.split(" ")[1],
-                  zipcode : deliveryInfo.address.split(" ")[2],
-                  status: "READY",
-                  memberId: loginMember.memberId 
-                }
+                addPoint,
+                usepoint,
+                orderItems: [
+                  {
+                    orderItemRequestDTO: {
+                        coffeeBeanId: productInfo.productId,
+                        qty: productInfo.quantity
+                    },
+                    deliveryDTO: {
+                      shipper: deliveryInfo.receiverName,
+                      request: deliveryInfo.deliveryRequest,
+                      city: deliveryInfo.address.split(" ")[0],
+                      street: deliveryInfo.address.split(" ")[1],
+                      zipcode: deliveryInfo.address.split(" ")[2],
+                      status: "READY",
+                      memberId: loginMember.memberId
+                    }
+                  }
+                  // 상품이 여러 개면 여기에 추가 가능, 나머지에는 deliveryDTO 생략 가능
+                ]
               }); // 주문서 상품추가 API 호출
 
             // 4. 결제 성공 후 주문서 마이 페이지로 이동
