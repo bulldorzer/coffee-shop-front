@@ -1,11 +1,5 @@
 import apiClient from "../apiClient";
 
-
-
-
-
-const prefix = `${API_SERVER_PORT}/api/cfaq`;
-
 /**
  * 
  * @returns 이용문의 전체목록 조회 API - 진우
