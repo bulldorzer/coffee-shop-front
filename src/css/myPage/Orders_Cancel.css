@@ -67,7 +67,7 @@
 
 
 /* 주문 내역 없음 메시지 */
-.orderscancel-list .empty-orders {
+.orderscancel-list .empty-cancel-orders {
     display: block;
     width: 100%;
     padding: 40px 0;
@@ -75,4 +75,3 @@
     color: #000;
     font-size: 16px;
 }
-  
