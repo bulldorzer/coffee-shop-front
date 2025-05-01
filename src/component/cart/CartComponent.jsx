@@ -80,39 +80,24 @@ const CartComponent = () => {
         .catch(err => console.error("장바구니 데이터 요청 오류:", err));
     }, []);
 
-    const handleQtyChange = (cartCoffeeBeanId, newQty) => {
+    const handleQtyAndGrindFlagChange = (cartCoffeeBeanId, newQty, newGrindFlag) => {
         axios.put('http://localhost:8081/api/cart/changeOption', {
             cartCoffeeBeanId,
-            qty: newQty
+            qty: newQty,          // 수량
+            grindFlag: newGrindFlag  // 분쇄 여부
         })
         .then(() => {
             setCartItems(prevItems => prevItems.map(item =>
                 item.cartCoffeeBeanId === cartCoffeeBeanId
-                    ? { ...item, qty: newQty }
+                    ? { ...item, qty: newQty, grindFlag: newGrindFlag }
                     : item
             ));
         })
         .catch((err) => {
-            console.error("수량 변경 요청 실패", err);
+            console.error("수량 및 분쇄 여부 변경 요청 실패", err);
         });
     };
-
-    const handleGrindFlagChange = (cartCoffeeBeanId, newGrindFlag) => {
-        axios.put('http://localhost:8081/api/cart/changeOption', {
-            cartCoffeeBeanId,
-            grindFlag: newGrindFlag
-        })
-        .then(() => {
-            setCartItems(prevItems => prevItems.map(item =>
-                item.cartCoffeeBeanId === cartCoffeeBeanId
-                    ? { ...item, grindFlag: newGrindFlag }
-                    : item
-            ));
-        })
-        .catch((err) => {
-            console.error("분쇄 여부 변경 요청 실패", err);
-        });
-    };
+    
 
     // 마일리지 계산
     const calculateMileage = (price, qty, memberShip) => {
@@ -171,26 +156,33 @@ const CartComponent = () => {
                     </div>
                     <div className="product-info">
                         <span>{item.name}</span>
-                        <select 
-                            className="grind-select" 
-                            value={item.grindFlag === 1 ? "grind" : "whole"} // grindFlag가 1이면 "grind", 0이면 "whole"
-                            onChange={(e) => handleGrindFlagChange(item.cartCoffeeBeanId, e.target.value === "grind")}
-                        >
-                            <option value="whole">홀빈</option>
-                            <option value="grind">분쇄</option>
-                        </select>
+                        <label className="grind-checkbox-label"> 분쇄 여부
+                        <input
+                            type="checkbox"
+                            checked={item.grindFlag}  // 체크 여부를 grindFlag 값에 따라 결정
+                            onChange={(e) => handleQtyAndGrindFlagChange(
+                                item.cartCoffeeBeanId,  // 해당 cartCoffeeBeanId
+                                item.qty,                // 현재 수량 유지
+                                e.target.checked         // 체크박스 상태 (true/false)
+                            )}
+                        />
+                        </label>
                     </div>
 
                     <span>{item.price.toLocaleString()}원</span>
 
                     <div className="qty-and-grind">
-                        <input 
-                            type="number" 
-                            value={item.qty} 
-                            min="1" 
-                            max="100"
-                            onChange={(e) => handleQtyChange(item.cartCoffeeBeanId, e.target.value)} 
-                        />
+                    <input
+                        type="number"
+                        value={item.qty}
+                        min="1"
+                        max="100"
+                        onChange={(e) => handleQtyAndGrindFlagChange(
+                            item.cartCoffeeBeanId,  // 해당 cartCoffeeBeanId
+                            e.target.value,         // 새로운 수량
+                            item.grindFlag          // 기존 grindFlag
+                        )}
+                    />
                     </div>
 
                     <span>{(item.price * item.qty).toLocaleString()}원</span>
