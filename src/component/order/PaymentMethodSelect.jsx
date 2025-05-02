@@ -36,22 +36,17 @@ const PaymentMethodSelect = ({finalAmount, usepoint, addPoint, orderInfo, produc
             const isPaymentSuccess = true; // 결제 성공 여부 (가정)
             if (!isPaymentSuccess) return alert("결제에 실패하였습니다.");
 
-            console.log("usepoint", usepoint);
-            console.log("orderInfo" , orderInfo);
-            console.log("productInfo" , productInfo);
-            console.log("deliveryInfo" , deliveryInfo);
-            console.log("loginMember" , loginMember);
-
-            
             const orderRequest = {
                 shipper : deliveryInfo.receiverName,
                 request : deliveryInfo.deliveryRequest,
                 city : deliveryInfo.address.split(" ")[0],
-                street : deliveryInfo.address.split(" ")[1],
-                zipcode : deliveryInfo.address.split(" ")[2],
+                street : deliveryInfo.address.split(" ")[1]+" "+deliveryInfo.address.split(" ")[2],
+                zipcode : deliveryInfo.address.split(" ")[3],
                 status: "READY",
                 memberId: loginMember.memberId 
             }
+
+            console.log("orderRequest", orderRequest);
 
             // 2. 주문서 생성 API 호출
             const order = await createOrder(loginMember.memberId, orderRequest); // 주문서 생성 API 호출
@@ -73,8 +68,8 @@ const PaymentMethodSelect = ({finalAmount, usepoint, addPoint, orderInfo, produc
                       shipper: deliveryInfo.receiverName,
                       request: deliveryInfo.deliveryRequest,
                       city: deliveryInfo.address.split(" ")[0],
-                      street: deliveryInfo.address.split(" ")[1],
-                      zipcode: deliveryInfo.address.split(" ")[2],
+                      street: deliveryInfo.address.split(" ")[1]+" "+deliveryInfo.address.split(" ")[2],
+                      zipcode: deliveryInfo.address.split(" ")[3],
                       status: "READY",
                       memberId: loginMember.memberId
                     }

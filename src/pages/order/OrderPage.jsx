@@ -28,8 +28,6 @@ const OrderPage = () =>{
         total // 총 금액
     } = location.state; // 상품 정보 가져오기
 
-    console.log("productImage:", productImage);
-
     // useMemberInfo 훅을 사용하여 로그인한 회원 정보 가져오기
     const { member, loading } = useMemberInfo();
     
@@ -98,9 +96,9 @@ const OrderPage = () =>{
 
               setDeliveryInfo(prev => ({
                 ...prev,
-                receiverName: member.name || '', // 수령인 이름
-                receiverPhone: member.phone || '', // 수령인 전화번호
-                address: `${member.city} ${member.street} ${member.zipcode}` || '', // 주소
+                receiverName: '', // 수령인 이름
+                receiverPhone: '', // 수령인 전화번호
+                address: '', // 주소
                 addressDetail: '',  // 상세주소
                 deliveryRequest: '', // 배송 요청 사항
               }));
@@ -136,7 +134,7 @@ const OrderPage = () =>{
     const tableData = [
         {
             productName: (
-            <div className="flex gap-4">
+            <div className="product-info">
                 <img className="product-image" src={`http://localhost:8081/api/coffeeBeans/view/${productImage}`} 
             alt={productName}/> 
                 <div>

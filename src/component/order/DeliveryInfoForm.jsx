@@ -43,7 +43,8 @@ const DeliveryInfoForm = ({ deliveryInfo, setDeliveryInfo, orderInfo, handleAddr
       <div className="flex items-center gap-4">
         <label>*주소</label>
         <input className="border px-2 py-1 w-1/3" type="text" value={deliveryInfo.address}
-          onChange={e => setDeliveryInfo({ ...deliveryInfo, address: e.target.value })} />
+          onChange={e => setDeliveryInfo({ ...deliveryInfo, address: e.target.value })} readOnly 
+          placeholder="주소는 직접 입력할 수 없습니다"/>
         <button className="order-button" onClick={handleAddressSearch}>주소검색</button>
         <input className="border px-2 py-1 flex-1" type="text" placeholder="상세주소"
           value={deliveryInfo.addressDetail}
