@@ -22,72 +22,82 @@ const PaymentMethodSelect = ({finalAmount, usepoint, addPoint, orderInfo, produc
 
     
 
-    const handlePayment = async ()=>{
+    const handlePayment = async () => {
         try {
-            if (!isDeliveryInfoValid()) {
-                alert("배송 정보를 모두 입력해 주세요.");
-                return;
-            }
-            else if (!isChecked) {
-                alert('필수 약관에 동의해주세요.');
-                return;
-            }
-            // 1. 결제 로직 (실제 결제 API 호출시 이단계에서 결제진행)
-            const isPaymentSuccess = true; // 결제 성공 여부 (가정)
-            if (!isPaymentSuccess) return alert("결제에 실패하였습니다.");
-
-            const orderRequest = {
-                shipper : deliveryInfo.receiverName,
-                request : deliveryInfo.deliveryRequest,
-                city : deliveryInfo.address.split(" ")[0],
-                street : deliveryInfo.address.split(" ")[1]+" "+deliveryInfo.address.split(" ")[2],
-                zipcode : deliveryInfo.address.split(" ")[3],
-                status: "READY",
-                memberId: loginMember.memberId 
-            }
-
-            console.log("orderRequest", orderRequest);
-
-            // 2. 주문서 생성 API 호출
-            const order = await createOrder(loginMember.memberId, orderRequest); // 주문서 생성 API 호출
-            console.log("order", order);
-            const orderId = order; // 생성된 주문서 ID
-
-            // 3. 주문서 상품추가 API 호출
-            await addOrderItem({
-                orderId,
-                addPoint,
-                usepoint,
-                orderItems: [
-                  {
-                    orderItemRequestDTO: {
-                        coffeeBeanId: productInfo.productId,
-                        qty: productInfo.quantity
-                    },
-                    deliveryDTO: {
-                      shipper: deliveryInfo.receiverName,
-                      request: deliveryInfo.deliveryRequest,
-                      city: deliveryInfo.address.split(" ")[0],
-                      street: deliveryInfo.address.split(" ")[1]+" "+deliveryInfo.address.split(" ")[2],
-                      zipcode: deliveryInfo.address.split(" ")[3],
-                      status: "READY",
-                      memberId: loginMember.memberId
-                    }
-                  }
-                  // 상품이 여러 개면 여기에 추가 가능, 나머지에는 deliveryDTO 생략 가능
-                ]
-              }); // 주문서 상품추가 API 호출
-
-            // 4. 결제 성공 후 주문서 마이 페이지로 이동
-            alert("결제 및 주문이 완료되었습니다. 주문서내역은 마이페이지에서 확인 가능합니다");
-            // 잠시 막아둠
-            navigate(`/mypage/orders`); // 주문서 상세 페이지로 이동
-
+          if (!isDeliveryInfoValid()) {
+            alert("배송 정보를 모두 입력해 주세요.");
+            return;
+          }
+          if (!isChecked) {
+            alert('필수 약관에 동의해주세요.');
+            return;
+          }
+      
+          const isPaymentSuccess = true;
+          if (!isPaymentSuccess) {
+            alert("결제에 실패하였습니다.");
+            return;
+          }
+      
+          const [city = "", street1 = "", street2 = "", zipcode = ""] = deliveryInfo.address.split(" ");
+          const street = `${street1} ${street2} ${deliveryInfo.addressDetail || ""}`.trim();
+      
+          const orderRequest = {
+            shipper: deliveryInfo.receiverName,
+            request: deliveryInfo.deliveryRequest,
+            city,
+            street,
+            zipcode,
+            status: "READY",
+            memberId: loginMember.memberId,
+          };
+      
+          const orderId = await createOrder(loginMember.memberId, orderRequest);
+          
+          console.log("productInfo", productInfo);
+          const isCartOrder = Array.isArray(productInfo);
+          const orderItems = (isCartOrder ? productInfo : [productInfo]).map(item => ({
+            name: `${loginMember.name} 주문서`,  // ← OrderDTO 필드
+            orderDate: new Date().toISOString().slice(0, 10), // ← "YYYY-MM-DD" 형식
+            status: "ORDER",             // ← OrderDTO 필드 (enum 값)
+            orderItemRequestDTO: {
+              coffeeBeanId: item.coffeeBeanId,
+              orderPrice: item.price,
+              qty: item.qty,
+            },
+            deliveryDTO: {
+              shipper: deliveryInfo.receiverName,
+              request: deliveryInfo.deliveryRequest,
+              city,
+              street,
+              zipcode,
+              status: "READY",
+              memberId: loginMember.memberId,
+            },
+            city,
+            street,
+            zipcode,
+          }));
+          console.log("orderId", orderId);
+          console.log("addPoint", addPoint);
+            console.log("usepoint", usepoint);
+          console.log("orderItems", orderItems);
+      
+          await addOrderItem({
+            orderId,
+            addPoint,
+            usepoint,
+            orderItems,
+          });
+      
+          alert("결제 및 주문이 완료되었습니다. 주문서내역은 마이페이지에서 확인 가능합니다");
+          navigate(`/mypage/orders`);
+      
         } catch (error) {
-            console.error("결제 실패 또는 서버 오류:", error);
-            alert("결제 처리 중 오류가 발생했습니다.");
+          console.error("결제 실패 또는 서버 오류:", error);
+          alert("결제 처리 중 오류가 발생했습니다.");
         }
-    }
+      };
 
     return (
         <section>

@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import useMemberInfo from "../../hook/useMemberInfo";
 import "../../css/cart/CartPage.css";
 
 const CartComponent = () => {
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState([]); // 장바구니 아이템 상태 관리
+
+    const navigate = useNavigate();
+
+    // useMemberInfo 훅을 사용하여 로그인한 회원 정보 가져오기
+    const { member, loading } = useMemberInfo();
 
     // 체크박스 전체 선택/해제
     const [selectedItems, setSelectedItems] = useState([]);
@@ -53,32 +60,29 @@ const CartComponent = () => {
     };
 
     useEffect(() => {
-        const token = localStorage.getItem("accessToken");
-
-        if (!token) return;
-
-        const decodeJWT = (token) => {
-            try {
-                const base64Url = token.split('.')[1];
-                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-                const decodedPayload = JSON.parse(atob(base64));
-                return decodedPayload.email || decodedPayload.sub;
-            } catch (error) {
-                console.error("토큰 디코딩 오류:", error);
-                return null;
-            }
-        };
-
-        const email = decodeJWT(token);
-
-        axios.get(`http://localhost:8081/api/cart/items?email=${email}`, {
+        
+        
+        if (!loading) {
+            // console.log("회원정보: ", member.email);
+            const token = localStorage.getItem("accessToken");
+            
+            if (!token) return;
+        
+            const email = member.email; // useMemberInfo 훅에서 가져온 이메일
+        
+            axios.get(`http://localhost:8081/api/cart/items?email=${email}`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
-        })
-        .then(res => setCartItems(res.data))
-        .catch(err => console.error("장바구니 데이터 요청 오류:", err));
-    }, []);
+            })
+            .then(res => {
+            console.log("장바구니 데이터:", res.data); // 콘솔에 데이터 출력
+            setCartItems(res.data);
+            })
+            .catch(err => console.error("장바구니 데이터 요청 오류:", err));
+        }
+        
+    }, [member, loading]);
 
     const handleQtyAndGrindFlagChange = (cartCoffeeBeanId, newQty, newGrindFlag) => {
         axios.put('http://localhost:8081/api/cart/changeOption', {
@@ -130,6 +134,30 @@ const CartComponent = () => {
 
     // 결제 예정 금액
     const totalPrice = totalProductPrice + deliveryFee;
+
+    const handlePurchaseSelected = () =>{
+        console.log("전체 cartItems:", cartItems);
+        console.log("선택된 ID 목록:", selectedItems);
+
+        const selectedCartItems = cartItems.filter(item =>
+            selectedItems.includes(item.cartCoffeeBeanId)
+        );
+
+        if (selectedCartItems.length === 0) {
+            alert("선택된 상품이 없습니다.");
+            return;
+        }
+
+        console.log("선택된 항목:", selectedCartItems);
+        navigate("/order", {
+            state: {
+                selectedCartItems: selectedCartItems, // 선택된 장바구니 아이템, 배열
+                deliveryFee,       // 배송비
+                productPrice: totalProductPrice, // 총 상품 금액
+                total: totalPrice,        // 총 결제 금액
+            }
+        });
+    }
 
     return (
         <div className="cart-container">
@@ -206,7 +234,7 @@ const CartComponent = () => {
                 </div>
 
                 <div className="button-section">
-                    <button>선택 제품 구매</button>
+                    <button onClick={handlePurchaseSelected}>선택 제품 구매</button>
                     <button>전체 구매</button>
                 </div>
             </div>

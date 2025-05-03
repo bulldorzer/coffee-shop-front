@@ -153,12 +153,12 @@ export default function ProductDetailComponent({ product }) {
       <div className="button-group">
         <button onClick={() => navigate("/order", {
           state: {
-            productId: product.id,
+            coffeeBeanId: product.id,
             productName: product.name,
             productImage: product.uploadFileNames[0],
             productPrice: product.price,
             deliveryFee: product.deliveryFee,
-            quantity,
+            qty: quantity,
             grindFlag,
             total,
           },

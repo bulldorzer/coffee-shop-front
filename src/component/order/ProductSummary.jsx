@@ -11,7 +11,7 @@ import DynamicTable from "../utilComponent/DynamicTable";
 const ProductSummary = ({ tableData }) => {
   const columns = [
     { key: 'productName', label: '상품정보' },
-    { key: 'quantity', label: '수량' },
+    { key: 'qty', label: '수량' },
     { key: 'productPrice', label: '금액' },
     { key: 'addPoint', label: '적립포인트' },
   ];
@@ -25,7 +25,7 @@ const ProductSummary = ({ tableData }) => {
   const calculateTotals = (data) => {
     let totalQuantity = 0, totalPrice = 0, totalPoint = 0;
     data.forEach(item => {
-      totalQuantity += Number(item.quantity);
+      totalQuantity += Number(item.qty);
       totalPrice += Number(item.productPrice);
       totalPoint += Number(item.addPoint);
     });
