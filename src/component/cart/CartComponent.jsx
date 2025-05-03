@@ -136,8 +136,6 @@ const CartComponent = () => {
     const totalPrice = totalProductPrice + deliveryFee;
 
     const handlePurchaseSelected = () =>{
-        console.log("전체 cartItems:", cartItems);
-        console.log("선택된 ID 목록:", selectedItems);
 
         const selectedCartItems = cartItems.filter(item =>
             selectedItems.includes(item.cartCoffeeBeanId)
@@ -148,7 +146,6 @@ const CartComponent = () => {
             return;
         }
 
-        console.log("선택된 항목:", selectedCartItems);
         navigate("/order", {
             state: {
                 selectedCartItems: selectedCartItems, // 선택된 장바구니 아이템, 배열
@@ -158,6 +155,23 @@ const CartComponent = () => {
             }
         });
     }
+
+    const handlePurchaseAll = () => {
+        if (cartItems.length === 0) {
+            alert("장바구니에 상품이 없습니다.");
+            return;
+        }
+    
+        navigate("/order", {
+            state: {
+                selectedCartItems: cartItems,          // 전체 장바구니 아이템
+                deliveryFee,                           // 배송비
+                productPrice: totalProductPrice,       // 총 상품 금액
+                total: totalPrice                      // 결제 예정 금액
+            }
+        });
+    };
+    
 
     return (
         <div className="cart-container">
@@ -235,7 +249,7 @@ const CartComponent = () => {
 
                 <div className="button-section">
                     <button onClick={handlePurchaseSelected}>선택 제품 구매</button>
-                    <button>전체 구매</button>
+                    <button onClick={handlePurchaseAll}>전체 구매</button>
                 </div>
             </div>
         </div>
