@@ -15,6 +15,15 @@ const JoinForm = () => {
     const [emailId, setEmailId] = useState("");
     const [emailDomain, setEmailDomain] = useState("");
     
+    const handleAddressSearch = () => {
+        new window.daum.Postcode({
+            oncomplete: function (data) {
+                setCity(data.sido)
+                setStreet(`${data.sigungu} ${data.query}`)
+          },
+        }).open();
+      };
+
     const emailOptions = [
         "naver.com",
         "gmail.com",
@@ -147,7 +156,7 @@ const JoinForm = () => {
                             onChange={(e) => setStreet(e.target.value)}
                             required
                         />
-                        <button type="button">우편번호 검색</button>
+                        <button type="button" onClick={handleAddressSearch}>우편번호 검색</button>
                     </div>
                 </div>
                 <div className="labeled-input">

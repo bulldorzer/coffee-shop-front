@@ -6,7 +6,6 @@ import "../../css/myPage/Profile.css";
 // 회원정보 수정 - 이재민
 const ProfileComponent = () => {
   const member = useMember();
-
   const [name, setName] = useState(member.name);
   const [phone, setPhone] = useState(member.phone);
   const [zipcode, setZipcode] = useState(member.zipcode);
@@ -18,6 +17,15 @@ const ProfileComponent = () => {
   const [emailDomain, setEmailDomain] = useState(member.email.split("@")[1]);
 
   const memberId = member.memberId;
+
+  const handleAddressSearch = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+      setCity(data.sido)
+      setStreet(`${data.sigungu} ${data.query}`)
+      },
+    }).open();
+  };
 
   const emailOptions = [
     "naver.com",
@@ -152,7 +160,7 @@ const ProfileComponent = () => {
             onChange={(e) => setCity(e.target.value)}
             required
           />
-          <button type="button">우편번호 검색</button>
+          <button type="button" onClick={handleAddressSearch}>우편번호 검색</button>
         </div>
 
         <div>
